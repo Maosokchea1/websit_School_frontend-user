@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 // ផ្នែក Common (Header, Footer, HeroSection)
 import Header from './components/Common/Header';
 import HeroSection from './components/Common/HeroSection';
-import Contact from './components/Common/Contact'; // អាចទុក ឬជំនួសដោយ ContactOverview
 import Footer from './components/Common/Footer';
 
 // ផ្នែក Contact ថ្មីៗ
@@ -129,7 +128,7 @@ function App() {
         {(currentTab === 'gallery' || currentTab === 'media' || currentTab === 'mediagallery') && <MediaGallery lang={lang} />}
         {currentTab === 'newsletter' && <Newsletter lang={lang} />}
 
-        {/* ទំនាក់ទំនង (Contact) - បានកែសម្រួលភ្ជាប់ជាមួយ Component ថ្មីៗ */}
+        {/* ទំនាក់ទំនង (Contact) */}
         {(currentTab === 'contact' || currentTab === 'contact-overview' || currentTab === 'contact overview' || currentTab === 'contactoverview') && <ContactOverview lang={lang} />}
         {(currentTab === 'inquiry' || currentTab === 'inquiry-form' || currentTab === 'inquiryform') && <InquiryForm lang={lang} />}
         {(currentTab === 'location' || currentTab === 'location-map' || currentTab === 'locationmap' || currentTab === 'map') && <LocationMap lang={lang} />}
