@@ -19,38 +19,45 @@ const AboutUs = ({ lang }) => {
   };
 
   return (
-    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-khmer transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-24 bg-gradient-to-b from-white via-gray-50/50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-800 dark:text-gray-100 font-khmer transition-colors duration-300 relative overflow-hidden">
+      
+      {/* Decorative Blur Background Elements */}
+      <div className="absolute top-1/3 -left-20 w-80 h-80 bg-blue-500/5 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute bottom-10 -right-20 w-80 h-80 bg-amber-500/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ចំណងជើងផ្នែក (Section Header) */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-primary font-semibold uppercase tracking-wider text-sm bg-primary/10 px-3 py-1 rounded-full border border-primary/25">
+        <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
+          <span className="text-primary font-semibold uppercase tracking-wider text-xs sm:text-sm bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20 inline-block shadow-sm">
             {t.badge}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mt-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white mt-4 tracking-tight">
             {t.title}
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 mt-4 text-base sm:text-lg">
+          <p className="text-gray-600 dark:text-gray-400 mt-4 text-base sm:text-lg leading-relaxed">
             {t.description}
           </p>
         </div>
 
         {/* ខ្លឹមសារបែងចែកជា ២ ផ្នែក (Grid Layout) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* ផ្នែកខាងឆ្វេង៖ រូបភាព ឬកាតបង្ហាញពីសកម្មភាពសាលា */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800">
+            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800 group">
               <img 
                 src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=1000&auto=format&fit=crop" 
                 alt="School building" 
-                className="w-full h-[400px] object-cover"
+                className="w-full h-[420px] sm:h-[480px] object-cover group-hover:scale-105 transition-transform duration-700"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/60 via-transparent to-transparent opacity-60"></div>
             </div>
-            {/* កាតអូសបញ្ជាក់បទពិសោធន៍ */}
-            <div className="absolute -bottom-6 -right-6 bg-gray-900 dark:bg-gray-800 text-white p-6 rounded-xl shadow-xl hidden sm:block border-2 border-white dark:border-gray-700">
-              <p className="text-3xl font-extrabold text-primary">{t.experienceNum}</p>
-              <p className="text-sm font-medium">{t.experienceText}</p>
+
+            {/* កាតអូសបញ្ជាក់បទពិសោធន៍ (Floating Experience Card) */}
+            <div className="absolute -bottom-6 -right-2 sm:-bottom-8 sm:-right-8 bg-gradient-to-br from-blue-900 to-indigo-950 text-white p-6 sm:p-8 rounded-3xl shadow-2xl hidden sm:block border border-white/20 backdrop-blur-xl transform hover:scale-105 transition-transform duration-300">
+              <p className="text-4xl sm:text-5xl font-extrabold text-amber-300 tracking-tight">{t.experienceNum}</p>
+              <p className="text-sm font-semibold text-gray-200 mt-1">{t.experienceText}</p>
             </div>
           </div>
 
@@ -58,46 +65,46 @@ const AboutUs = ({ lang }) => {
           <div className="lg:col-span-6 space-y-6">
             
             {/* ចក្ខុវិស័យ (Vision) */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex items-start space-x-4 transition-colors">
-              <div className="bg-primary/10 text-primary p-3 rounded-xl shrink-0 flex items-center justify-center">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <div className="bg-white dark:bg-gray-800/80 p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700/80 flex items-start space-x-5 transition-all duration-300 hover:shadow-xl hover:border-blue-500/30 dark:hover:border-blue-400/30 group">
+              <div className="bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 p-4 rounded-2xl shrink-0 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">{t.visionTitle}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{t.visionTitle}</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                   {t.visionDesc}
                 </p>
               </div>
             </div>
 
             {/* បេសកកម្ម (Mission) */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex items-start space-x-4 transition-colors">
-              <div className="bg-amber-100 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 p-3 rounded-xl shrink-0 flex items-center justify-center">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <div className="bg-white dark:bg-gray-800/80 p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700/80 flex items-start space-x-5 transition-all duration-300 hover:shadow-xl hover:border-amber-500/30 dark:hover:border-amber-400/30 group">
+              <div className="bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 p-4 rounded-2xl shrink-0 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">{t.missionTitle}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{t.missionTitle}</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                   {t.missionDesc}
                 </p>
               </div>
             </div>
 
             {/* តម្លៃស្នូល (Core Values) */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex items-start space-x-4 transition-colors">
-              <div className="bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 p-3 rounded-xl shrink-0 flex items-center justify-center">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <div className="bg-white dark:bg-gray-800/80 p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700/80 flex items-start space-x-5 transition-all duration-300 hover:shadow-xl hover:border-emerald-500/30 dark:hover:border-emerald-400/30 group">
+              <div className="bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 p-4 rounded-2xl shrink-0 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">{t.coreValuesTitle}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{t.coreValuesTitle}</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                   {t.coreValuesDesc}
                 </p>
               </div>
