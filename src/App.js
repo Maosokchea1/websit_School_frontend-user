@@ -5,6 +5,13 @@ import Header from './components/Common/Header';
 import HeroSection from './components/Common/HeroSection';
 import Footer from './components/Common/Footer';
 
+// ផ្នែក Home Components (ប្រមូលផ្ដុំគ្នាក្នុងហ្វូដឺ Home)
+import AboutUs from './components/Home/AboutUs';
+import Academic from './components/Home/Academic';
+import Achievements from './components/Home/Achievements';
+import Announcements from './components/Home/Announcements';
+import Events from './components/Home/Events';
+
 // ផ្នែក Contact ថ្មីៗ
 import ContactOverview from './components/Contact/ContactOverview';
 import InquiryForm from './components/Contact/InquiryForm';
@@ -16,18 +23,14 @@ import SupportHelpdesk from './components/Contact/SupportHelpdesk';
 import News from './components/News/Newsoverview';         
 import NewsOverview from './components/News/Newsoverview'; 
 import MediaGallery from './components/News/MediaGallery'; 
-import Events from './components/News/Events';
-import Announcements from './components/News/Announcements';
 import Newsletter from './components/News/Newsletter';
 
-// ផ្នែក AboutUs
-import AboutUs from './components/AboutUs/AboutUs';
+// ផ្នែក AboutUs (សម្រាប់ទំព័រដាច់ដោយឡែកផ្សេងទៀត)
 import History from './components/AboutUs/History';       
 import Vision from './components/AboutUs/Vision';         
 import Leadership from './components/AboutUs/Leadership'; 
 import Missions from './components/AboutUs/Missions';       
 import CoreValues from './components/AboutUs/CoreValues'; 
-import Achievements from './components/AboutUs/Achievements'; 
 import Facilities from './components/AboutUs/Facilities'; 
 
 // ផ្នែក Activities
@@ -38,7 +41,6 @@ import ClubsOrganizations from './components/Activities/ClubsOrganizations';
 import ArtsAndCulture from './components/Activities/ArtsAndCulture';
 
 // ផ្នែក Academics និង Results
-import Academic from './components/Acamdemics/Academic';
 import Curriculum from './components/Acamdemics/Curriculum'; 
 import Schedule from './components/Acamdemics/Schedule';     
 import Library from './components/Acamdemics/Library';       
@@ -80,12 +82,13 @@ function App() {
         {/* ទំព័រដើម (Home) */}
         {currentTab === 'home' && (
           <>
-            <HeroSection lang={lang} />
+            <HeroSection lang={lang} setActiveTab={setActiveTab} />
             <AboutUs lang={lang} />
             <Academic lang={lang} />
+            <Announcements lang={lang} />
+            <Achievements lang={lang} />
             <News lang={lang} setActiveTab={setActiveTab} />
             <Events lang={lang} />
-            <Admissions lang={lang} setActiveTab={setActiveTab} />
           </>
         )}
 
