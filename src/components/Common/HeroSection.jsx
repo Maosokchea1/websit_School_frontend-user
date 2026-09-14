@@ -3,7 +3,6 @@ import { kh } from '../../translate/Khmer';
 import { en } from '../../translate/English';
 
 const HeroSection = ({ lang }) => {
-  // ប្រើប្រាស់ទិន្នន័យភាសាផ្អែកលើ prop lang ដែលបញ្ជូនមកពី App.js (KH ឬ EN)
   const t = lang === 'KH' ? kh : en;
 
   return (
@@ -13,10 +12,12 @@ const HeroSection = ({ lang }) => {
       <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-600/25 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-indigo-500/25 rounded-full blur-3xl pointer-events-none"></div>
 
-      {/* Background Pattern/Image with subtle zoom effect */}
+      {/* Background Pattern/Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center z-0 opacity-15 mix-blend-overlay scale-105 transition-transform duration-1000"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop')` }}
+        style={{ 
+          backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3qBLUK7gGnCRTWNYbOBaUbYZP-JXb3jVucY71Eh5_JhYjnBWhKoj2-XcA&s=10')` 
+        }}
       ></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
@@ -25,7 +26,7 @@ const HeroSection = ({ lang }) => {
           {/* ផ្នែកអត្ថបទ (Text Content) */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             
-            {/* Badge ជាមួយ Icon ភ្លឺចែងចាំង */}
+            {/* Badge */}
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-blue-100 text-xs sm:text-sm font-medium px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md border border-blue-400/35">
               <svg className="w-4 h-4 text-yellow-300 animate-spin" style={{ animationDuration: '3s' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -42,7 +43,7 @@ const HeroSection = ({ lang }) => {
               {t?.heroDescription}
             </p>
             
-            {/* ប៊ូតុងអំពាវនាវ (CTA Buttons) */}
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
               <a 
                 href="#admissions" 
@@ -62,34 +63,41 @@ const HeroSection = ({ lang }) => {
             </div>
           </div>
 
-          {/* ផ្នែកកាតជំនួយ (Right Visual / Floating Glass Card) */}
+          {/* ផ្នែកកាតខាងស្តាំ (កែទម្រង់ទំហំរូបភាពឱ្យពេញសមាមាត្រ) */}
           <div className="lg:col-span-5 hidden lg:block">
             <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500 to-blue-500 rounded-3xl blur-lg opacity-30"></div>
               
-              <div className="relative bg-white/10 backdrop-blur-xl p-8 rounded-3xl border border-white/20 shadow-2xl space-y-6 transform hover:scale-[1.01] transition-transform duration-300">
-                <div className="flex items-center space-x-4">
-                  <div className="bg-gradient-to-br from-yellow-400 to-amber-500 text-blue-950 p-4 rounded-2xl shadow-lg">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                    </svg>
+              <div className="relative bg-white/10 backdrop-blur-xl p-8 rounded-3xl border border-white/20 shadow-2xl space-y-8 transform hover:scale-[1.01] transition-transform duration-300">
+                
+                <div className="flex items-center space-x-6">
+                  
+                  {/* កែទំហំប្រអប់រូបភាពឱ្យកាន់តែធំទូលាយ និងពេញលេញ (w-44 h-32 ឬ w-40 h-32) */}
+                  <div className="w-44 h-32 rounded-2xl overflow-hidden shadow-2xl shrink-0 border-2 border-white/30">
+                    <img 
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRdIYVkeyMVu-9Y5_a1AplTsGZxEJFLUHVxlYXitA7PSikGAHXUiy8bMc&s=10" 
+                      alt="Card Custom Image" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
+
                   <div>
-                    <h3 className="text-xl font-bold text-white">{t?.heroCardTitle}</h3>
-                    <p className="text-sm text-gray-300">{t?.heroCardSub}</p>
+                    <h3 className="text-2xl lg:text-3xl font-extrabold text-white leading-tight">{t?.heroCardTitle}</h3>
+                    <p className="text-base text-gray-200 mt-2">{t?.heroCardSub}</p>
                   </div>
                 </div>
 
-                <div className="border-t border-white/15 pt-5 space-y-4">
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-300">{t?.heroClassroomLabel}</span>
-                    <span className="font-semibold text-yellow-300 bg-yellow-400/10 px-3 py-1 rounded-lg border border-yellow-400/20">{t?.heroClassroomValue}</span>
+                <div className="border-t border-white/20 pt-6 space-y-5">
+                  <div className="flex justify-between items-center text-base">
+                    <span className="text-gray-200 font-medium">{t?.heroClassroomLabel}</span>
+                    <span className="font-bold text-yellow-300 bg-yellow-400/15 px-4 py-1.5 rounded-xl border border-yellow-400/30 text-base">{t?.heroClassroomValue}</span>
                   </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-300">{t?.heroLabLabel}</span>
-                    <span className="font-semibold text-yellow-300 bg-yellow-400/10 px-3 py-1 rounded-lg border border-yellow-400/20">{t?.heroLabValue}</span>
+                  <div className="flex justify-between items-center text-base">
+                    <span className="text-gray-200 font-medium">{t?.heroLabLabel}</span>
+                    <span className="font-bold text-yellow-300 bg-yellow-400/15 px-4 py-1.5 rounded-xl border border-yellow-400/30 text-base">{t?.heroLabValue}</span>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -97,7 +105,7 @@ const HeroSection = ({ lang }) => {
         </div>
       </div>
 
-      {/* កាតព័ត៌មានរហ័សខាងក្រោម (Quick Feature Badges) */}
+      {/* Quick Feature Badges */}
       <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 border-t border-gray-200/80 dark:border-gray-800 transition-colors duration-300 shadow-inner">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
