@@ -1,58 +1,32 @@
 import React from 'react';
 import { Calendar, ArrowRight, Megaphone } from 'lucide-react';
+import { kh } from '../../translate/Khmer';
+import { en } from '../../translate/English';
 
-const Announcements = () => {
-  // ទិន្នន័យសេចក្តីប្រកាសគំរូរបស់សាលា (រួមជាមួយរូបភាពពិតៗ)
-  const schoolAnnouncements = [
-    {
-      id: 1,
-      title: 'សេចក្តីប្រកាសស្តីពីការកត់ឈ្មោះចូលរៀនឆមាសទី២',
-      date: '០១ កញ្ញា ២០២៦',
-      category: 'ព័ត៌មានរដ្ឋបាល',
-      description: 'សូមជូនដំណឹងដល់សិស្សានុសិស្សទាំងអស់ឱ្យបានជ្រាបថា ការបង់ប្រាក់ និងចុះឈ្មោះចូលរៀនឆមាសទី២ នឹងត្រូវចាប់ផ្តើមពីថ្ងៃទី១០ ដល់ទី២០ កញ្ញា ២០២៦។',
-      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80',
-      urgent: true
-    },
-    {
-      id: 2,
-      title: 'កាលវិភាគប្រឡងប្រចាំខែកញ្ញា ឆ្នាំសិក្សា២០២៦',
-      date: '២៨ សីហា ២០២៦',
-      category: 'ការសិក្សា',
-      description: 'ការប្រឡងពិនិត្យសមត្ថភាពប្រចាំខែកញ្ញាសម្រាប់ថ្នាក់ទី៧ ដល់ទី១២ នឹងប្រព្រឹត្តទៅចាប់ពីថ្ងៃទី២៥ ដល់ថ្ងៃទី២៧ កញ្ញា ខាងមុខនេះ។',
-      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
-      urgent: false
-    },
-    {
-      id: 3,
-      title: 'ដំណើរទស្សនកិច្ចសិក្សាថ្នាក់ទី១២ ទៅកាន់ខេត្តសៀមរាប',
-      date: '២០ សីហា ២០២៦',
-      category: 'សកម្មភាពសិស្ស',
-      description: 'សាលារៀបចំកម្មវិធីទស្សនកិច្ចសិក្សាមួយថ្ងៃពេញនៅឧទ្យានប្រវត្តិសាស្ត្រអង្គរ ដើម្បីបណ្តុះស្មារតីស្រឡាញ់បេតិកភណ្ឌជាតិ។',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRdIYVkeyMVu-9Y5_a1AplTsGZxEJFLUHVxlYXitA7PSikGAHXUiy8bMc&s=10',
-      urgent: false
-    }
-  ];
+const Announcements = ({ lang }) => {
+  // ជ្រើសរើសហ្វាល់បកប្រែតាមភាសាដែលបានជ្រើសរើស
+  const t = lang === 'KH' ? kh : en;
 
   return (
-    <section id="announcements" className="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-300 font-khmer">
+    <section id="announcements" className={`py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-300 ${lang === 'KH' ? 'font-khmer' : 'font-sans'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider text-rose-600 dark:text-rose-400 uppercase bg-rose-50 dark:bg-rose-950/50 rounded-full border border-rose-100 dark:border-rose-900">
-            ដំណឹង និងសេចក្តីប្រកាស
+            {t.announcementsBadge}
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-4">
-            សេចក្តីប្រកាសផ្លូវការរបស់សាលា
+            {t.announcementsTitle}
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg leading-relaxed">
-            ទទួលបានព័ត៌មានថ្មីៗ សេចក្តីជូនដំណឹង និងសេចក្តីប្រកាសសំខាន់ៗពីគណៈគ្រប់គ្រងសាលារៀន។
+            {t.announcementsSubtitle}
           </p>
         </div>
 
         {/* Announcements List / Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {schoolAnnouncements.map((item) => (
+          {t.schoolAnnouncements.map((item) => (
             <div 
               key={item.id}
               className="group bg-white dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl overflow-hidden shadow-xl shadow-gray-100 dark:shadow-none border border-gray-100 dark:border-gray-700/60 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:border-rose-500/50"
@@ -74,7 +48,7 @@ const Announcements = () => {
                     </span>
                     {item.urgent && (
                       <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold bg-amber-500 text-white rounded-xl shadow-sm">
-                        <Megaphone className="w-3.5 h-3.5" /> សំខាន់
+                        <Megaphone className="w-3.5 h-3.5" /> {t.urgentBadge || "សំខាន់"}
                       </span>
                     )}
                   </div>
@@ -100,10 +74,10 @@ const Announcements = () => {
               {/* Read More Button */}
               <div className="px-6 pb-6 pt-0">
                 <button 
-                  onClick={() => alert(`អានសេចក្តីប្រកាសលម្អិត: ${item.title}`)}
+                  onClick={() => alert(t.announcementAlertMsg(item.title))}
                   className="w-full inline-flex items-center justify-center gap-2 py-3 bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-600 hover:text-white dark:hover:bg-rose-600 text-rose-600 dark:text-rose-400 font-semibold rounded-2xl transition-all duration-300 text-sm group/link"
                 >
-                  អានសេចក្តីលម្អិត
+                  {t.readMoreBtn}
                   <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                 </button>
               </div>

@@ -1,4 +1,5 @@
 export const en = {
+  // --- Header & Navigation ---
   schoolName: "Hun Sen Snoul High School",
   schoolSub: "Secondary & High School",
   home: "Home",
@@ -8,7 +9,7 @@ export const en = {
   news: "News",
   contact: "Contact",
   portal: "School Portal",
-  switchLang: "KH", // Fixed: Changed from Khmer string to match English/KH toggle logic
+  switchLang: "KH", 
   
   // Header Navigation Dropdown Titles
   aboutNav: "About Us",
@@ -62,7 +63,7 @@ export const en = {
   contactSubStaff: "Staff Directory",
   contactSubSupport: "Support / Helpdesk",
 
-  // Hero Section
+  // --- Hero Section ---
   heroBadge: "Welcome to the New Academic Year 🎓",
   heroTitlePart1: "Fostering Knowledge and",
   heroTitleHighlight: "Ethics",
@@ -83,7 +84,106 @@ export const en = {
   feature3Title: "Digital Environment",
   feature3Desc: "Online student management system",
   
-  // About Section Content
+  // --- News Section Translations ---
+  newsBadge: "News & Events",
+  newsTitle: "Latest Activities & School Announcements",
+  newsSubtitle: "Follow the latest news, announcements, and activities of students and teachers here.",
+  readMoreBtn: "Read More",
+
+  news1Title: "First Semester Summary Meeting and Second Semester Directions",
+  news1Category: "Announcement",
+  news1Date: "Feb 25, 2026",
+  news1Excerpt: "The school organized a summary meeting of teachers and parents' academic work to double the quality of education.",
+  
+  news2Title: "Annual Sports Competition on \"Sports, Health and Solidarity\"",
+  news2Category: "School Event",
+  news2Date: "Feb 20, 2026",
+  news2Excerpt: "Middle and high school students actively participated in football, basketball, and athletics competitions.",
+
+  news3Title: "Selection Notice for Provincial/Municipal Mathematics Competition",
+  news3Category: "Academics",
+  news3Date: "Feb 15, 2026",
+  news3Excerpt: "The academic support committee has selected grade 12 outstanding students to prepare for inter-institutional competitions.",
+
+  // --- Announcements Section Translations ---
+  announcementsBadge: "Announcements & News",
+  announcementsTitle: "Official School Announcements",
+  announcementsSubtitle: "Stay updated with the latest news, notices, and important announcements from the school administration.",
+  urgentBadge: "Urgent",
+  readMoreAlert: "Read announcement details",
+  announcementAlertMsg: (title) => `Read full announcement: ${title}`,
+
+  schoolAnnouncements: [
+    {
+      id: 1,
+      title: 'Announcement on Semester 2 Registration',
+      date: 'Sep 01, 2026',
+      category: 'Admin Info',
+      description: 'Please be informed that tuition payment and registration for the second semester will start from September 10 to 20, 2026.',
+      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
+      urgent: true
+    },
+    {
+      id: 2,
+      title: 'September 2026 Examination Schedule',
+      date: 'Aug 28, 2026',
+      category: 'Academics',
+      description: 'Monthly assessment exams for grades 7 to 12 will take place from September 25 to 27.',
+      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80',
+      urgent: false
+    },
+    {
+      id: 3,
+      title: 'Grade 12 Study Tour to Siem Reap',
+      date: 'Aug 20, 2026',
+      category: 'Student Activity',
+      description: 'The school is organizing a full-day study tour at the Angkor Historical Park to foster national heritage awareness.',
+      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80',
+      urgent: false
+    }
+  ],
+
+  // --- Events Section Translations ---
+  eventsBadge: "Upcoming Events",
+  eventsTitle: "School Events & Activities Schedule",
+  eventsSubtitle: "Stay updated with the dates and information of important events taking place in our school.",
+  joinEventBtn: "Join This Event",
+  eventAlertMsg: (title) => `Registered for event: ${title}`,
+
+  schoolEvents: [
+    {
+      id: 1,
+      title: 'School-Wide Mathematics Competition',
+      date: 'Oct 15, 2026',
+      time: '08:00 AM',
+      location: 'Main Hall (Hall A)',
+      category: 'Academics',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3qBLUK7gGnCRTWNYbOBaUbYZP-JXb3jVucY71Eh5_JhYjnBWhKoj2-XcA&s=10',
+      description: 'Annual academic mathematics competition to select outstanding students for provincial and municipal contests.'
+    },
+    {
+      id: 2,
+      title: 'Environment & Community Service Day',
+      date: 'Oct 22, 2026',
+      time: '07:30 AM',
+      location: 'School Campus',
+      category: 'Community',
+      image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+      description: 'Students and teachers join hands to clean the environment and foster school pride and responsibility.'
+    },
+    {
+      id: 3,
+      title: 'Science & Technology Exhibition',
+      date: 'Nov 05, 2026',
+      time: '08:30 AM',
+      location: 'Laboratory & Front Yard',
+      category: 'Technology',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRdIYVkeyMVu-9Y5_a1AplTsGZxEJFLUHVxlYXitA7PSikGAHXUiy8bMc&s=10',
+      description: 'Display of science projects and experiments by students from grades 10 to 12.'
+    }
+  ],
+
+  // --- About Section Content ---
   aboutUs: {
     badge: "About Us",
     title: "Commitment to Providing High-Quality Education",
@@ -98,7 +198,7 @@ export const en = {
     coreValuesDesc: "Integrity, diligence, leadership, and mutual respect."
   },
   
-  // Academics Section Content
+  // --- Academics Section Content ---
   academics: {
     badge: "Academics",
     title: "Educational Levels & Training Programs",
@@ -127,7 +227,7 @@ export const en = {
     ]
   },
   
-  // Footer Content
+  // --- Footer Content ---
   footerSchoolName: "Hun Sen Snoul High School",
   footerSchoolSub: "Secondary & High School",
   footerDescription: "Fostering knowledge, morality, and skills for a bright future for Cambodia's young generation.",

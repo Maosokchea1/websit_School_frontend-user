@@ -1,4 +1,5 @@
 export const kh = {
+  // --- Header & Navigation ---
   schoolName: "វិទ្យាល័យ ហ៊ុន សែន ស្នួល",
   schoolSub: "អនុវិទ្យាល័យ និងវិទ្យាល័យ",
   home: "ទំព័រដើម",
@@ -8,7 +9,7 @@ export const kh = {
   news: "ព័ត៌មាន",
   contact: "ទំនាក់ទំនង",
   portal: "ប្រព័ន្ធសាលា (Portal)",
-  switchLang: "EN", // Fixed: Changed from Khmer string to match English/KH toggle logic
+  switchLang: "EN", 
   
   // Header Navigation Dropdown Titles
   aboutNav: "អំពីពួកយើង",
@@ -62,7 +63,7 @@ export const kh = {
   contactSubStaff: "បញ្ជីបុគ្គលិក",
   contactSubSupport: "ជំនួយ",
 
-  // Hero Section
+  // --- Hero Section ---
   heroBadge: "ស្វាគមន៍មកកាន់ឆ្នាំសិក្សាថ្មី 🎓",
   heroTitlePart1: "បណ្តុះបណ្តាលចំណេះដឹង និង",
   heroTitleHighlight: "សីលធម៌",
@@ -83,7 +84,106 @@ export const kh = {
   feature3Title: "បរិយាកាសឌីជីថល",
   feature3Desc: "មានប្រព័ន្ធគ្រប់គ្រងសិស្សតាមអនឡាញ",
   
-  // About Section Content
+  // --- News Section Translations ---
+  newsBadge: "ព័ត៌មាន និងព្រឹត្តិការណ៍",
+  newsTitle: "សកម្មភាពថ្មីៗ និងសេចក្តីប្រកាសពីសាលា",
+  newsSubtitle: "តាមដានព័ត៌មានចុងក្រោយ សេចក្តីជូនដំណឹង និងសកម្មភាពនានារបស់សិស្សានុសិស្ស និងលោកគ្រូ-អ្នកគ្រូនៅទីនេះ។",
+  readMoreBtn: "អានបន្ថែម",
+
+  news1Title: "កិច្ចប្រជុំបូកសរុបលទ្ធផលការសិក្សាឆមាសទី១ និងទិសដៅឆមាសទី២",
+  news1Category: "សេចក្តីជូនដំណឹង",
+  news1Date: "២៥ កុម្ភៈ ២០២៦",
+  news1Excerpt: "សាលាបានរៀបចំកិច្ចប្រជុំបូកសរុបការងារសិក្សារបស់លោកគ្រូ-អ្នកគ្រូ និងមាតាបិតាសិស្ស ដើម្បីលើកកម្ពស់គុណភាពអប់រំទ្វេដង។",
+  
+  news2Title: "កម្មវិធីប្រកួតកីឡាស្ដីពី \"កីឡា សុខភាព និងសាមគ្គីភាពប្រចាំឆ្នាំ\"",
+  news2Category: "ព្រឹត្តិការណ៍សាលា",
+  news2Date: "២០ កុម្ភៈ ២០២៦",
+  news2Excerpt: "សិស្សានុសិស្សថ្នាក់អនុវិទ្យាល័យ និងវិទ្យាល័យ បានចូលរួមយ៉ាងសកម្មក្នុងការប្រកួតកីឡាបាល់ទាត់ បាល់បោះ និងអត្តពលកម្ម។",
+
+  news3Title: "ដំណឹងជ្រើសរើសសិស្សចូលរួមប្រកួតប្រជែងគណិតវិទ្យាថ្នាក់ខេត្ត/រាជធានី",
+  news3Category: "ការសិក្សា",
+  news3Date: "១៥ កុម្ភៈ ២០២៦",
+  news3Excerpt: "គណៈកម្មការទ្រទ្រង់ការសិក្សាបានជ្រើសរើសសិស្សពូកែថ្នាក់ទី១២ ដើម្បីត្រៀមខ្លួនប្រកួតប្រជែងកម្រិតអន្តរស្ថាប័ន។",
+
+  // --- Announcements Section Translations ---
+  announcementsBadge: "ដំណឹង និងសេចក្តីប្រកាស",
+  announcementsTitle: "សេចក្តីប្រកាសផ្លូវការរបស់សាលា",
+  announcementsSubtitle: "ទទួលបានព័ត៌មានថ្មីៗ សេចក្តីជូនដំណឹង និងសេចក្តីប្រកាសសំខាន់ៗពីគណៈគ្រប់គ្រងសាលារៀន។",
+  urgentBadge: "សំខាន់",
+  readMoreAlert: "អានសេចក្តីប្រកាសលម្អិត",
+  announcementAlertMsg: (title) => `អានសេចក្តីប្រកាសលម្អិត: ${title}`,
+
+  schoolAnnouncements: [
+    {
+      id: 1,
+      title: 'សេចក្តីប្រកាសស្តីពីការកត់ឈ្មោះចូលរៀនឆមាសទី២',
+      date: '០១ កញ្ញា ២០២៦',
+      category: 'ព័ត៌មានរដ្ឋបាល',
+      description: 'សូមជូនដំណឹងដល់សិស្សានុសិស្សទាំងអស់ឱ្យបានជ្រាបថា ការបង់ប្រាក់ និងចុះឈ្មោះចូលរៀនឆមាសទី២ នឹងត្រូវចាប់ផ្តើមពីថ្ងៃទី១០ ដល់ទី២០ កញ្ញា ២០២៦។',
+      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80',
+      urgent: true
+    },
+    {
+      id: 2,
+      title: 'កាលវិភាគប្រឡងប្រចាំខែកញ្ញា ឆ្នាំសិក្សា២០២៦',
+      date: '២៨ សីហា ២០២៦',
+      category: 'ការសិក្សា',
+      description: 'ការប្រឡងពិនិត្យសមត្ថភាពប្រចាំខែកញ្ញាសម្រាប់ថ្នាក់ទី៧ ដល់ទី១២ នឹងប្រព្រឹត្តទៅចាប់ពីថ្ងៃទី២៥ ដល់ថ្ងៃទី២៧ កញ្ញា ខាងមុខនេះ។',
+      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
+      urgent: false
+    },
+    {
+      id: 3,
+      title: 'ដំណើរទស្សនកិច្ចសិក្សាថ្នាក់ទី១២ ទៅកាន់ខេត្តសៀមរាប',
+      date: '២០ សីហា ២០២៦',
+      category: 'សកម្មភាពសិស្ស',
+      description: 'សាលារៀបចំកម្មវិធីទស្សនកិច្ចសិក្សាមួយថ្ងៃពេញនៅឧទ្យានប្រវត្តិសាស្ត្រអង្គរ ដើម្បីបណ្តុះស្មារតីស្រឡាញ់បេតិកភណ្ឌជាតិ។',
+      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80',
+      urgent: false
+    }
+  ],
+
+  // --- Events Section Translations ---
+  eventsBadge: "ព្រឹត្តិការណ៍នាពេលខាងមុខ",
+  eventsTitle: "កាលវិភាគព្រឹត្តិការណ៍ និងសកម្មភាពសាលា",
+  eventsSubtitle: "តាមដានព័ត៌មាន និងកាលបរិច្ឆេទនៃព្រឹត្តិការណ៍សំខាន់ៗដែលនឹងប្រព្រឹត្តទៅក្នុងសាលារៀនរបស់យើង។",
+  joinEventBtn: "ចូលរួមព្រឹត្តិការណ៍នេះ",
+  eventAlertMsg: (title) => `បានចុះឈ្មោះចូលរួមព្រឹត្តិការណ៍: ${title}`,
+
+  schoolEvents: [
+    {
+      id: 1,
+      title: 'ពិធីប្រកួតប្រជែងគណិតវិទ្យាទូទាំងសាលា',
+      date: '១៥ តុលា ២០២៦',
+      time: 'ម៉ោង ០៨:០០ ព្រឹក',
+      location: 'សាលប្រជុំធំ (Hall A)',
+      category: 'ការសិក្សា',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3qBLUK7gGnCRTWNYbOBaUbYZP-JXb3jVucY71Eh5_JhYjnBWhKoj2-XcA&s=10',
+      description: 'ការប្រកួតប្រជែងជ្រើសរើសសិស្សពូកែផ្នែកគណិតវិទ្យាប្រចាំឆ្នាំសិក្សា ដើម្បីត្រៀមប្រកួតថ្នាក់ខេត្ត និងក្រុង។'
+    },
+    {
+      id: 2,
+      title: 'ទិវាបរិស្ថាន និងកិច្ចការសហគមន៍',
+      date: '២២ តុលា ២០២៦',
+      time: 'ម៉ោង ០៧:៣០ ព្រឹក',
+      location: 'បរិវេណសាលារៀន',
+      category: 'សកម្មភាពសង្គម',
+      image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+      description: 'សិស្សានុសិស្ស និងលោកគ្រូអ្នកគ្រូនឹងរួមគ្នាសម្អាតបរិស្ថាន និងបណ្តុះស្មារតីស្រឡាញ់សាលារៀន។'
+    },
+    {
+      id: 3,
+      title: 'កម្មវិធីតាំងពិព័រណ៍វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា',
+      date: '០៥ វិច្ឆិកា ២០២៦',
+      time: 'ម៉ោង ០៨:៣០ ព្រឹក',
+      location: 'មន្ទីរពិសោធន៍ និងទីធ្លាខាងមុខ',
+      category: 'បច្ចេកវិទ្យា',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRdIYVkeyMVu-9Y5_a1AplTsGZxEJFLUHVxlYXitA7PSikGAHXUiy8bMc&s=10',
+      description: 'ការដាក់បង្ហាញស្នាដៃ និងគម្រោងពិសោធន៍វិទ្យាសាស្ត្ររបស់សិស្សានុសិស្សថ្នាក់ទី១០ ដល់ទី១២។'
+    }
+  ],
+
+  // --- About Section Content ---
   aboutUs: {
     badge: "អំពីរឿងយើងខ្ញុំ",
     title: "ការប្តេជ្ញាចិត្តក្នុងការផ្តល់ការអប់រំប្រកបដោយគុណភាពខ្ពស់",
@@ -98,7 +198,7 @@ export const kh = {
     coreValuesDesc: "ភាពស្មោះត្រង់ ឧស្សាហព្យាយាម ភាពជាអ្នកដឹកនាំ និងការគោរពគ្នាទៅវិញទៅមក។"
   },
   
-  // Academics Section Content
+  // --- Academics Section Content ---
   academics: {
     badge: "កម្មវិធីសិក្សា (Academics)",
     title: "កម្រិតសិក្សា និងកម្មវិធីបណ្តុះបណ្តាល",
@@ -127,7 +227,7 @@ export const kh = {
     ]
   },
   
-  // Footer Content
+  // --- Footer Content ---
   footerSchoolName: "វិទ្យាល័យ ហ៊ុន សែន ស្នួល",
   footerSchoolSub: "អនុវិទ្យាល័យ និងវិទ្យាល័យ",
   footerDescription: "បណ្តុះបណ្តាលចំណេះដឹង សីលធម៌ និងជំនាញ ដើម្បីអនាគតដ៏ភ្លឺស្វាងរបស់ទំពាំងស្នងឫស្សីកម្ពុជា។",
