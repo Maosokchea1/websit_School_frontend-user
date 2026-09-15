@@ -5,14 +5,14 @@ import { en } from '../../translate/English';
 const News = ({ lang, setActiveTab }) => {
   const t = lang === 'KH' ? kh : en;
 
-  // ទិន្នន័យគំរូសម្រាប់ព័ត៌មានសាលា
+  // ទិន្នន័យគំរូសម្រាប់ព័ត៌មានសាលា (ជាមួយនឹងរូបភាពពិតៗ)
   const newsList = [
     {
       id: 1,
       title: lang === 'KH' ? 'កិច្ចប្រជុំបូកសរុបលទ្ធផលការសិក្សាឆមាសទី១ និងទិសដៅឆមាសទី២' : 'First Semester Summary Meeting and Second Semester Directions',
       category: lang === 'KH' ? 'សេចក្តីជូនដំណឹង' : 'Announcement',
       date: lang === 'KH' ? '២៥ កុម្ភៈ ២០២៦' : 'Feb 25, 2026',
-      image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop',
       excerpt: lang === 'KH' 
         ? 'សាលាបានរៀបចំកិច្ចប្រជុំបូកសរុបការងារសិក្សារបស់លោកគ្រូ-អ្នកគ្រូ និងមាតាបិតាសិស្ស ដើម្បីលើកកម្ពស់គុណភាពអប់រំទ្វេដង।'
         : 'The school organized a summary meeting of teachers and parents\' academic work to double the quality of education.',
@@ -22,7 +22,7 @@ const News = ({ lang, setActiveTab }) => {
       title: lang === 'KH' ? 'កម្មវិធីប្រកួតកីឡាស្ដីពី "កីឡា សុខភាព និងសាមគ្គីភាពប្រចាំឆ្នាំ"' : 'Annual Sports Competition on "Sports, Health and Solidarity"',
       category: lang === 'KH' ? 'ព្រឹត្តិការណ៍សាលា' : 'School Event',
       date: lang === 'KH' ? '២០ កុម្ភៈ ២០២៦' : 'Feb 20, 2026',
-      image: 'https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?q=80&w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800&auto=format&fit=crop',
       excerpt: lang === 'KH'
         ? 'សិស្សានុសិស្សថ្នាក់អនុវិទ្យាល័យ និងវិទ្យាល័យ បានចូលរួមយ៉ាងសកម្មក្នុងការប្រកួតកីឡាបាល់ទាត់ បាល់បោះ និងអត្តពលកម្ម।'
         : 'Middle and high school students actively participated in football, basketball, and athletics competitions.',
@@ -32,7 +32,7 @@ const News = ({ lang, setActiveTab }) => {
       title: lang === 'KH' ? 'ដំណឹងជ្រើសរើសសិស្សចូលរួមប្រកួតប្រជែងគណិតវិទ្យាថ្នាក់ខេត្ត/រាជធានី' : 'Selection Notice for Provincial/Municipal Mathematics Competition',
       category: lang === 'KH' ? 'ការសិក្សា' : 'Academics',
       date: lang === 'KH' ? '១៥ កុម្ភៈ ២០២៦' : 'Feb 15, 2026',
-      image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=800&auto=format&fit=crop',
       excerpt: lang === 'KH'
         ? 'គណៈកម្មការទ្រទ្រង់ការសិក្សាបានជ្រើសរើសសិស្សពូកែថ្នាក់ទី១២ ដើម្បីត្រៀមខ្លួនប្រកួតប្រជែងកម្រិតអន្តរស្ថាប័ន।'
         : 'The academic support committee has selected grade 12 outstanding students to prepare for inter-institutional competitions.',

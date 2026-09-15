@@ -5,27 +5,27 @@ import Header from './components/Common/Header';
 import HeroSection from './components/Common/HeroSection';
 import Footer from './components/Common/Footer';
 
-// ផ្នែក Home Components (ប្រមូលផ្ដុំគ្នាក្នុងហ្វូដឺ Home)
+// ផ្នែក Home Components (រួមទាំង Newsoverview ដែលស្ថិតក្នុងហ្វូដឺ Home)
 import AboutUs from './components/Home/AboutUs';
 import Academic from './components/Home/Academic';
 import Achievements from './components/Home/Achievements';
 import Announcements from './components/Home/Announcements';
 import Events from './components/Home/Events';
+import News from './components/Home/Newsoverview';          
+import NewsOverview from './components/Home/Newsoverview'; 
 
-// ផ្នែក Contact ថ្មីៗ
+// ផ្នែក Contact
 import ContactOverview from './components/Contact/ContactOverview';
 import InquiryForm from './components/Contact/InquiryForm';
 import LocationMap from './components/Contact/LocationMap';
 import StaffDirectory from './components/Contact/StaffDirectory';
 import SupportHelpdesk from './components/Contact/SupportHelpdesk';
 
-// ផ្នែក News & Media
-import News from './components/News/Newsoverview';         
-import NewsOverview from './components/News/Newsoverview'; 
+// ផ្នែក News & Media (ក្រៅពី Newsoverview)
 import MediaGallery from './components/News/MediaGallery'; 
 import Newsletter from './components/News/Newsletter';
 
-// ផ្នែក AboutUs (សម្រាប់ទំព័រដាច់ដោយឡែកផ្សេងទៀត)
+// ផ្នែក AboutUs
 import History from './components/AboutUs/History';       
 import Vision from './components/AboutUs/Vision';         
 import Leadership from './components/AboutUs/Leadership'; 
@@ -34,7 +34,7 @@ import CoreValues from './components/AboutUs/CoreValues';
 import Facilities from './components/AboutUs/Facilities'; 
 
 // ផ្នែក Activities
-import Sports from './components/Activities/Sports';                 
+import Sports from './components/Activities/Sports';                
 import FieldTrips from './components/Activities/FieldTrips';
 import CommunityService from './components/Activities/CommunityService'; 
 import ClubsOrganizations from './components/Activities/ClubsOrganizations';

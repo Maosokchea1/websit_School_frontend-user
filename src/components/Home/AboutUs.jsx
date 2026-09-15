@@ -7,13 +7,11 @@ const AboutUs = ({ lang }) => {
   const t = (lang === 'EN' ? en : kh).aboutUs || {
     badge: "អំពីរឿងយើងខ្ញុំ",
     title: "ការប្តេជ្ញាចិត្តក្នុងការផ្តល់ការអប់រំប្រកបដោយគុណភាពខ្ពស់",
-    description: "វិទ្យាល័យរបស់យើងបានបង្កើតឡើងដើម្បីបណ្តុះបណ្តាលទំពាំងស្នងឫស្សីឱ្យមានទាំងចំណេះដឹង សីលធម៌ និងជំនាញរស់នៅប្រាកដប្រជា។",
-    experienceNum: "២៥+",
-    experienceText: "ឆ្នាំនៃបទពិសោធន៍អប់រំ",
+    description: "វិទ្យាល័យរបស់យើងបានបង្កើតឡើងដើម្បីបណ្តុះបណ្តាលទំពាំងស្នងឫស្សីឱ្យមានទាំងចំណេះដឹង សីលធម៌ និងជំនាញរស់នៅប្រាកដប្រជា。",
     visionTitle: "ចក្ខុវិស័យ (Vision)",
-    visionDesc: "ជាគ្រឹះស្ថានអប់រំសាធារណៈ/ឯកជនឈានមុខគេ ដែលផលិតបានធនធានមនុស្សមានសមត្ថភាពខ្ពស់ ស្មារតីស្នេហាជាតិ និងប្រកួតប្រជែងបានក្នុងកម្រិតជាតិ និងអន្តរជាតិ។",
+    visionDesc: "ជាគ្រឹះស្ថានអប់រំសាធារណៈ/ឯកជនឈានមុខគេ ដែលផលិតបានធនធានមនុស្សមានសមត្ថភាពខ្ពស់ ស្មារតីស្នេហាជាតិ និងប្រកួតប្រជែងបានក្នុងកម្រិតជាតិ និងអន្តរជាតិ。",
     missionTitle: "បេសកកម្ម (Mission)",
-    missionDesc: "ផ្តល់ការបង្រៀនស្របតាមស្តង់ដារក្រសួងអប់រំ ពង្រឹងវិន័យ សីលធម៌ និងជំរុញការប្រើប្រាស់បច្ចេកវិទ្យាទំនើបក្នុងការសិក្សាស្រាវជ្រាវ។",
+    missionDesc: "ផ្តល់ការបង្រៀនស្របតាមស្តង់ដារក្រសួងអប់រំ ពង្រឹងវិន័យ សីលធម៌ និងជំរុញការប្រើប្រាស់បច្ចេកវិទ្យាទំនើបក្នុងការសិក្សាស្រាវជ្រាវ。",
     coreValuesTitle: "តម្លៃស្នូល (Core Values)",
     coreValuesDesc: "ភាពស្មោះត្រង់ ឧស្សាហព្យាយាម ភាពជាអ្នកដឹកនាំ និងការគោរពគ្នាទៅវិញទៅមក。"
   };
@@ -43,21 +41,15 @@ const AboutUs = ({ lang }) => {
         {/* ខ្លឹមសារបែងចែកជា ២ ផ្នែក (Grid Layout) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* ផ្នែកខាងឆ្វេង៖ រូបភាព ឬកាតបង្ហាញពីសកម្មភាពសាលា */}
+          {/* ផ្នែកខាងឆ្វេង៖ រូបភាពសាលារៀនពិតៗ (បានដកកាតអណ្តែតចេញរួចរាល់) */}
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800 group">
               <img 
-                src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=1000&auto=format&fit=crop" 
-                alt="School building" 
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3qBLUK7gGnCRTWNYbOBaUbYZP-JXb3jVucY71Eh5_JhYjnBWhKoj2-XcA&s=10" 
+                alt="School building real view" 
                 className="w-full h-[420px] sm:h-[480px] object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/60 via-transparent to-transparent opacity-60"></div>
-            </div>
-
-            {/* កាតអូសបញ្ជាក់បទពិសោធន៍ (Floating Experience Card) */}
-            <div className="absolute -bottom-6 -right-2 sm:-bottom-8 sm:-right-8 bg-gradient-to-br from-blue-900 to-indigo-950 text-white p-6 sm:p-8 rounded-3xl shadow-2xl hidden sm:block border border-white/20 backdrop-blur-xl transform hover:scale-105 transition-transform duration-300">
-              <p className="text-4xl sm:text-5xl font-extrabold text-amber-300 tracking-tight">{t.experienceNum}</p>
-              <p className="text-sm font-semibold text-gray-200 mt-1">{t.experienceText}</p>
             </div>
           </div>
 

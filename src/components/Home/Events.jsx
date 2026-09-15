@@ -2,7 +2,7 @@ import React from 'react';
 import { Calendar, Clock, MapPin, ArrowRight } from 'lucide-react';
 
 const Events = () => {
-  // ទិន្នន័យព្រឹត្តិការណ៍គំរូរបស់សាលា
+  // ទិន្នន័យព្រឹត្តិការណ៍គំរូរបស់សាលា (ជាមួយនឹងរូបភាពពិតៗ)
   const schoolEvents = [
     {
       id: 1,
@@ -11,7 +11,7 @@ const Events = () => {
       time: 'ម៉ោង ០៨:០០ ព្រឹក',
       location: 'សាលប្រជុំធំ (Hall A)',
       category: 'ការសិក្សា',
-      image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3qBLUK7gGnCRTWNYbOBaUbYZP-JXb3jVucY71Eh5_JhYjnBWhKoj2-XcA&s=10',
       description: 'ការប្រកួតប្រជែងជ្រើសរើសសិស្សពូកែផ្នែកគណិតវិទ្យាប្រចាំឆ្នាំសិក្សា ដើម្បីត្រៀមប្រកួតថ្នាក់ខេត្ត និងក្រុង។'
     },
     {
@@ -21,8 +21,8 @@ const Events = () => {
       time: 'ម៉ោង ០៧:៣០ ព្រឹក',
       location: 'បរិវេណសាលារៀន',
       category: 'សកម្មភាពសង្គម',
-      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
-      description: 'សិស្សានុសិស្ស និងលោកគ្រូអ្នកគ្រូនឹងរួមគ្នាសម្អាតបរិស្ថាន និងปลูกដើមឈើលម្អជុំវិញសាលា។'
+      image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+      description: 'សិស្សានុសិស្ស និងលោកគ្រូអ្នកគ្រូនឹងរួមគ្នាសម្អាតបរិស្ថាន និងបណ្តុះស្មារតីស្រឡាញ់សាលារៀន។'
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const Events = () => {
       time: 'ម៉ោង ០៨:៣០ ព្រឹក',
       location: 'មន្ទីរពិសោធន៍ និងទីធ្លាខាងមុខ',
       category: 'បច្ចេកវិទ្យា',
-      image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRdIYVkeyMVu-9Y5_a1AplTsGZxEJFLUHVxlYXitA7PSikGAHXUiy8bMc&s=10',
       description: 'ការដាក់បង្ហាញស្នាដៃ និងគម្រោងពិសោធន៍វិទ្យាសាស្ត្ររបស់សិស្សានុសិស្សថ្នាក់ទី១០ ដល់ទី១២។'
     }
   ];
