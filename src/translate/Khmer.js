@@ -246,6 +246,12 @@ export const kh = {
   footerAddress: "ស្រុកស្នួល, ខេត្តក្រចេះ, កម្ពុជា",
   footerPhone: "012 345 678 / 098 765 432",
   footerEmail: "info@hunsensnoul.edu.kh",
+  // --- Auth / Portal ---
+  login: "ចូលប្រើ",
+  loginSubtitle: "ចូលមើលពិន្ទុសិស្ស",
+  myGrades: "ពិន្ទុរបស់ខ្ញុំ",
+  logout: "ចាកចេញ",
+
   footerCopyright: "© ២០២៦ វិទ្យាល័យ ហ៊ុន សែន ស្នួល។ រក្សាសិទ្ធិគ្រប់យ៉ាង។",
   footerPrivacy: "គោលការណ៍ឯកជនភាព",
   footerTerms: "លក្ខខណ្ឌប្រើប្រាស់"

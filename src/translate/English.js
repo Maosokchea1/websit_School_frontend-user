@@ -224,6 +224,7 @@ export const en = {
     socialPoints: [
       "Critical Thinking Enhancement",
       "Discussion & Reading Clubs"
+      
     ]
   },
   
@@ -246,7 +247,14 @@ export const en = {
   footerAddress: "Snoul District, Kratie Province, Cambodia",
   footerPhone: "012 345 678 / 098 765 432",
   footerEmail: "info@hunsensnoul.edu.kh",
+  // --- Auth / Portal ---
+  login: "Login",
+  loginSubtitle: "Login to view student grades",
+  myGrades: "My Grades",
+  logout: "Logout",
+
   footerCopyright: "© 2026 Hun Sen Snoul High School. All rights reserved.",
   footerPrivacy: "Privacy Policy",
   footerTerms: "Terms of Use"
+  
 };

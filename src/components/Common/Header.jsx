@@ -2,37 +2,43 @@ import React, { useState, useEffect, useRef } from 'react';
 import { kh } from '../../translate/Khmer';
 import { en } from '../../translate/English';
 
-const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
+const Header = ({
+  activeTab,
+  setActiveTab,
+  lang,
+  setLang,
+  toggleLang,
+  student,        // ✅ NEW: logged-in student object or null
+  onLoginClick,   // ✅ NEW: opens login page
+  onLogout,       // ✅ NEW: clears session
+}) => {
   // 1. STATE MANAGEMENT (Theme & Dropdowns)
   const [isDarkMode, setIsDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        return savedTheme === 'dark';
-      }
+      if (savedTheme) return savedTheme === 'dark';
       return document.documentElement.classList.contains('dark');
     }
     return false;
   });
-  
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // ✅ NEW: User dropdown state
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const userMenuRef = useRef(null);
 
   // Dropdown states
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
   const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
-
   const [isAdmissionsDropdownOpen, setIsAdmissionsDropdownOpen] = useState(false);
   const [isMobileAdmissionsOpen, setIsMobileAdmissionsOpen] = useState(false);
-
   const [isAcademicsDropdownOpen, setIsAcademicsDropdownOpen] = useState(false);
   const [isMobileAcademicsOpen, setIsMobileAcademicsOpen] = useState(false);
-
   const [isNewsDropdownOpen, setIsNewsDropdownOpen] = useState(false);
   const [isMobileNewsOpen, setIsMobileNewsOpen] = useState(false);
-
   const [isActivitiesDropdownOpen, setIsActivitiesDropdownOpen] = useState(false);
   const [isMobileActivitiesOpen, setIsMobileActivitiesOpen] = useState(false);
-
   const [isContactDropdownOpen, setIsContactDropdownOpen] = useState(false);
   const [isMobileContactOpen, setIsMobileContactOpen] = useState(false);
 
@@ -45,6 +51,7 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
   const contactDropdownRef = useRef(null);
 
   const t = lang === 'KH' ? kh : en;
+  const isLoggedIn = !!student;
 
   // Sync Dark Mode
   useEffect(() => {
@@ -67,6 +74,7 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
       if (newsDropdownRef.current && !newsDropdownRef.current.contains(event.target)) setIsNewsDropdownOpen(false);
       if (activitiesDropdownRef.current && !activitiesDropdownRef.current.contains(event.target)) setIsActivitiesDropdownOpen(false);
       if (contactDropdownRef.current && !contactDropdownRef.current.contains(event.target)) setIsContactDropdownOpen(false);
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) setIsUserMenuOpen(false);
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -75,7 +83,8 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
   // Handlers
   const toggleLanguage = () => {
     const nextLang = lang === 'KH' ? 'EN' : 'KH';
-    if (typeof setLang === 'function') setLang(nextLang);
+    if (typeof toggleLang === 'function') toggleLang();
+    else if (typeof setLang === 'function') setLang(nextLang);
     if (typeof window !== 'undefined') {
       localStorage.setItem('language', nextLang);
       const params = new URLSearchParams(window.location.search);
@@ -87,6 +96,7 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
   const toggleDarkMode = () => setIsDarkMode(prev => !prev);
 
   const handleNavClick = (section) => {
+    if (typeof section !== 'string') return;
     if (setActiveTab) setActiveTab(section);
     setIsMobileMenuOpen(false);
     setIsAboutDropdownOpen(false);
@@ -101,6 +111,7 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
     setIsMobileActivitiesOpen(false);
     setIsContactDropdownOpen(false);
     setIsMobileContactOpen(false);
+    setIsUserMenuOpen(false);
 
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -113,7 +124,24 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
     }
   };
 
-  // ---------- SUB-ITEMS DEFINITIONS (Using external translation dictionary `t`) ----------
+  const handleLoginClick = () => {
+    if (typeof onLoginClick === 'function') onLoginClick();
+    else handleNavClick('login');
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleMyGradesClick = () => {
+    handleNavClick('my-grades');
+    setIsUserMenuOpen(false);
+  };
+
+  const handleLogoutClick = () => {
+    if (typeof onLogout === 'function') onLogout();
+    setIsMobileMenuOpen(false);
+    setIsUserMenuOpen(false);
+  };
+
+  // ---------- SUB-ITEMS DEFINITIONS ----------
   const aboutSubItems = [
     { id: 'about', label: t.aboutSubSchool || 'About School' },
     { id: 'about-us', label: t.aboutSubUs || 'About Us' },
@@ -125,7 +153,6 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
     { id: 'achievements', label: t.aboutSubAchievements || 'Achievements' },
     { id: 'facilities', label: t.aboutSubFacilities || 'Facilities' },
   ];
-
   const admissionsSubItems = [
     { id: 'admissions', label: t.admissionsSubOverview || 'Admissions Overview' },
     { id: 'apply', label: t.admissionsSubApply || 'Apply Now' },
@@ -133,7 +160,6 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
     { id: 'scholarships', label: t.admissionsSubScholarships || 'Scholarships' },
     { id: 'requirements', label: t.admissionsSubRequirements || 'Requirements' },
   ];
-
   const academicsSubItems = [
     { id: 'academics', label: t.academicsSubOverview || 'Academics Overview' },
     { id: 'programs', label: t.academicsSubPrograms || 'Study Programs' },
@@ -142,7 +168,6 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
     { id: 'library', label: t.academicsSubLibrary || 'Library & Research' },
     { id: 'results', label: t.academicsSubResults || 'Academic Results' },
   ];
-
   const newsSubItems = [
     { id: 'news', label: t.newsSubOverview || 'News Overview' },
     { id: 'announcements', label: t.newsSubAnnouncements || 'Announcements' },
@@ -150,7 +175,6 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
     { id: 'gallery', label: t.newsSubGallery || 'Media Gallery' },
     { id: 'newsletter', label: t.newsSubNewsletter || 'Newsletter' },
   ];
-
   const activitiesSubItems = [
     { id: 'activities', label: t.activitiesSubOverview || 'Activities Overview' },
     { id: 'sports', label: t.activitiesSubSports || 'Sports' },
@@ -159,7 +183,6 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
     { id: 'community', label: t.activitiesSubCommunity || 'Community Service' },
     { id: 'fieldtrips', label: t.activitiesSubFieldTrips || 'Field Trips' },
   ];
-
   const contactSubItems = [
     { id: 'contact', label: t.contactSubOverview || 'Contact Overview' },
     { id: 'inquiry', label: t.contactSubInquiry || 'Inquiry Form' },
@@ -168,13 +191,13 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
     { id: 'support', label: t.contactSubSupport || 'Support / Helpdesk' },
   ];
 
-  // Active checks
   const isAboutActive = aboutSubItems.some(sub => activeTab === sub.id);
   const isAdmissionsActive = admissionsSubItems.some(sub => activeTab === sub.id);
   const isAcademicsActive = academicsSubItems.some(sub => activeTab === sub.id);
   const isNewsActive = newsSubItems.some(sub => activeTab === sub.id);
   const isActivitiesActive = activitiesSubItems.some(sub => activeTab === sub.id);
   const isContactActive = contactSubItems.some(sub => activeTab === sub.id);
+  const isLoginActive = activeTab === 'login' || activeTab === 'my-grades' || activeTab === 'student-login' || activeTab === 'grades';
 
   // Icon helper
   const homeIcon = (isActive) => (
@@ -182,6 +205,18 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
       <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
     </svg>
   );
+
+  const loginIcon = (isActive, size = 'w-4 h-4') => (
+    <svg className={`${size} shrink-0 transition-transform duration-300 ${isActive ? 'scale-110' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665-6.16 3.422z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v7m-4-4v2m8-2v2" />
+    </svg>
+  );
+
+  // ✅ NEW: Get student display name safely
+  const studentName = student ? (lang === 'KH' ? (student.nameKh || student.nameEn || '') : (student.nameEn || student.nameKh || '')) : '';
+  const studentInitial = studentName?.charAt(0)?.toUpperCase() || 'S';
 
   // Generic dropdown renderer for Desktop
   const renderDesktopDropdown = (label, icon, isActive, isOpen, setIsOpen, closeOthers, ref, subItems, overviewId) => (
@@ -269,7 +304,7 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
     <header className="bg-white/95 dark:bg-gray-900/95 text-gray-900 dark:text-white backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 gap-x-4">
-          
+
           {/* Logo */}
           <a href="#home" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="flex items-center space-x-3 group shrink-0 transition-transform duration-200">
             <div className="w-12 h-12 bg-primary text-white rounded-xl shadow flex items-center justify-center transition-transform duration-300 group-hover:rotate-6 shrink-0">
@@ -291,102 +326,33 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
 
           {/* DESKTOP NAVIGATION */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2 font-medium text-sm whitespace-nowrap">
-            {/* Home */}
             <a href="#home" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className={`flex items-center space-x-1 px-2.5 py-2 text-sm transition-colors duration-200 ${activeTab === 'home' ? "text-primary font-semibold" : "text-gray-700 dark:text-gray-300 hover:text-primary"}`}>
               {homeIcon(activeTab === 'home')}
               <span>{t.home}</span>
             </a>
 
-            {/* About Us */}
-            {renderDesktopDropdown(
-              t.aboutNav,
-              aboutIcon,
-              isAboutActive,
-              isAboutDropdownOpen,
-              setIsAboutDropdownOpen,
-              () => { setIsAdmissionsDropdownOpen(false); setIsAcademicsDropdownOpen(false); setIsNewsDropdownOpen(false); setIsActivitiesDropdownOpen(false); setIsContactDropdownOpen(false); },
-              aboutDropdownRef,
-              aboutSubItems,
-              'about'
-            )}
-
-            {/* Admissions */}
-            {renderDesktopDropdown(
-              t.admissions,
-              admissionsIcon,
-              isAdmissionsActive,
-              isAdmissionsDropdownOpen,
-              setIsAdmissionsDropdownOpen,
-              () => { setIsAboutDropdownOpen(false); setIsAcademicsDropdownOpen(false); setIsNewsDropdownOpen(false); setIsActivitiesDropdownOpen(false); setIsContactDropdownOpen(false); },
-              admissionsDropdownRef,
-              admissionsSubItems,
-              'admissions'
-            )}
-
-            {/* Academics */}
-            {renderDesktopDropdown(
-              t.academicsNav,
-              academicsIcon,
-              isAcademicsActive,
-              isAcademicsDropdownOpen,
-              setIsAcademicsDropdownOpen,
-              () => { setIsAboutDropdownOpen(false); setIsAdmissionsDropdownOpen(false); setIsNewsDropdownOpen(false); setIsActivitiesDropdownOpen(false); setIsContactDropdownOpen(false); },
-              academicsDropdownRef,
-              academicsSubItems,
-              'academics'
-            )}
-
-            {/* News */}
-            {renderDesktopDropdown(
-              t.news,
-              newsIcon,
-              isNewsActive,
-              isNewsDropdownOpen,
-              setIsNewsDropdownOpen,
-              () => { setIsAboutDropdownOpen(false); setIsAdmissionsDropdownOpen(false); setIsAcademicsDropdownOpen(false); setIsActivitiesDropdownOpen(false); setIsContactDropdownOpen(false); },
-              newsDropdownRef,
-              newsSubItems,
-              'news'
-            )}
-
-            {/* Activities */}
-            {renderDesktopDropdown(
-              t.activitiesNav,
-              activitiesIcon,
-              isActivitiesActive,
-              isActivitiesDropdownOpen,
-              setIsActivitiesDropdownOpen,
-              () => { setIsAboutDropdownOpen(false); setIsAdmissionsDropdownOpen(false); setIsAcademicsDropdownOpen(false); setIsNewsDropdownOpen(false); setIsContactDropdownOpen(false); },
-              activitiesDropdownRef,
-              activitiesSubItems,
-              'activities'
-            )}
-
-            {/* Contact */}
-            {renderDesktopDropdown(
-              t.contact,
-              contactIcon,
-              isContactActive,
-              isContactDropdownOpen,
-              setIsContactDropdownOpen,
-              () => { setIsAboutDropdownOpen(false); setIsAdmissionsDropdownOpen(false); setIsAcademicsDropdownOpen(false); setIsNewsDropdownOpen(false); setIsActivitiesDropdownOpen(false); },
-              contactDropdownRef,
-              contactSubItems,
-              'contact'
-            )}
+            {renderDesktopDropdown(t.aboutNav, aboutIcon, isAboutActive, isAboutDropdownOpen, setIsAboutDropdownOpen, () => { setIsAdmissionsDropdownOpen(false); setIsAcademicsDropdownOpen(false); setIsNewsDropdownOpen(false); setIsActivitiesDropdownOpen(false); setIsContactDropdownOpen(false); }, aboutDropdownRef, aboutSubItems, 'about')}
+            {renderDesktopDropdown(t.admissions, admissionsIcon, isAdmissionsActive, isAdmissionsDropdownOpen, setIsAdmissionsDropdownOpen, () => { setIsAboutDropdownOpen(false); setIsAcademicsDropdownOpen(false); setIsNewsDropdownOpen(false); setIsActivitiesDropdownOpen(false); setIsContactDropdownOpen(false); }, admissionsDropdownRef, admissionsSubItems, 'admissions')}
+            {renderDesktopDropdown(t.academicsNav, academicsIcon, isAcademicsActive, isAcademicsDropdownOpen, setIsAcademicsDropdownOpen, () => { setIsAboutDropdownOpen(false); setIsAdmissionsDropdownOpen(false); setIsNewsDropdownOpen(false); setIsActivitiesDropdownOpen(false); setIsContactDropdownOpen(false); }, academicsDropdownRef, academicsSubItems, 'academics')}
+            {renderDesktopDropdown(t.news, newsIcon, isNewsActive, isNewsDropdownOpen, setIsNewsDropdownOpen, () => { setIsAboutDropdownOpen(false); setIsAdmissionsDropdownOpen(false); setIsAcademicsDropdownOpen(false); setIsActivitiesDropdownOpen(false); setIsContactDropdownOpen(false); }, newsDropdownRef, newsSubItems, 'news')}
+            {renderDesktopDropdown(t.activitiesNav, activitiesIcon, isActivitiesActive, isActivitiesDropdownOpen, setIsActivitiesDropdownOpen, () => { setIsAboutDropdownOpen(false); setIsAdmissionsDropdownOpen(false); setIsAcademicsDropdownOpen(false); setIsNewsDropdownOpen(false); setIsContactDropdownOpen(false); }, activitiesDropdownRef, activitiesSubItems, 'activities')}
+            {renderDesktopDropdown(t.contact, contactIcon, isContactActive, isContactDropdownOpen, setIsContactDropdownOpen, () => { setIsAboutDropdownOpen(false); setIsAdmissionsDropdownOpen(false); setIsAcademicsDropdownOpen(false); setIsNewsDropdownOpen(false); setIsActivitiesDropdownOpen(false); }, contactDropdownRef, contactSubItems, 'contact')}
           </nav>
 
           {/* Right Action Icons (Desktop) */}
           <div className="hidden lg:flex items-center space-x-3 shrink-0">
-            <div 
-              onClick={toggleLanguage} 
+            {/* Language */}
+            <div
+              onClick={toggleLanguage}
               className="p-1 text-gray-700 dark:text-gray-200 hover:opacity-80 transition-opacity duration-200 cursor-pointer flex items-center justify-center shrink-0 bg-transparent border-none shadow-none"
               title="Switch Language"
             >
               <img src={lang === 'KH' ? "https://flagcdn.com/w40/kh.png" : "https://flagcdn.com/w40/us.png"} alt="Flag" className="w-6 h-auto object-contain rounded-xs pointer-events-none" />
             </div>
-            <div 
-              onClick={toggleDarkMode} 
+
+            {/* Theme Toggle */}
+            <div
+              onClick={toggleDarkMode}
               className="p-1 text-gray-700 dark:text-gray-200 hover:text-primary transition-colors duration-200 cursor-pointer flex items-center justify-center shrink-0 bg-transparent border-none shadow-none"
               title="Toggle Theme"
             >
@@ -396,6 +362,79 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
                 <svg className="w-5 h-5 text-gray-700 dark:text-gray-300 transition-transform duration-500 pointer-events-none" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
               )}
             </div>
+
+            {/* ✅ FIXED: Login button OR User Menu */}
+            {!isLoggedIn ? (
+              <button
+                type="button"
+                onClick={handleLoginClick}
+                className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold rounded-lg shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer ${
+                  isLoginActive
+                    ? 'bg-primary/90 text-white ring-2 ring-primary/40'
+                    : 'bg-primary text-white hover:bg-primary/90'
+                }`}
+                title={t.loginSubtitle || (lang === 'KH' ? 'ចូលមើលពិន្ទុសិស្ស' : 'View student grades')}
+              >
+                {loginIcon(isLoginActive)}
+                <span>{t.login || (lang === 'KH' ? 'ចូលប្រើ' : 'Login')}</span>
+              </button>
+            ) : (
+              <div className="relative" ref={userMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition cursor-pointer"
+                >
+                  <span className="w-8 h-8 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center shrink-0">
+                    {studentInitial}
+                  </span>
+                  <span className="text-sm font-semibold text-gray-700 dark:text-gray-200 max-w-[120px] truncate">
+                    {studentName?.split(' ')[0] || 'Student'}
+                  </span>
+                  <svg className={`w-3.5 h-3.5 text-gray-400 transition-transform ${isUserMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                    {/* User info header */}
+                    <div className="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
+                      <p className="text-sm font-bold text-gray-900 dark:text-white truncate">
+                        {studentName || 'Student'}
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                        {student?.id} {student?.grade ? `• ${student.grade}` : ''}
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={handleMyGradesClick}
+                      className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-primary/10 hover:text-primary transition"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-6m4 6V7m4 10v-3M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                      {t.myGrades || (lang === 'KH' ? 'ពិន្ទុរបស់ខ្ញុំ' : 'My Grades')}
+                    </button>
+
+                    <div className="border-t border-gray-100 dark:border-gray-700 mt-1 pt-1">
+                      <button
+                        type="button"
+                        onClick={handleLogoutClick}
+                        className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        {t.logout || (lang === 'KH' ? 'ចាកចេញ' : 'Logout')}
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Mobile Action Buttons */}
@@ -410,6 +449,17 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
                 <svg className="w-5 h-5 text-gray-700 dark:text-gray-300 pointer-events-none" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
               )}
             </div>
+
+            {/* ✅ NEW: Show avatar in mobile top bar when logged in */}
+            {isLoggedIn && (
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="w-9 h-9 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center cursor-pointer shrink-0"
+              >
+                {studentInitial}
+              </button>
+            )}
+
             <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="w-10 h-10 text-gray-700 dark:text-gray-200 hover:text-primary focus:outline-none rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 flex items-center justify-center shrink-0 cursor-pointer">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isMobileMenuOpen ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /> : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
@@ -422,70 +472,68 @@ const Header = ({ activeTab, setActiveTab, lang, setLang }) => {
       {/* MOBILE DROPDOWN MENU */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 pt-3 pb-5 space-y-3 shadow-lg">
-          {/* Home */}
+          {/* ✅ NEW: User card (mobile) when logged in */}
+          {isLoggedIn && (
+            <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 border border-primary/30">
+              <span className="w-11 h-11 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0">
+                {studentInitial}
+              </span>
+              <div className="min-w-0">
+                <p className="text-sm font-bold text-gray-900 dark:text-white truncate">
+                  {studentName || 'Student'}
+                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 truncate">
+                  {student?.id} {student?.grade ? `• ${student.grade}` : ''}
+                </p>
+              </div>
+            </div>
+          )}
+
           <a href="#home" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${activeTab === 'home' ? "text-base font-semibold text-primary bg-primary/10 border border-primary shadow-xs" : "text-base font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"}`}>
             {homeIcon(activeTab === 'home')}
             <span>{t.home}</span>
           </a>
 
-          {/* About Us Mobile */}
-          {renderMobileAccordion(
-            t.aboutNav,
-            aboutIcon,
-            isAboutActive,
-            isMobileAboutOpen,
-            setIsMobileAboutOpen,
-            aboutSubItems
-          )}
+          {renderMobileAccordion(t.aboutNav, aboutIcon, isAboutActive, isMobileAboutOpen, setIsMobileAboutOpen, aboutSubItems)}
+          {renderMobileAccordion(t.admissions, admissionsIcon, isAdmissionsActive, isMobileAdmissionsOpen, setIsMobileAdmissionsOpen, admissionsSubItems)}
+          {renderMobileAccordion(t.academicsNav, academicsIcon, isAcademicsActive, isMobileAcademicsOpen, setIsMobileAcademicsOpen, academicsSubItems)}
+          {renderMobileAccordion(t.news, newsIcon, isNewsActive, isMobileNewsOpen, setIsMobileNewsOpen, newsSubItems)}
+          {renderMobileAccordion(t.activitiesNav, activitiesIcon, isActivitiesActive, isMobileActivitiesOpen, setIsMobileActivitiesOpen, activitiesSubItems)}
+          {renderMobileAccordion(t.contact, contactIcon, isContactActive, isMobileContactOpen, setIsMobileContactOpen, contactSubItems)}
 
-          {/* Admissions Mobile */}
-          {renderMobileAccordion(
-            t.admissions,
-            admissionsIcon,
-            isAdmissionsActive,
-            isMobileAdmissionsOpen,
-            setIsMobileAdmissionsOpen,
-            admissionsSubItems
-          )}
-
-          {/* Academics Mobile */}
-          {renderMobileAccordion(
-            t.academicsNav,
-            academicsIcon,
-            isAcademicsActive,
-            isMobileAcademicsOpen,
-            setIsMobileAcademicsOpen,
-            academicsSubItems
-          )}
-
-          {/* News Mobile */}
-          {renderMobileAccordion(
-            t.news,
-            newsIcon,
-            isNewsActive,
-            isMobileNewsOpen,
-            setIsMobileNewsOpen,
-            newsSubItems
-          )}
-
-          {/* Activities Mobile */}
-          {renderMobileAccordion(
-            t.activitiesNav,
-            activitiesIcon,
-            isActivitiesActive,
-            isMobileActivitiesOpen,
-            setIsMobileActivitiesOpen,
-            activitiesSubItems
-          )}
-
-          {/* Contact Mobile */}
-          {renderMobileAccordion(
-            t.contact,
-            contactIcon,
-            isContactActive,
-            isMobileContactOpen,
-            setIsMobileContactOpen,
-            contactSubItems
+          {/* ✅ FIXED: Mobile Login OR Logged-in Actions */}
+          {!isLoggedIn ? (
+            <button
+              type="button"
+              onClick={handleLoginClick}
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-white bg-primary hover:bg-primary/90 shadow-sm transition-all duration-200 mt-3"
+            >
+              {loginIcon(isLoginActive, 'w-5 h-5')}
+              <span>{t.login || (lang === 'KH' ? 'ចូលមើលពិន្ទុសិស្ស' : 'Login to View Grades')}</span>
+            </button>
+          ) : (
+            <div className="space-y-2 mt-3">
+              <button
+                type="button"
+                onClick={handleMyGradesClick}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-white bg-primary hover:bg-primary/90 shadow-sm transition-all duration-200"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-6m4 6V7m4 10v-3M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                {t.myGrades || (lang === 'KH' ? 'ពិន្ទុរបស់ខ្ញុំ' : 'My Grades')}
+              </button>
+              <button
+                type="button"
+                onClick={handleLogoutClick}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30 transition-all duration-200"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                {t.logout || (lang === 'KH' ? 'ចាកចេញ' : 'Logout')}
+              </button>
+            </div>
           )}
         </div>
       )}

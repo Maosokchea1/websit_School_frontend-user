@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-
-// ផ្នែក Common (Header, Footer, HeroSection)
+// ផ្នែក Common
 import Header from './components/Common/Header';
 import HeroSection from './components/Common/HeroSection';
 import Footer from './components/Common/Footer';
 
-// ផ្នែក Home Components (រួមទាំង Newsoverview ដែលស្ថិតក្នុងហ្វូដឺ Home)
+// ផ្នែក Home Components
 import AboutUs from './pages/Home/AboutUs';
 import Academic from './pages/Home/Academic';
 import Achievements from './pages/Home/Achievements';
 import Announcements from './pages/Home/Announcements';
 import Events from './pages/Home/Events';
-import News from './pages/Home/Newsoverview';          
-import NewsOverview from './pages/Home/Newsoverview'; 
+import News from './pages/Home/Newsoverview';
+import NewsOverview from './pages/Home/Newsoverview';
 
 // ផ្នែក Contact
 import ContactOverview from './pages/Contact/ContactOverview';
@@ -22,30 +21,30 @@ import LocationMap from './pages/Contact/LocationMap';
 import StaffDirectory from './pages/Contact/StaffDirectory';
 import SupportHelpdesk from './pages/Contact/SupportHelpdesk';
 
-// ផ្នែក News & Media (ក្រៅពី Newsoverview)
-import MediaGallery from './pages/News/MediaGallery'; 
+// ផ្នែក News & Media
+import MediaGallery from './pages/News/MediaGallery';
 import Newsletter from './pages/News/Newsletter';
 
 // ផ្នែក AboutUs
-import History from './pages/AboutUs/History';       
-import Vision from './pages/AboutUs/Vision';         
-import Leadership from './pages/AboutUs/Leadership'; 
-import Missions from './pages/AboutUs/Missions';       
-import CoreValues from './pages/AboutUs/CoreValues'; 
-import Facilities from './pages/AboutUs/Facilities'; 
+import History from './pages/AboutUs/History';
+import Vision from './pages/AboutUs/Vision';
+import Leadership from './pages/AboutUs/Leadership';
+import Missions from './pages/AboutUs/Missions';
+import CoreValues from './pages/AboutUs/CoreValues';
+import Facilities from './pages/AboutUs/Facilities';
 
 // ផ្នែក Activities
-import Sports from './pages/Activities/Sports';                
+import Sports from './pages/Activities/Sports';
 import FieldTrips from './pages/Activities/FieldTrips';
-import CommunityService from './pages/Activities/CommunityService'; 
+import CommunityService from './pages/Activities/CommunityService';
 import ClubsOrganizations from './pages/Activities/ClubsOrganizations';
 import ArtsAndCulture from './pages/Activities/ArtsAndCulture';
 
 // ផ្នែក Academics និង Results
-import Curriculum from './pages/Acamdemics/Curriculum'; 
-import Schedule from './pages/Acamdemics/Schedule';     
-import Library from './pages/Acamdemics/Library';       
-import Results from './pages/Acamdemics/Results';       
+import Curriculum from './pages/Acamdemics/Curriculum';
+import Schedule from './pages/Acamdemics/Schedule';
+import Library from './pages/Acamdemics/Library';
+import Results from './pages/Acamdemics/Results';
 
 // ផ្នែក Admissions
 import Admissions from './pages/Admissions/Admissions';
@@ -54,9 +53,23 @@ import Tuition from './pages/Admissions/Tuition';
 import Scholarships from './pages/Admissions/Scholarships';
 import Requirements from './pages/Admissions/Requirements';
 
+// ✅ NEW: Auth pages
+import StudentLogin from './pages/auth/StudentLogin';
+import StudentGrades from './pages/auth/StudentGrades';
+
 function App() {
-  const [lang, setLang] = useState('KH'); 
-  const [activeTab, setActiveTab] = useState('home'); 
+  const [lang, setLang] = useState('KH');
+  const [activeTab, setActiveTab] = useState('home');
+
+  // ✅ NEW: Student session (persist in localStorage)
+  const [student, setStudent] = useState(() => {
+    try {
+      const saved = localStorage.getItem('student');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -66,20 +79,62 @@ function App() {
     setLang((prev) => (prev === 'KH' ? 'EN' : 'KH'));
   };
 
+  // ✅ NEW: Login handlers
+  const handleLoginSuccess = (studentData) => {
+    setStudent(studentData);
+    localStorage.setItem('student', JSON.stringify(studentData));
+    setActiveTab('my-grades');
+  };
+
+  const handleLogout = () => {
+    setStudent(null);
+    localStorage.removeItem('student');
+    setActiveTab('home');
+  };
+
+  const handleLoginClick = () => {
+    // បើ login រួច → ទៅមើលពិន្ទុ, បើមិនទាន់ → ទៅ Login page
+    setActiveTab(student ? 'my-grades' : 'login');
+  };
+
   const currentTab = typeof activeTab === 'string' ? activeTab.toLowerCase().trim() : '';
 
   return (
     <div className={`min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 ${lang === 'KH' ? 'font-khmer' : 'font-sans'}`}>
-      
-      <Header 
-        lang={lang} 
-        setLang={setLang} 
-        toggleLang={toggleLang} 
-        setActiveTab={setActiveTab} 
+      <Header
+        lang={lang}
+        setLang={setLang}
+        toggleLang={toggleLang}
+        setActiveTab={setActiveTab}
         activeTab={activeTab}
+        student={student}
+        onLoginClick={handleLoginClick}
+        onLogout={handleLogout}
       />
-      
+
       <main>
+        {/* ✅ NEW: Login Page */}
+        {(currentTab === 'login' || currentTab === 'student-login') && (
+          <StudentLogin
+            lang={lang}
+            onLoginSuccess={handleLoginSuccess}
+            onCancel={() => setActiveTab('home')}
+          />
+        )}
+
+        {/* ✅ NEW: Student Grades Page (protected) */}
+        {(currentTab === 'my-grades' || currentTab === 'grades' || currentTab === 'student-grades') && (
+          student ? (
+            <StudentGrades lang={lang} student={student} onLogout={handleLogout} />
+          ) : (
+            <StudentLogin
+              lang={lang}
+              onLoginSuccess={handleLoginSuccess}
+              onCancel={() => setActiveTab('home')}
+            />
+          )
+        )}
+
         {/* ទំព័រដើម (Home) */}
         {currentTab === 'home' && (
           <>
@@ -103,22 +158,22 @@ function App() {
         {currentTab === 'achievements' && <Achievements lang={lang} />}
         {currentTab === 'facilities' && <Facilities lang={lang} />}
 
-        {/* សកម្មភាពសិស្ស (Activities) */}
-        {(currentTab === 'activities' || currentTab === 'activities-overview' || currentTab === 'activities overview') && <Sports lang={lang} />} 
+        {/* សកម្មភាពសិស្ស */}
+        {(currentTab === 'activities' || currentTab === 'activities-overview' || currentTab === 'activities overview') && <Sports lang={lang} />}
         {(currentTab === 'sports' || currentTab === 'sport') && <Sports lang={lang} />}
         {(currentTab === 'field-trips' || currentTab === 'fieldtrips' || currentTab === 'field trips' || currentTab === 'field-trip') && <FieldTrips lang={lang} />}
         {(currentTab === 'community-service' || currentTab === 'communityservice' || currentTab === 'community service' || currentTab === 'community-services' || currentTab === 'community') && <CommunityService lang={lang} />}
         {(currentTab === 'clubs' || currentTab === 'clubs-organizations' || currentTab === 'clubs & organizations' || currentTab === 'clubsorganizations') && <ClubsOrganizations lang={lang} />}
         {(currentTab === 'arts-culture' || currentTab === 'arts & culture' || currentTab === 'arts' || currentTab === 'culture' || currentTab === 'artsculture') && <ArtsAndCulture lang={lang} />}
-        
+
         {/* កម្មវិធីសិក្សា */}
-        {(currentTab === 'academics' || currentTab === 'programs' || currentTab === 'academic') && <Academic lang={lang} />} 
-        {currentTab === 'curriculum' && <Curriculum lang={lang} />} 
-        {currentTab === 'schedule' && <Schedule lang={lang} />}     
-        {currentTab === 'library' && <Library lang={lang} />}       
+        {(currentTab === 'academics' || currentTab === 'programs' || currentTab === 'academic') && <Academic lang={lang} />}
+        {currentTab === 'curriculum' && <Curriculum lang={lang} />}
+        {currentTab === 'schedule' && <Schedule lang={lang} />}
+        {currentTab === 'library' && <Library lang={lang} />}
         {currentTab === 'results' && <Results lang={lang} />}
 
-        {/* ការចុះឈ្មោះចូលរៀន (Admissions) */}
+        {/* ការចុះឈ្មោះចូលរៀន */}
         {(currentTab === 'admissions' || currentTab === 'admissions-overview' || currentTab === 'admissions overview') && <Admissions lang={lang} setActiveTab={setActiveTab} />}
         {(currentTab === 'apply' || currentTab === 'apply-now' || currentTab === 'applynow') && <ApplyNow lang={lang} />}
         {currentTab === 'tuition' && <Tuition lang={lang} />}
@@ -132,7 +187,7 @@ function App() {
         {(currentTab === 'gallery' || currentTab === 'media' || currentTab === 'mediagallery') && <MediaGallery lang={lang} />}
         {currentTab === 'newsletter' && <Newsletter lang={lang} />}
 
-        {/* ទំនាក់ទំនង (Contact) */}
+        {/* ទំនាក់ទំនង */}
         {(currentTab === 'contact' || currentTab === 'contact-overview' || currentTab === 'contact overview' || currentTab === 'contactoverview') && <ContactOverview lang={lang} />}
         {(currentTab === 'inquiry' || currentTab === 'inquiry-form' || currentTab === 'inquiryform') && <InquiryForm lang={lang} />}
         {(currentTab === 'location' || currentTab === 'location-map' || currentTab === 'locationmap' || currentTab === 'map') && <LocationMap lang={lang} />}
