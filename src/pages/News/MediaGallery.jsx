@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, Video, Layers, Eye } from 'lucide-react';
+import { Eye } from 'lucide-react';
 
 const MediaGallery = () => {
   const [activeTab, setActiveTab] = useState('all');

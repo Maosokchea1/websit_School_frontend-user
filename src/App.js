@@ -7,52 +7,52 @@ import HeroSection from './components/Common/HeroSection';
 import Footer from './components/Common/Footer';
 
 // ផ្នែក Home Components (រួមទាំង Newsoverview ដែលស្ថិតក្នុងហ្វូដឺ Home)
-import AboutUs from './components/Home/AboutUs';
-import Academic from './components/Home/Academic';
-import Achievements from './components/Home/Achievements';
-import Announcements from './components/Home/Announcements';
-import Events from './components/Home/Events';
-import News from './components/Home/Newsoverview';          
-import NewsOverview from './components/Home/Newsoverview'; 
+import AboutUs from './pages/Home/AboutUs';
+import Academic from './pages/Home/Academic';
+import Achievements from './pages/Home/Achievements';
+import Announcements from './pages/Home/Announcements';
+import Events from './pages/Home/Events';
+import News from './pages/Home/Newsoverview';          
+import NewsOverview from './pages/Home/Newsoverview'; 
 
 // ផ្នែក Contact
-import ContactOverview from './components/Contact/ContactOverview';
-import InquiryForm from './components/Contact/InquiryForm';
-import LocationMap from './components/Contact/LocationMap';
-import StaffDirectory from './components/Contact/StaffDirectory';
-import SupportHelpdesk from './components/Contact/SupportHelpdesk';
+import ContactOverview from './pages/Contact/ContactOverview';
+import InquiryForm from './pages/Contact/InquiryForm';
+import LocationMap from './pages/Contact/LocationMap';
+import StaffDirectory from './pages/Contact/StaffDirectory';
+import SupportHelpdesk from './pages/Contact/SupportHelpdesk';
 
 // ផ្នែក News & Media (ក្រៅពី Newsoverview)
-import MediaGallery from './components/News/MediaGallery'; 
-import Newsletter from './components/News/Newsletter';
+import MediaGallery from './pages/News/MediaGallery'; 
+import Newsletter from './pages/News/Newsletter';
 
 // ផ្នែក AboutUs
-import History from './components/AboutUs/History';       
-import Vision from './components/AboutUs/Vision';         
-import Leadership from './components/AboutUs/Leadership'; 
-import Missions from './components/AboutUs/Missions';       
-import CoreValues from './components/AboutUs/CoreValues'; 
-import Facilities from './components/AboutUs/Facilities'; 
+import History from './pages/AboutUs/History';       
+import Vision from './pages/AboutUs/Vision';         
+import Leadership from './pages/AboutUs/Leadership'; 
+import Missions from './pages/AboutUs/Missions';       
+import CoreValues from './pages/AboutUs/CoreValues'; 
+import Facilities from './pages/AboutUs/Facilities'; 
 
 // ផ្នែក Activities
-import Sports from './components/Activities/Sports';                
-import FieldTrips from './components/Activities/FieldTrips';
-import CommunityService from './components/Activities/CommunityService'; 
-import ClubsOrganizations from './components/Activities/ClubsOrganizations';
-import ArtsAndCulture from './components/Activities/ArtsAndCulture';
+import Sports from './pages/Activities/Sports';                
+import FieldTrips from './pages/Activities/FieldTrips';
+import CommunityService from './pages/Activities/CommunityService'; 
+import ClubsOrganizations from './pages/Activities/ClubsOrganizations';
+import ArtsAndCulture from './pages/Activities/ArtsAndCulture';
 
 // ផ្នែក Academics និង Results
-import Curriculum from './components/Acamdemics/Curriculum'; 
-import Schedule from './components/Acamdemics/Schedule';     
-import Library from './components/Acamdemics/Library';       
-import Results from './components/Acamdemics/Results';       
+import Curriculum from './pages/Acamdemics/Curriculum'; 
+import Schedule from './pages/Acamdemics/Schedule';     
+import Library from './pages/Acamdemics/Library';       
+import Results from './pages/Acamdemics/Results';       
 
 // ផ្នែក Admissions
-import Admissions from './components/Admissions/Admissions';
-import ApplyNow from './components/Admissions/ApplyNow';
-import Tuition from './components/Admissions/Tuition';
-import Scholarships from './components/Admissions/Scholarships';
-import Requirements from './components/Admissions/Requirements';
+import Admissions from './pages/Admissions/Admissions';
+import ApplyNow from './pages/Admissions/ApplyNow';
+import Tuition from './pages/Admissions/Tuition';
+import Scholarships from './pages/Admissions/Scholarships';
+import Requirements from './pages/Admissions/Requirements';
 
 function App() {
   const [lang, setLang] = useState('KH'); 

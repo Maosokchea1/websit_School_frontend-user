@@ -1,5 +1,5 @@
 import React from 'react';
-import { HelpCircle, Mail, Phone, LifeBuoy, Clock } from 'lucide-react';
+import { Mail, Phone, LifeBuoy, Clock } from 'lucide-react';
 
 const SupportHelpdesk = ({ lang }) => {
     return (

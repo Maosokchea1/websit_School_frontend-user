@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookMarked, Globe, Laptop, Clock, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Globe, Laptop, Clock, CheckCircle2, ArrowRight } from 'lucide-react';
 
 const Library = () => {
   return (
