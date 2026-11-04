@@ -56,6 +56,8 @@ import Requirements from './pages/Admissions/Requirements';
 // ✅ NEW: Auth pages
 import StudentLogin from './pages/auth/StudentLogin';
 import StudentGrades from './pages/auth/StudentGrades';
+import UserProfile from './pages/profile/UserProfile';
+import ChangePassword from './pages/profile/ChangePassword';
 
 function App() {
   const [lang, setLang] = useState('KH');
@@ -126,6 +128,41 @@ function App() {
         {(currentTab === 'my-grades' || currentTab === 'grades' || currentTab === 'student-grades') && (
           student ? (
             <StudentGrades lang={lang} student={student} onLogout={handleLogout} />
+          ) : (
+            <StudentLogin
+              lang={lang}
+              onLoginSuccess={handleLoginSuccess}
+              onCancel={() => setActiveTab('home')}
+            />
+          )
+        )}
+
+        {/* ✅ NEW: Student Profile Page (protected) */}
+        {(currentTab === 'profile' || currentTab === 'user-profile' || currentTab === 'my-profile') && (
+          student ? (
+            <UserProfile
+              lang={lang}
+              student={student}
+              setActiveTab={setActiveTab}
+              onLogout={handleLogout}
+            />
+          ) : (
+            <StudentLogin
+              lang={lang}
+              onLoginSuccess={handleLoginSuccess}
+              onCancel={() => setActiveTab('home')}
+            />
+          )
+        )}
+
+        {/* ✅ NEW: Change Password Page (protected) */}
+        {(currentTab === 'change-password' || currentTab === 'password' || currentTab === 'changepassword') && (
+          student ? (
+            <ChangePassword
+              lang={lang}
+              student={student}
+              setActiveTab={setActiveTab}
+            />
           ) : (
             <StudentLogin
               lang={lang}

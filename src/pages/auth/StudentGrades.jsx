@@ -5,6 +5,7 @@ const StudentGrades = ({ lang, student, onLogout }) => {
   const [selectedSemester, setSelectedSemester] = useState(1);
   const [selectedMonth, setSelectedMonth] = useState('oct');
 
+  // ការបកប្រែភាសា (Translation)
   const txt = {
     welcome: lang === 'KH' ? 'សូមស្វាគមន៍' : 'Welcome',
     grades: lang === 'KH' ? 'ពិន្ទុរបស់អ្នក' : 'Your Grades',
@@ -33,7 +34,7 @@ const StudentGrades = ({ lang, student, onLogout }) => {
     progress: lang === 'KH' ? 'កម្រិត' : 'Progress',
   };
 
-  // ============ SEMESTER DATA ============
+  // ============ DATA (ទិន្នន័យគំរូ) ============
   const semesterGrades = {
     1: [
       { subjectKh: 'គណិតវិទ្យា', subjectEn: 'Mathematics', teacherKh: 'គ្រូ សុខា', teacherEn: 'Mr. Sokha', midterm: 85, final: 88 },
@@ -57,7 +58,6 @@ const StudentGrades = ({ lang, student, onLogout }) => {
     ],
   };
 
-  // ============ MONTHLY DATA ============
   const monthlyGrades = {
     oct: [
       { subjectKh: 'គណិតវិទ្យា', subjectEn: 'Mathematics', teacherKh: 'គ្រូ សុខា', teacherEn: 'Mr. Sokha', score: 85 },
@@ -143,79 +143,14 @@ const StudentGrades = ({ lang, student, onLogout }) => {
     return (list.reduce((sum, g) => sum + g.score, 0) / list.length).toFixed(1);
   };
 
-  // 🎨 Grade palette & Professional SVG Icons
+  // 🎨 ពណ៌និទ្ទេស (រក្សាស្តង់ដារ តែមើលទៅ Professional)
   const getGrade = (avg) => {
     const a = parseFloat(avg);
-    if (a >= 90) return {
-      letter: 'A',
-      badge: 'bg-gradient-to-br from-emerald-400 to-emerald-600',
-      text: 'text-emerald-600 dark:text-emerald-400',
-      softBg: 'bg-emerald-50 dark:bg-emerald-900/20',
-      border: 'border-emerald-200 dark:border-emerald-800',
-      bar: 'bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600',
-      tint: 'from-emerald-500/15 via-emerald-500/5 to-transparent',
-      icon: (
-        <svg className="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
-        </svg>
-      ),
-    };
-    if (a >= 80) return {
-      letter: 'B',
-      badge: 'bg-gradient-to-br from-blue-400 to-blue-600',
-      text: 'text-blue-600 dark:text-blue-400',
-      softBg: 'bg-blue-50 dark:bg-blue-900/20',
-      border: 'border-blue-200 dark:border-blue-800',
-      bar: 'bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600',
-      tint: 'from-blue-500/15 via-blue-500/5 to-transparent',
-      icon: (
-        <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
-        </svg>
-      ),
-    };
-    if (a >= 70) return {
-      letter: 'C',
-      badge: 'bg-gradient-to-br from-amber-400 to-amber-600',
-      text: 'text-amber-600 dark:text-amber-400',
-      softBg: 'bg-amber-50 dark:bg-amber-900/20',
-      border: 'border-amber-200 dark:border-amber-800',
-      bar: 'bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600',
-      tint: 'from-amber-500/15 via-amber-500/5 to-transparent',
-      icon: (
-        <svg className="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-        </svg>
-      ),
-    };
-    if (a >= 60) return {
-      letter: 'D',
-      badge: 'bg-gradient-to-br from-orange-400 to-orange-600',
-      text: 'text-orange-600 dark:text-orange-400',
-      softBg: 'bg-orange-50 dark:bg-orange-900/20',
-      border: 'border-orange-200 dark:border-orange-800',
-      bar: 'bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600',
-      tint: 'from-orange-500/15 via-orange-500/5 to-transparent',
-      icon: (
-        <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-        </svg>
-      ),
-    };
-    return {
-      letter: 'F',
-      badge: 'bg-gradient-to-br from-red-400 to-red-600',
-      text: 'text-red-600 dark:text-red-400',
-      softBg: 'bg-red-50 dark:bg-red-900/20',
-      border: 'border-red-200 dark:border-red-800',
-      bar: 'bg-gradient-to-r from-red-400 via-red-500 to-red-600',
-      tint: 'from-red-500/15 via-red-500/5 to-transparent',
-      icon: (
-        <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
-    };
+    if (a >= 90) return { letter: 'A', badge: 'bg-emerald-600 text-white', text: 'text-emerald-700 dark:text-emerald-400', softBg: 'bg-emerald-50 dark:bg-emerald-900/30', border: 'border-emerald-200 dark:border-emerald-800', bar: 'bg-emerald-500' };
+    if (a >= 80) return { letter: 'B', badge: 'bg-blue-600 text-white', text: 'text-blue-700 dark:text-blue-400', softBg: 'bg-blue-50 dark:bg-blue-900/30', border: 'border-blue-200 dark:border-blue-800', bar: 'bg-blue-500' };
+    if (a >= 70) return { letter: 'C', badge: 'bg-amber-500 text-white', text: 'text-amber-700 dark:text-amber-400', softBg: 'bg-amber-50 dark:bg-amber-900/30', border: 'border-amber-200 dark:border-amber-800', bar: 'bg-amber-500' };
+    if (a >= 60) return { letter: 'D', badge: 'bg-orange-600 text-white', text: 'text-orange-700 dark:text-orange-400', softBg: 'bg-orange-50 dark:bg-orange-900/30', border: 'border-orange-200 dark:border-orange-800', bar: 'bg-orange-500' };
+    return { letter: 'F', badge: 'bg-red-600 text-white', text: 'text-red-700 dark:text-red-400', softBg: 'bg-red-50 dark:bg-red-900/30', border: 'border-red-200 dark:border-red-800', bar: 'bg-red-500' };
   };
 
   // ============ COMPUTED VALUES ============
@@ -239,50 +174,44 @@ const StudentGrades = ({ lang, student, onLogout }) => {
   const yearGrade = getGrade(yearGPA);
 
   const studentName = student
-    ? (lang === 'KH'
-        ? (student.nameKh || student.nameEn)
-        : (student.nameEn || student.nameKh))
+    ? (lang === 'KH' ? (student.nameKh || student.nameEn) : (student.nameEn || student.nameKh))
     : '';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 py-10 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto">
+    /* 🟢 បន្ថែម font-khmer ឬ font-sans នៅទីនេះ ដើម្បីធានាថាអក្សរបង្ហាញត្រូវតាមភាសា */
+    <div className={`min-h-screen bg-slate-50 dark:bg-slate-900 py-8 px-4 sm:px-6 lg:px-8 ${lang === 'KH' ? 'font-khmer' : 'font-sans'}`}>
+      <div className="max-w-6xl mx-auto">
+        
         {/* ============ HEADER CARD ============ */}
-        <div className="relative overflow-hidden bg-white dark:bg-gray-800 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-black/30 border border-gray-100 dark:border-gray-700 p-6 mb-6">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-primary/5 to-transparent rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-
-          <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div className="flex items-center gap-4">
-              <div className="relative">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 text-white flex items-center justify-center text-2xl font-bold shadow-lg shadow-primary/30">
-                  {studentName?.charAt(0) || 'S'}
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-white dark:border-gray-800" />
+              {/* 🟢 ប្តូរពណ៌ Avatar ទៅ Primary */}
+              <div className="w-16 h-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-2xl font-bold text-primary">
+                {studentName?.charAt(0) || 'S'}
               </div>
               <div>
-                <p className="text-xs uppercase tracking-wider font-semibold text-gray-400 dark:text-gray-500">
-                  {txt.welcome}
-                </p>
-                <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mt-0.5">
-                  {studentName}
-                </h1>
-                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1.5 text-xs text-gray-500 dark:text-gray-400">
-                  <span><strong className="text-gray-700 dark:text-gray-300">{txt.studentId}:</strong> {student?.id}</span>
-                  <span><strong className="text-gray-700 dark:text-gray-300">{txt.classLabel}:</strong> {student?.grade}</span>
-                  <span className="inline-flex items-center gap-1.5 text-primary font-semibold">
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{txt.welcome},</p>
+                <h1 className="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">{studentName}</h1>
+                <div className="flex flex-wrap gap-x-6 gap-y-2 mt-2 text-sm text-slate-600 dark:text-slate-400">
+                  <span className="flex items-center gap-1.5">
+                    <span className="font-semibold text-slate-800 dark:text-slate-200">{txt.studentId}:</span> {student?.id}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="font-semibold text-slate-800 dark:text-slate-200">{txt.classLabel}:</span> {student?.grade}
+                  </span>
+                  {/* 🟢 ប្តូរផ្ទៃខាងក្រោយឆ្នាំសិក្សាទៅ Primary */}
+                  <span className="flex items-center gap-1.5 bg-primary/10 text-primary px-2 py-0.5 rounded text-xs font-semibold">
                     {txt.year}
                   </span>
                 </div>
               </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-3">
+              {/* 🟢 ប៊ូតុង Print ប្រើ Primary Border និង Text */}
               <button
                 onClick={() => window.print()}
-                className="px-4 py-2 text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl flex items-center gap-1.5"
+                className="px-4 py-2 text-sm font-medium bg-white dark:bg-slate-700 border border-primary/30 text-primary rounded-lg hover:bg-primary/5 transition-colors flex items-center gap-2"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -291,7 +220,7 @@ const StudentGrades = ({ lang, student, onLogout }) => {
               </button>
               <button
                 onClick={onLogout}
-                className="px-4 py-2 text-sm font-medium bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-xl flex items-center gap-1.5"
+                className="px-4 py-2 text-sm font-medium bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors flex items-center gap-2"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -303,33 +232,28 @@ const StudentGrades = ({ lang, student, onLogout }) => {
         </div>
 
         {/* ============ MAIN VIEW TOGGLE ============ */}
-        <div className="flex gap-2 mb-5 p-1.5 bg-white/70 dark:bg-gray-800/70 backdrop-blur rounded-2xl w-fit mx-auto sm:mx-0 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div className="flex bg-slate-200/60 dark:bg-slate-800 p-1 rounded-lg w-fit mb-6 border border-slate-200 dark:border-slate-700">
+          {/* 🟢 Active State ប្រើ Primary Color */}
           <button
             type="button"
             onClick={() => setViewMode('semester')}
-            className={`flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl ${
+            className={`px-6 py-2 text-sm font-semibold rounded-md transition-all ${
               viewMode === 'semester'
-                ? 'bg-gradient-to-r from-primary to-primary/80 text-white shadow-md shadow-primary/30'
-                : 'text-gray-600 dark:text-gray-400'
+                ? 'bg-primary text-white shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary'
             }`}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
             {txt.semester}
           </button>
           <button
             type="button"
             onClick={() => setViewMode('monthly')}
-            className={`flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl ${
+            className={`px-6 py-2 text-sm font-semibold rounded-md transition-all ${
               viewMode === 'monthly'
-                ? 'bg-gradient-to-r from-primary to-primary/80 text-white shadow-md shadow-primary/30'
-                : 'text-gray-600 dark:text-gray-400'
+                ? 'bg-primary text-white shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary'
             }`}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-            </svg>
             {txt.monthly}
           </button>
         </div>
@@ -338,7 +262,7 @@ const StudentGrades = ({ lang, student, onLogout }) => {
         {viewMode === 'semester' && (
           <>
             {/* Semester sub-tabs */}
-            <div className="flex flex-wrap gap-2 mb-5">
+            <div className="flex flex-wrap gap-3 mb-6">
               {[1, 2].map((sem) => {
                 const semAvg = getSemesterAverage(semesterGrades[sem]);
                 const semGrade = getGrade(semAvg);
@@ -348,118 +272,108 @@ const StudentGrades = ({ lang, student, onLogout }) => {
                     key={sem}
                     type="button"
                     onClick={() => setSelectedSemester(sem)}
-                    className={`flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl border-2 ${
+                    className={`flex items-center gap-3 px-5 py-3 text-sm font-semibold rounded-lg border transition-all ${
                       isActive
-                        ? `bg-gradient-to-r ${semGrade.badge.split(' ').slice(0,2).join(' ')} text-white border-transparent shadow-md`
-                        : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700'
+                        ? 'bg-primary text-white border-primary shadow-sm'
+                        : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-primary/50'
                     }`}
                   >
-                    <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold ${
-                      isActive ? 'bg-white/25' : 'bg-gray-100 dark:bg-gray-700'
-                    }`}>{sem}</span>
-                    {sem === 1 ? txt.semester1 : txt.semester2}
-                    <span className={`text-xs px-1.5 py-0.5 rounded-md font-bold ${
+                    <span>{sem === 1 ? txt.semester1 : txt.semester2}</span>
+                    <span className={`px-2 py-0.5 rounded text-xs font-bold ${
                       isActive ? 'bg-white/20 text-white' : `${semGrade.softBg} ${semGrade.text}`
-                    }`}>{semAvg}</span>
+                    }`}>
+                      {semAvg}
+                    </span>
                   </button>
                 );
               })}
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-              <div className={`relative overflow-hidden bg-white dark:bg-gray-800 rounded-2xl shadow-sm border ${semesterGrade.border} p-5`}>
-                <div className={`absolute inset-0 bg-gradient-to-br ${semesterGrade.tint} pointer-events-none`} />
-                <div className="relative">
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">{txt.gpa}</p>
-                    <span className="text-xl">{semesterGrade.icon}</span>
-                  </div>
-                  <p className={`text-4xl font-extrabold mt-2 ${semesterGrade.text}`}>{semesterAvg}</p>
-                  <p className="text-xs text-gray-400 mt-1">{selectedSemester === 1 ? txt.semester1 : txt.semester2}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+              {/* GPA Card */}
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 flex flex-col justify-between">
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{txt.gpa}</p>
+                <div className="mt-2 flex items-baseline gap-2">
+                  {/* 🟢 GPA ប្រើពណ៌ Primary ប្រសិនបើពិន្ទុល្អ */}
+                  <p className={`text-4xl font-bold ${parseFloat(semesterAvg) >= 80 ? 'text-primary' : semesterGrade.text}`}>{semesterAvg}</p>
+                  <span className="text-sm text-slate-400">/ 100</span>
+                </div>
+                <p className="text-xs font-medium text-slate-400 mt-2">{selectedSemester === 1 ? txt.semester1 : txt.semester2}</p>
+              </div>
+
+              {/* Grade Card */}
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 flex flex-col justify-between">
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{txt.grade}</p>
+                <div className="mt-2 flex items-center gap-3">
+                  <span className={`inline-flex items-center justify-center w-14 h-14 rounded-lg text-2xl font-black ${semesterGrade.badge}`}>
+                    {semesterGrade.letter}
+                  </span>
+                  <span className="text-sm font-medium text-slate-500">Standard Scale</span>
                 </div>
               </div>
 
-              <div className={`relative overflow-hidden rounded-2xl shadow-md ${semesterGrade.badge} p-5`}>
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-white/15 rounded-full pointer-events-none" />
-                <div className="absolute -bottom-8 -right-2 w-20 h-20 bg-white/10 rounded-full pointer-events-none" />
-                <div className="relative">
-                  <p className="text-sm font-medium text-white/80">{txt.grade}</p>
-                  <p className="text-5xl font-black text-white mt-1">{semesterGrade.letter}</p>
-                  <p className="text-xs text-white/70 mt-1">{semesterAvg} / 100</p>
-                </div>
-              </div>
-
-              <div className="relative overflow-hidden bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-amber-100 dark:from-amber-900/20 to-transparent rounded-full -translate-y-1/3 translate-x-1/3 pointer-events-none" />
-                <div className="relative">
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">{txt.rank}</p>
-                    <span className="text-primary">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                      </svg>
-                    </span>
-                  </div>
-                  <p className="text-4xl font-extrabold text-gray-900 dark:text-white mt-2">
+              {/* Rank Card */}
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 flex flex-col justify-between">
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{txt.rank}</p>
+                <div className="mt-2 flex items-baseline gap-2">
+                  <p className="text-4xl font-bold text-slate-800 dark:text-slate-100">
                     #{selectedSemester === 1 ? 3 : 2}
                   </p>
-                  <p className="text-xs text-gray-400 mt-1">/ 42 {txt.students}</p>
+                  <span className="text-sm font-medium text-slate-500">/ 42 {txt.students}</span>
+                </div>
+                {/* 🟢 របារចំណាត់ថ្នាក់ប្រើ Primary */}
+                <div className="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mt-3 overflow-hidden">
+                   <div className="bg-primary h-full rounded-full" style={{ width: '85%' }}></div>
                 </div>
               </div>
             </div>
 
             {/* Table */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
-              <div className="px-4 sm:px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between bg-gradient-to-r from-gray-50/80 to-transparent dark:from-gray-900/40">
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden mb-6">
+              <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700 bg-primary/5">
+                <h2 className="text-base font-bold text-primary">
                   {txt.grades} — {selectedSemester === 1 ? txt.semester1 : txt.semester2}
                 </h2>
-                <span className="text-xs text-primary font-medium sm:hidden">{txt.scrollHint}</span>
               </div>
               <div className="overflow-x-auto">
-                <table className="w-full min-w-[580px] text-sm">
-                  <thead className="bg-gray-50 dark:bg-gray-900/50 text-gray-600 dark:text-gray-400">
+                <table className="w-full text-sm text-left">
+                  <thead className="bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-700">
                     <tr>
-                      <th className="px-4 py-3 text-left font-semibold whitespace-nowrap">{txt.subject}</th>
-                      <th className="px-4 py-3 text-left font-semibold whitespace-nowrap">{txt.teacher}</th>
-                      <th className="px-3 py-3 text-center font-semibold whitespace-nowrap">{txt.midterm}</th>
-                      <th className="px-3 py-3 text-center font-semibold whitespace-nowrap">{txt.final}</th>
-                      <th className="px-3 py-3 text-center font-semibold whitespace-nowrap">{txt.average}</th>
-                      <th className="px-4 py-3 text-left font-semibold whitespace-nowrap min-w-[150px]">{txt.progress}</th>
-                      <th className="px-3 py-3 text-center font-semibold whitespace-nowrap">{txt.grade}</th>
+                      <th className="px-6 py-3 font-semibold">{txt.subject}</th>
+                      <th className="px-6 py-3 font-semibold">{txt.teacher}</th>
+                      <th className="px-4 py-3 font-semibold text-center">{txt.midterm}</th>
+                      <th className="px-4 py-3 font-semibold text-center">{txt.final}</th>
+                      <th className="px-4 py-3 font-semibold text-center">{txt.average}</th>
+                      <th className="px-6 py-3 font-semibold min-w-[160px]">{txt.progress}</th>
+                      <th className="px-6 py-3 font-semibold text-center">{txt.grade}</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-700/50">
                     {currentSemesterList.map((g, idx) => {
                       const avg = getAverage(g);
                       const gradeInfo = getGrade(avg);
                       return (
-                        <tr key={idx}>
-                          <td className="px-4 py-3.5 font-semibold text-gray-900 dark:text-white whitespace-nowrap">
+                        <tr key={idx} className="hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors">
+                          <td className="px-6 py-4 font-medium text-slate-900 dark:text-slate-100 whitespace-nowrap">
                             {lang === 'KH' ? g.subjectKh : g.subjectEn}
                           </td>
-                          <td className="px-4 py-3.5 text-gray-600 dark:text-gray-400 whitespace-nowrap">
+                          <td className="px-6 py-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">
                             {lang === 'KH' ? g.teacherKh : g.teacherEn}
                           </td>
-                          <td className="px-3 py-3.5 text-center text-gray-700 dark:text-gray-300 whitespace-nowrap">{g.midterm}</td>
-                          <td className="px-3 py-3.5 text-center text-gray-700 dark:text-gray-300 whitespace-nowrap">{g.final}</td>
-                          <td className={`px-3 py-3.5 text-center font-bold whitespace-nowrap ${gradeInfo.text}`}>{avg}</td>
-                          <td className="px-4 py-3.5 min-w-[150px]">
-                            <div className="flex items-center gap-2.5">
-                              <div className="flex-1 h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden min-w-[70px]">
-                                <div
-                                  className={`h-full ${gradeInfo.bar} rounded-full`}
-                                  style={{ width: `${Math.min(100, Math.max(0, avg))}%` }}
-                                />
+                          <td className="px-4 py-4 text-center text-slate-600 dark:text-slate-300">{g.midterm}</td>
+                          <td className="px-4 py-4 text-center text-slate-600 dark:text-slate-300">{g.final}</td>
+                          <td className={`px-4 py-4 text-center font-bold ${gradeInfo.text}`}>{avg}</td>
+                          <td className="px-6 py-4">
+                            <div className="flex items-center gap-3">
+                              <div className="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                                <div className={`h-full ${gradeInfo.bar} rounded-full`} style={{ width: `${Math.min(100, Math.max(0, avg))}%` }} />
                               </div>
-                              <span className={`px-2 py-0.5 rounded-md text-xs font-bold whitespace-nowrap ${gradeInfo.softBg} ${gradeInfo.text}`}>
-                                {avg}%
-                              </span>
+                              <span className="text-xs font-semibold text-slate-500 w-8 text-right">{avg}%</span>
                             </div>
                           </td>
-                          <td className="px-3 py-3.5 text-center whitespace-nowrap">
-                            <span className={`inline-flex items-center justify-center w-8 h-8 rounded-lg text-xs font-extrabold text-white ${gradeInfo.badge}`}>
+                          <td className="px-6 py-4 text-center">
+                            <span className={`inline-flex items-center justify-center w-8 h-8 rounded text-sm font-bold ${gradeInfo.badge}`}>
                               {gradeInfo.letter}
                             </span>
                           </td>
@@ -471,18 +385,17 @@ const StudentGrades = ({ lang, student, onLogout }) => {
               </div>
             </div>
 
-            {/* Year summary */}
-            <div className={`mt-5 relative overflow-hidden rounded-2xl border-2 ${yearGrade.border} p-5`}>
-              <div className={`absolute inset-0 bg-gradient-to-r ${yearGrade.tint} pointer-events-none`} />
-              <div className="relative flex items-center justify-center gap-4 flex-wrap">
-                <span className="text-3xl">{yearGrade.icon}</span>
-                <div className="text-center">
-                  <p className="text-xs uppercase tracking-wider font-semibold text-gray-500 dark:text-gray-400">
-                    {lang === 'KH' ? 'មធ្យមភាគពេញមួយឆ្នាំ' : 'Yearly Overall GPA'}
-                  </p>
-                  <p className={`text-3xl font-extrabold mt-0.5 ${yearGrade.text}`}>{yearGPA}</p>
-                </div>
-                <span className={`inline-flex items-center justify-center px-3 py-1.5 rounded-lg text-sm font-extrabold text-white ${yearGrade.badge}`}>
+            {/* Year Summary */}
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-primary/30 p-6 flex items-center justify-between">
+              <div>
+                <p className="text-xs uppercase tracking-wider font-bold text-primary">
+                  {lang === 'KH' ? 'មធ្យមភាគពេញមួយឆ្នាំ' : 'Yearly Overall GPA'}
+                </p>
+                <p className="text-sm text-slate-500 mt-1">{lang === 'KH' ? 'ផ្អែកលើឆមាសទី១ និង ឆមាសទី២' : 'Based on Semester 1 & 2'}</p>
+              </div>
+              <div className="flex items-center gap-4">
+                <p className={`text-3xl font-extrabold ${yearGrade.text}`}>{yearGPA}</p>
+                <span className={`inline-flex items-center justify-center w-12 h-12 rounded-lg text-xl font-black ${yearGrade.badge}`}>
                   {yearGrade.letter}
                 </span>
               </div>
@@ -494,130 +407,97 @@ const StudentGrades = ({ lang, student, onLogout }) => {
         {viewMode === 'monthly' && (
           <>
             {/* Month selector */}
-            <div className="flex flex-wrap gap-2 mb-5">
+            <div className="flex flex-wrap gap-2 mb-6">
               {months.map((m) => {
-                const mAvg = getMonthlyAverage(monthlyGrades[m.key]);
-                const mGrade = getGrade(mAvg);
                 const isActive = selectedMonth === m.key;
                 return (
                   <button
                     key={m.key}
                     type="button"
                     onClick={() => setSelectedMonth(m.key)}
-                    className={`flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl border-2 ${
+                    className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border transition-all ${
                       isActive
-                        ? `bg-gradient-to-r ${mGrade.badge.split(' ').slice(0,2).join(' ')} text-white border-transparent shadow-md`
-                        : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700'
+                        ? 'bg-primary text-white border-primary shadow-sm'
+                        : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-primary/50'
                     }`}
                   >
                     {lang === 'KH' ? m.kh : m.en}
-                    <span className={`text-xs px-1.5 py-0.5 rounded-md font-bold ${
-                      isActive ? 'bg-white/20 text-white' : `${mGrade.softBg} ${mGrade.text}`
-                    }`}>{mAvg}</span>
                   </button>
                 );
               })}
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-              <div className={`relative overflow-hidden bg-white dark:bg-gray-800 rounded-2xl shadow-sm border ${monthGrade.border} p-5`}>
-                <div className={`absolute inset-0 bg-gradient-to-br ${monthGrade.tint} pointer-events-none`} />
-                <div className="relative">
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      {txt.average} ({lang === 'KH'
-                        ? months.find(m => m.key === selectedMonth)?.kh
-                        : months.find(m => m.key === selectedMonth)?.en})
-                    </p>
-                    <span className="text-xl">{monthGrade.icon}</span>
-                  </div>
-                  <p className={`text-4xl font-extrabold mt-2 ${monthGrade.text}`}>{monthAvg}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                  {txt.average} ({lang === 'KH' ? months.find(m => m.key === selectedMonth)?.kh : months.find(m => m.key === selectedMonth)?.en})
+                </p>
+                <p className={`text-4xl font-bold mt-2 ${parseFloat(monthAvg) >= 80 ? 'text-primary' : monthGrade.text}`}>{monthAvg}</p>
+              </div>
+
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{txt.grade}</p>
+                <div className="mt-2 flex items-center gap-3">
+                  <span className={`inline-flex items-center justify-center w-14 h-14 rounded-lg text-2xl font-black ${monthGrade.badge}`}>
+                    {monthGrade.letter}
+                  </span>
                 </div>
               </div>
 
-              <div className={`relative overflow-hidden rounded-2xl shadow-md ${monthGrade.badge} p-5`}>
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-white/15 rounded-full pointer-events-none" />
-                <div className="absolute -bottom-8 -right-2 w-20 h-20 bg-white/10 rounded-full pointer-events-none" />
-                <div className="relative">
-                  <p className="text-sm font-medium text-white/80">{txt.grade}</p>
-                  <p className="text-5xl font-black text-white mt-1">{monthGrade.letter}</p>
-                  <p className="text-xs text-white/70 mt-1">{monthAvg} / 100</p>
-                </div>
-              </div>
-
-              <div className="relative overflow-hidden bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-amber-100 dark:from-amber-900/20 to-transparent rounded-full -translate-y-1/3 translate-x-1/3 pointer-events-none" />
-                <div className="relative">
-                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
-                    <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
-                    </svg>
-                    {txt.bestSubject}
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{txt.bestSubject}</p>
+                <p className="text-lg font-bold text-slate-800 dark:text-slate-100 mt-2 truncate">
+                  {bestSubject ? (lang === 'KH' ? bestSubject.subjectKh : bestSubject.subjectEn) : '—'}
+                </p>
+                {bestSubject && (
+                  <p className={`text-sm mt-1 font-semibold ${getGrade(bestSubject.score).text}`}>
+                    {bestSubject.score} {lang === 'KH' ? 'ពិន្ទុ' : 'pts'}
                   </p>
-                  <p className="text-base font-bold text-gray-900 dark:text-white mt-2 truncate">
-                    {bestSubject ? (lang === 'KH' ? bestSubject.subjectKh : bestSubject.subjectEn) : '—'}
-                  </p>
-                  {bestSubject && (
-                    <p className={`text-xs mt-1 font-semibold ${getGrade(bestSubject.score).text}`}>
-                      {bestSubject.score} {lang === 'KH' ? 'ពិន្ទុ' : 'pts'}
-                    </p>
-                  )}
-                </div>
+                )}
               </div>
             </div>
 
             {/* Table */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
-              <div className="px-4 sm:px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between bg-gradient-to-r from-gray-50/80 to-transparent dark:from-gray-900/40">
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white">
-                  {txt.grades} — {txt.monthTitle}{' '}
-                  {lang === 'KH'
-                    ? months.find(m => m.key === selectedMonth)?.kh
-                    : months.find(m => m.key === selectedMonth)?.en}
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+              <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700 bg-primary/5">
+                <h2 className="text-base font-bold text-primary">
+                  {txt.grades} — {lang === 'KH' ? months.find(m => m.key === selectedMonth)?.kh : months.find(m => m.key === selectedMonth)?.en}
                 </h2>
-                <span className="text-xs text-primary font-medium sm:hidden">{txt.scrollHint}</span>
               </div>
               <div className="overflow-x-auto">
-                <table className="w-full min-w-[580px] text-sm">
-                  <thead className="bg-gray-50 dark:bg-gray-900/50 text-gray-600 dark:text-gray-400">
+                <table className="w-full text-sm text-left">
+                  <thead className="bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-700">
                     <tr>
-                      <th className="px-4 py-3 text-left font-semibold whitespace-nowrap">{txt.subject}</th>
-                      <th className="px-4 py-3 text-left font-semibold whitespace-nowrap">{txt.teacher}</th>
-                      <th className="px-3 py-3 text-center font-semibold whitespace-nowrap">{txt.score}</th>
-                      <th className="px-4 py-3 text-left font-semibold whitespace-nowrap min-w-[130px]">{txt.progress}</th>
-                      <th className="px-3 py-3 text-center font-semibold whitespace-nowrap">{txt.grade}</th>
+                      <th className="px-6 py-3 font-semibold">{txt.subject}</th>
+                      <th className="px-6 py-3 font-semibold">{txt.teacher}</th>
+                      <th className="px-4 py-3 font-semibold text-center">{txt.score}</th>
+                      <th className="px-6 py-3 font-semibold min-w-[160px]">{txt.progress}</th>
+                      <th className="px-6 py-3 font-semibold text-center">{txt.grade}</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-700/50">
                     {currentMonthList.map((g, idx) => {
                       const gradeInfo = getGrade(g.score);
                       return (
-                        <tr key={idx}>
-                          <td className="px-4 py-3.5 font-semibold text-gray-900 dark:text-white whitespace-nowrap">
+                        <tr key={idx} className="hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors">
+                          <td className="px-6 py-4 font-medium text-slate-900 dark:text-slate-100 whitespace-nowrap">
                             {lang === 'KH' ? g.subjectKh : g.subjectEn}
                           </td>
-                          <td className="px-4 py-3.5 text-gray-600 dark:text-gray-400 whitespace-nowrap">
+                          <td className="px-6 py-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">
                             {lang === 'KH' ? g.teacherKh : g.teacherEn}
                           </td>
-                          <td className={`px-3 py-3.5 text-center font-bold whitespace-nowrap ${gradeInfo.text}`}>
-                            {g.score}
-                          </td>
-                          <td className="px-4 py-3.5 min-w-[150px]">
-                            <div className="flex items-center gap-2.5">
-                              <div className="flex-1 h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden min-w-[70px]">
-                                <div
-                                  className={`h-full ${gradeInfo.bar} rounded-full`}
-                                  style={{ width: `${g.score}%` }}
-                                />
+                          <td className={`px-4 py-4 text-center font-bold ${gradeInfo.text}`}>{g.score}</td>
+                          <td className="px-6 py-4">
+                            <div className="flex items-center gap-3">
+                              <div className="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                                <div className={`h-full ${gradeInfo.bar} rounded-full`} style={{ width: `${g.score}%` }} />
                               </div>
-                              <span className={`px-2 py-0.5 rounded-md text-xs font-bold whitespace-nowrap ${gradeInfo.softBg} ${gradeInfo.text}`}>
-                                {g.score}%
-                              </span>
+                              <span className="text-xs font-semibold text-slate-500 w-8 text-right">{g.score}%</span>
                             </div>
                           </td>
-                          <td className="px-3 py-3.5 text-center whitespace-nowrap">
-                            <span className={`inline-flex items-center justify-center w-8 h-8 rounded-lg text-xs font-extrabold text-white ${gradeInfo.badge}`}>
+                          <td className="px-6 py-4 text-center">
+                            <span className={`inline-flex items-center justify-center w-8 h-8 rounded text-sm font-bold ${gradeInfo.badge}`}>
                               {gradeInfo.letter}
                             </span>
                           </td>

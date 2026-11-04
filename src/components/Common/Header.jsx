@@ -8,9 +8,9 @@ const Header = ({
   lang,
   setLang,
   toggleLang,
-  student,        // ✅ NEW: logged-in student object or null
-  onLoginClick,   // ✅ NEW: opens login page
-  onLogout,       // ✅ NEW: clears session
+  student,
+  onLoginClick,
+  onLogout,
 }) => {
   // 1. STATE MANAGEMENT (Theme & Dropdowns)
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -24,7 +24,7 @@ const Header = ({
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // ✅ NEW: User dropdown state
+  // User dropdown state
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
 
@@ -135,6 +135,17 @@ const Header = ({
     setIsUserMenuOpen(false);
   };
 
+  // ✅ NEW: Handlers សម្រាប់ Profile និង Password
+  const handleProfileClick = () => {
+    handleNavClick('profile');
+    setIsUserMenuOpen(false);
+  };
+
+  const handleChangePasswordClick = () => {
+    handleNavClick('change-password');
+    setIsUserMenuOpen(false);
+  };
+
   const handleLogoutClick = () => {
     if (typeof onLogout === 'function') onLogout();
     setIsMobileMenuOpen(false);
@@ -214,7 +225,6 @@ const Header = ({
     </svg>
   );
 
-  // ✅ NEW: Get student display name safely
   const studentName = student ? (lang === 'KH' ? (student.nameKh || student.nameEn || '') : (student.nameEn || student.nameKh || '')) : '';
   const studentInitial = studentName?.charAt(0)?.toUpperCase() || 'S';
 
@@ -342,20 +352,12 @@ const Header = ({
           {/* Right Action Icons (Desktop) */}
           <div className="hidden lg:flex items-center space-x-3 shrink-0">
             {/* Language */}
-            <div
-              onClick={toggleLanguage}
-              className="p-1 text-gray-700 dark:text-gray-200 hover:opacity-80 transition-opacity duration-200 cursor-pointer flex items-center justify-center shrink-0 bg-transparent border-none shadow-none"
-              title="Switch Language"
-            >
+            <div onClick={toggleLanguage} className="p-1 text-gray-700 dark:text-gray-200 hover:opacity-80 transition-opacity duration-200 cursor-pointer flex items-center justify-center shrink-0 bg-transparent border-none shadow-none" title="Switch Language">
               <img src={lang === 'KH' ? "https://flagcdn.com/w40/kh.png" : "https://flagcdn.com/w40/us.png"} alt="Flag" className="w-6 h-auto object-contain rounded-xs pointer-events-none" />
             </div>
 
             {/* Theme Toggle */}
-            <div
-              onClick={toggleDarkMode}
-              className="p-1 text-gray-700 dark:text-gray-200 hover:text-primary transition-colors duration-200 cursor-pointer flex items-center justify-center shrink-0 bg-transparent border-none shadow-none"
-              title="Toggle Theme"
-            >
+            <div onClick={toggleDarkMode} className="p-1 text-gray-700 dark:text-gray-200 hover:text-primary transition-colors duration-200 cursor-pointer flex items-center justify-center shrink-0 bg-transparent border-none shadow-none" title="Toggle Theme">
               {isDarkMode ? (
                 <svg className="w-5 h-5 text-amber-400 transition-transform duration-500 pointer-events-none" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
               ) : (
@@ -363,28 +365,15 @@ const Header = ({
               )}
             </div>
 
-            {/* ✅ FIXED: Login button OR User Menu */}
+            {/* Login button OR User Menu */}
             {!isLoggedIn ? (
-              <button
-                type="button"
-                onClick={handleLoginClick}
-                className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold rounded-lg shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer ${
-                  isLoginActive
-                    ? 'bg-primary/90 text-white ring-2 ring-primary/40'
-                    : 'bg-primary text-white hover:bg-primary/90'
-                }`}
-                title={t.loginSubtitle || (lang === 'KH' ? 'ចូលមើលពិន្ទុសិស្ស' : 'View student grades')}
-              >
+              <button type="button" onClick={handleLoginClick} className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold rounded-lg shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer ${isLoginActive ? 'bg-primary/90 text-white ring-2 ring-primary/40' : 'bg-primary text-white hover:bg-primary/90'}`} title={t.loginSubtitle || (lang === 'KH' ? 'ចូលមើលពិន្ទុសិស្ស' : 'View student grades')}>
                 {loginIcon(isLoginActive)}
                 <span>{t.login || (lang === 'KH' ? 'ចូលប្រើ' : 'Login')}</span>
               </button>
             ) : (
               <div className="relative" ref={userMenuRef}>
-                <button
-                  type="button"
-                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                  className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition cursor-pointer"
-                >
+                <button type="button" onClick={() => setIsUserMenuOpen(!isUserMenuOpen)} className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition cursor-pointer">
                   <span className="w-8 h-8 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center shrink-0">
                     {studentInitial}
                   </span>
@@ -408,23 +397,33 @@ const Header = ({
                       </p>
                     </div>
 
-                    <button
-                      type="button"
-                      onClick={handleMyGradesClick}
-                      className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-primary/10 hover:text-primary transition"
-                    >
+                    {/* My Grades */}
+                    <button type="button" onClick={handleMyGradesClick} className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-primary/10 hover:text-primary transition">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-6m4 6V7m4 10v-3M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
                       </svg>
                       {t.myGrades || (lang === 'KH' ? 'ពិន្ទុរបស់ខ្ញុំ' : 'My Grades')}
                     </button>
 
+                    {/* ✅ NEW: Profile */}
+                    <button type="button" onClick={handleProfileClick} className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-primary/10 hover:text-primary transition">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      {lang === 'KH' ? 'ព័ត៌មានផ្ទាល់ខ្លួន' : 'My Profile'}
+                    </button>
+
+                    {/* ✅ NEW: Change Password */}
+                    <button type="button" onClick={handleChangePasswordClick} className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-primary/10 hover:text-primary transition">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      {lang === 'KH' ? 'ផ្លាស់ប្តូរពាក្យសម្ងាត់' : 'Change Password'}
+                    </button>
+
+                    {/* Logout */}
                     <div className="border-t border-gray-100 dark:border-gray-700 mt-1 pt-1">
-                      <button
-                        type="button"
-                        onClick={handleLogoutClick}
-                        className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition"
-                      >
+                      <button type="button" onClick={handleLogoutClick} className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                         </svg>
@@ -450,12 +449,8 @@ const Header = ({
               )}
             </div>
 
-            {/* ✅ NEW: Show avatar in mobile top bar when logged in */}
             {isLoggedIn && (
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="w-9 h-9 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center cursor-pointer shrink-0"
-              >
+              <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="w-9 h-9 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center cursor-pointer shrink-0">
                 {studentInitial}
               </button>
             )}
@@ -472,7 +467,7 @@ const Header = ({
       {/* MOBILE DROPDOWN MENU */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 pt-3 pb-5 space-y-3 shadow-lg">
-          {/* ✅ NEW: User card (mobile) when logged in */}
+          {/* User card (mobile) when logged in */}
           {isLoggedIn && (
             <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 border border-primary/30">
               <span className="w-11 h-11 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0">
@@ -501,33 +496,38 @@ const Header = ({
           {renderMobileAccordion(t.activitiesNav, activitiesIcon, isActivitiesActive, isMobileActivitiesOpen, setIsMobileActivitiesOpen, activitiesSubItems)}
           {renderMobileAccordion(t.contact, contactIcon, isContactActive, isMobileContactOpen, setIsMobileContactOpen, contactSubItems)}
 
-          {/* ✅ FIXED: Mobile Login OR Logged-in Actions */}
+          {/* Mobile Login OR Logged-in Actions */}
           {!isLoggedIn ? (
-            <button
-              type="button"
-              onClick={handleLoginClick}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-white bg-primary hover:bg-primary/90 shadow-sm transition-all duration-200 mt-3"
-            >
+            <button type="button" onClick={handleLoginClick} className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-white bg-primary hover:bg-primary/90 shadow-sm transition-all duration-200 mt-3">
               {loginIcon(isLoginActive, 'w-5 h-5')}
               <span>{t.login || (lang === 'KH' ? 'ចូលមើលពិន្ទុសិស្ស' : 'Login to View Grades')}</span>
             </button>
           ) : (
             <div className="space-y-2 mt-3">
-              <button
-                type="button"
-                onClick={handleMyGradesClick}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-white bg-primary hover:bg-primary/90 shadow-sm transition-all duration-200"
-              >
+              <button type="button" onClick={handleMyGradesClick} className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-white bg-primary hover:bg-primary/90 shadow-sm transition-all duration-200">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-6m4 6V7m4 10v-3M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
                 </svg>
                 {t.myGrades || (lang === 'KH' ? 'ពិន្ទុរបស់ខ្ញុំ' : 'My Grades')}
               </button>
-              <button
-                type="button"
-                onClick={handleLogoutClick}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30 transition-all duration-200"
-              >
+
+              {/* ✅ NEW: Mobile Profile Button */}
+              <button type="button" onClick={handleProfileClick} className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                {lang === 'KH' ? 'ព័ត៌មានផ្ទាល់ខ្លួន' : 'My Profile'}
+              </button>
+
+              {/* ✅ NEW: Mobile Change Password Button */}
+              <button type="button" onClick={handleChangePasswordClick} className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                {lang === 'KH' ? 'ផ្លាស់ប្តូរពាក្យសម្ងាត់' : 'Change Password'}
+              </button>
+
+              <button type="button" onClick={handleLogoutClick} className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30 transition-all duration-200">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
