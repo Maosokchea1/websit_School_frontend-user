@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <!-- Sun / Cross rays -->
+  <circle cx="30" cy="30" r="24" fill="#f59e0b"/>
+  <path d="M30 10v40M10 30h40M16 16l28 28M16 44l28-28" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="30" cy="30" r="8" fill="#1e293b"/>
+  <circle cx="30" cy="30" r="4" fill="#f59e0b"/>
+  <text x="66" y="27" font-family="Arial, sans-serif" font-weight="800" font-size="14" fill="#1e293b">SOUTHERN CROSS</text>
+  <text x="66" y="42" font-family="Arial, sans-serif" font-weight="600" font-size="12" fill="#d97706">UNIVERSITY • AUSTRALIA</text>
+</svg>

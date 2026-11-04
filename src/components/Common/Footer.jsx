@@ -20,75 +20,127 @@ const Footer = ({ lang, setActiveTab }) => {
   const t = (lang === 'EN') ? en : kh;
 
   return (
-    <footer className={`bg-blue-950 text-white pt-16 pb-8 border-t border-blue-900 ${lang === 'KH' ? 'font-khmer' : 'font-sans'}`}>
+    // ប្តូរ bg-slate-950 មកជា bg-blue-950 វិញ
+    <footer className={`bg-blue-950 text-blue-100 pt-20 pb-10 border-t border-blue-900/60 ${lang === 'KH' ? 'font-khmer' : 'font-sans'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ផ្នែកមាតិកាចម្បងរបស់ Footer (Grid Columns) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-blue-900">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-blue-900/60">
           
           {/* ជួរទី១៖ ព័ត៌មានសាលា */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="bg-yellow-500 text-blue-950 p-2.5 rounded-xl flex items-center justify-center shadow-md">
+              <div className="bg-primary text-white p-2.5 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
                 <School className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="text-lg font-bold">{t?.footerSchoolName}</h3>
-                <p className="text-xs text-gray-400">{t?.footerSchoolSub}</p>
+                <h3 className="text-xl font-bold text-white tracking-wide">{t?.footerSchoolName}</h3>
+                <p className="text-xs text-blue-300/80 mt-0.5">{t?.footerSchoolSub}</p>
               </div>
             </div>
-            <p className="text-gray-300 text-sm leading-relaxed">
+            <p className="text-blue-200/80 text-sm leading-relaxed text-justify">
               {t?.footerDescription}
             </p>
             <div className="flex space-x-3 pt-2">
-              <a href="#facebook" aria-label="Facebook" className="w-9 h-9 bg-blue-900 hover:bg-blue-800 rounded-lg flex items-center justify-center transition shadow-sm">
-                <FacebookIcon className="w-4 h-4 text-white" />
+              <a href="#facebook" aria-label="Facebook" className="w-10 h-10 bg-blue-900/50 border border-blue-800/50 hover:border-primary hover:bg-primary text-blue-200 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300 group">
+                <FacebookIcon className="w-4 h-4 transition-colors duration-300" />
               </a>
-              <a href="#telegram" aria-label="Telegram" className="w-9 h-9 bg-blue-900 hover:bg-blue-800 rounded-lg flex items-center justify-center transition shadow-sm">
-                <Send className="w-4 h-4 text-white" />
+              <a href="#telegram" aria-label="Telegram" className="w-10 h-10 bg-blue-900/50 border border-blue-800/50 hover:border-primary hover:bg-primary text-blue-200 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300 group">
+                <Send className="w-4 h-4 transition-colors duration-300" />
               </a>
-              <a href="#youtube" aria-label="YouTube" className="w-9 h-9 bg-blue-900 hover:bg-blue-800 rounded-lg flex items-center justify-center transition shadow-sm">
-                <YoutubeIcon className="w-4 h-4 text-white" />
+              <a href="#youtube" aria-label="YouTube" className="w-10 h-10 bg-blue-900/50 border border-blue-800/50 hover:border-primary hover:bg-primary text-blue-200 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300 group">
+                <YoutubeIcon className="w-4 h-4 transition-colors duration-300" />
               </a>
             </div>
           </div>
 
           {/* ជួរទី២៖ តំណភ្ជាប់រហ័ស */}
           <div>
-            <h4 className="text-base font-bold text-yellow-400 mb-4 uppercase tracking-wider">{t?.footerQuickLinksTitle}</h4>
-            <ul className="space-y-2.5 text-sm text-gray-300">
-              <li><button onClick={() => { setActiveTab('home'); window.scrollTo(0, 0); }} className="hover:text-yellow-400 transition text-left">{t?.footerHome}</button></li>
-              <li><button onClick={() => { setActiveTab('about'); window.scrollTo(0, 0); }} className="hover:text-yellow-400 transition text-left">{t?.footerAbout}</button></li>
-              <li><button onClick={() => { setActiveTab('academics'); window.scrollTo(0, 0); }} className="hover:text-yellow-400 transition text-left">{t?.footerAcademics}</button></li>
-              <li><button onClick={() => { setActiveTab('admissions'); window.scrollTo(0, 0); }} className="hover:text-yellow-400 transition text-left">{t?.footerAdmissions}</button></li>
-              <li><button onClick={() => { setActiveTab('news'); window.scrollTo(0, 0); }} className="hover:text-yellow-400 transition text-left">{t?.footerNews}</button></li>
+            <h4 className="text-sm font-bold text-white mb-6 uppercase tracking-widest">{t?.footerQuickLinksTitle}</h4>
+            <ul className="space-y-3.5 text-sm">
+              <li>
+                <button onClick={() => { setActiveTab('home'); window.scrollTo(0, 0); }} className="group flex items-center text-blue-200/80 hover:text-primary transition-colors duration-300">
+                  <span className="w-0 h-0.5 bg-primary mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
+                  {t?.footerHome}
+                </button>
+              </li>
+              <li>
+                <button onClick={() => { setActiveTab('about'); window.scrollTo(0, 0); }} className="group flex items-center text-blue-200/80 hover:text-primary transition-colors duration-300">
+                  <span className="w-0 h-0.5 bg-primary mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
+                  {t?.footerAbout}
+                </button>
+              </li>
+              <li>
+                <button onClick={() => { setActiveTab('academics'); window.scrollTo(0, 0); }} className="group flex items-center text-blue-200/80 hover:text-primary transition-colors duration-300">
+                  <span className="w-0 h-0.5 bg-primary mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
+                  {t?.footerAcademics}
+                </button>
+              </li>
+              <li>
+                <button onClick={() => { setActiveTab('admissions'); window.scrollTo(0, 0); }} className="group flex items-center text-blue-200/80 hover:text-primary transition-colors duration-300">
+                  <span className="w-0 h-0.5 bg-primary mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
+                  {t?.footerAdmissions}
+                </button>
+              </li>
+              <li>
+                <button onClick={() => { setActiveTab('news'); window.scrollTo(0, 0); }} className="group flex items-center text-blue-200/80 hover:text-primary transition-colors duration-300">
+                  <span className="w-0 h-0.5 bg-primary mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
+                  {t?.footerNews}
+                </button>
+              </li>
             </ul>
           </div>
 
           {/* ជួរទី៣៖ កម្រិតសិក្សា */}
           <div>
-            <h4 className="text-base font-bold text-yellow-400 mb-4 uppercase tracking-wider">{t?.footerAcademicsTitle}</h4>
-            <ul className="space-y-2.5 text-sm text-gray-300">
-              <li><span onClick={() => { setActiveTab('academics'); window.scrollTo(0, 0); }} className="hover:text-yellow-400 transition cursor-pointer">{t?.footerLevel1}</span></li>
-              <li><span onClick={() => { setActiveTab('academics'); window.scrollTo(0, 0); }} className="hover:text-yellow-400 transition cursor-pointer">{t?.footerLevel2}</span></li>
-              <li><span onClick={() => { setActiveTab('academics'); window.scrollTo(0, 0); }} className="hover:text-yellow-400 transition cursor-pointer">{t?.footerLevel3}</span></li>
-              <li><span onClick={() => { setActiveTab('academics'); window.scrollTo(0, 0); }} className="hover:text-yellow-400 transition cursor-pointer">{t?.footerLevel4}</span></li>
+            <h4 className="text-sm font-bold text-white mb-6 uppercase tracking-widest">{t?.footerAcademicsTitle}</h4>
+            <ul className="space-y-3.5 text-sm">
+              <li>
+                <span onClick={() => { setActiveTab('academics'); window.scrollTo(0, 0); }} className="group flex items-center text-blue-200/80 hover:text-primary transition-colors duration-300 cursor-pointer">
+                  <span className="w-0 h-0.5 bg-primary mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
+                  {t?.footerLevel1}
+                </span>
+              </li>
+              <li>
+                <span onClick={() => { setActiveTab('academics'); window.scrollTo(0, 0); }} className="group flex items-center text-blue-200/80 hover:text-primary transition-colors duration-300 cursor-pointer">
+                  <span className="w-0 h-0.5 bg-primary mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
+                  {t?.footerLevel2}
+                </span>
+              </li>
+              <li>
+                <span onClick={() => { setActiveTab('academics'); window.scrollTo(0, 0); }} className="group flex items-center text-blue-200/80 hover:text-primary transition-colors duration-300 cursor-pointer">
+                  <span className="w-0 h-0.5 bg-primary mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
+                  {t?.footerLevel3}
+                </span>
+              </li>
+              <li>
+                <span onClick={() => { setActiveTab('academics'); window.scrollTo(0, 0); }} className="group flex items-center text-blue-200/80 hover:text-primary transition-colors duration-300 cursor-pointer">
+                  <span className="w-0 h-0.5 bg-primary mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
+                  {t?.footerLevel4}
+                </span>
+              </li>
             </ul>
           </div>
 
           {/* ជួរទី៤៖ ព័ត៌មានទំនាក់ទំនង */}
-          <div className="space-y-3 text-sm">
-            <h4 className="text-base font-bold text-yellow-400 mb-4 uppercase tracking-wider">{t?.footerContactTitle}</h4>
-            <div className="flex items-start space-x-2.5 text-gray-300">
-              <MapPin className="w-4 h-4 text-yellow-400 mt-1 flex-shrink-0" />
-              <span>{t?.footerAddress}</span>
+          <div className="space-y-4 text-sm">
+            <h4 className="text-sm font-bold text-white mb-6 uppercase tracking-widest">{t?.footerContactTitle}</h4>
+            <div className="flex items-start space-x-3 text-blue-200/80 group">
+              <div className="p-2 bg-blue-900/50 rounded-lg group-hover:bg-primary/20 transition-colors">
+                <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+              </div>
+              <span className="mt-1.5 leading-relaxed">{t?.footerAddress}</span>
             </div>
-            <div className="flex items-center space-x-2.5 text-gray-300">
-              <Phone className="w-4 h-4 text-yellow-400 flex-shrink-0" />
+            <div className="flex items-center space-x-3 text-blue-200/80 group">
+              <div className="p-2 bg-blue-900/50 rounded-lg group-hover:bg-primary/20 transition-colors">
+                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+              </div>
               <span>{t?.footerPhone}</span>
             </div>
-            <div className="flex items-center space-x-2.5 text-gray-300">
-              <Mail className="w-4 h-4 text-yellow-400 flex-shrink-0" />
+            <div className="flex items-center space-x-3 text-blue-200/80 group">
+              <div className="p-2 bg-blue-900/50 rounded-lg group-hover:bg-primary/20 transition-colors">
+                <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+              </div>
               <span>{t?.footerEmail}</span>
             </div>
           </div>
@@ -96,11 +148,11 @@ const Footer = ({ lang, setActiveTab }) => {
         </div>
 
         {/* ផ្នែករក្សាសិទ្ធិបាតក្រោមបំផុត */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 space-y-4 sm:space-y-0">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-blue-300/60 space-y-4 sm:space-y-0">
           <p>{t?.footerCopyright}</p>
           <div className="flex space-x-6">
-            <a href="#privacy" className="hover:text-white transition">{t?.footerPrivacy}</a>
-            <a href="#terms" className="hover:text-white transition">{t?.footerTerms}</a>
+            <a href="#privacy" className="hover:text-primary transition-colors duration-300">{t?.footerPrivacy}</a>
+            <a href="#terms" className="hover:text-primary transition-colors duration-300">{t?.footerTerms}</a>
           </div>
         </div>
 

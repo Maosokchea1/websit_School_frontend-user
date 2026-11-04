@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <!-- Shield -->
+  <path d="M14 14h32v18c0 10-16 18-16 18s-16-8-16-18V14z" fill="#047857"/>
+  <path d="M18 18h24v14c0 8-12 14-12 14s-12-6-12-14V18z" fill="#ffffff"/>
+  <text x="30" y="34" font-family="Arial, sans-serif" font-weight="900" font-size="14" fill="#047857" text-anchor="middle">KU</text>
+  <text x="58" y="28" font-family="Arial, sans-serif" font-weight="800" font-size="15" fill="#047857">KONKUK</text>
+  <text x="58" y="42" font-family="Arial, sans-serif" font-weight="600" font-size="11" fill="#64748b">UNIVERSITY • SEOUL</text>
+</svg>

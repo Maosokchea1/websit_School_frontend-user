@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Common/Header';
 import HeroSection from './components/Common/HeroSection';
 import Footer from './components/Common/Footer';
+import PartnerMarquee from './components/layout/PartnerMarquee';
 
 // ផ្នែក Home Components
 import AboutUs from './pages/Home/AboutUs';
@@ -182,6 +183,7 @@ function App() {
             <Achievements lang={lang} />
             <News lang={lang} setActiveTab={setActiveTab} />
             <Events lang={lang} />
+            <PartnerMarquee lang={lang} />
           </>
         )}
 

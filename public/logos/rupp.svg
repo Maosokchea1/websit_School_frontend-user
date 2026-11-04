@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <circle cx="30" cy="30" r="26" fill="#1e3a8a" stroke="#d97706" stroke-width="2"/>
+  <circle cx="30" cy="30" r="22" fill="#ffffff"/>
+  <!-- Temple Silhouette -->
+  <path d="M22 36h16v-2h-2v-4h-2v4h-2v-8h-2v8h-2v-4h-2v4h-2v2z" fill="#1e3a8a"/>
+  <path d="M28 20l2-4 2 4h-4z" fill="#d97706"/>
+  <circle cx="30" cy="14" r="2" fill="#d97706"/>
+  <text x="68" y="28" font-family="Arial, sans-serif" font-weight="900" font-size="20" fill="#1e3a8a" letter-spacing="1">RUPP</text>
+  <text x="68" y="42" font-family="Arial, sans-serif" font-weight="600" font-size="10" fill="#64748b">Royal Univ. of Phnom Penh</text>
+</svg>

@@ -5,7 +5,7 @@ const StudentGrades = ({ lang, student, onLogout }) => {
   const [selectedSemester, setSelectedSemester] = useState(1);
   const [selectedMonth, setSelectedMonth] = useState('oct');
 
-  // ការបកប្រែភាសា (Translation)
+  // ============ ការបកប្រែភាសា (Translation) ============
   const txt = {
     welcome: lang === 'KH' ? 'សូមស្វាគមន៍' : 'Welcome',
     grades: lang === 'KH' ? 'ពិន្ទុរបស់អ្នក' : 'Your Grades',
@@ -39,12 +39,12 @@ const StudentGrades = ({ lang, student, onLogout }) => {
     1: [
       { subjectKh: 'គណិតវិទ្យា', subjectEn: 'Mathematics', teacherKh: 'គ្រូ សុខា', teacherEn: 'Mr. Sokha', midterm: 85, final: 88 },
       { subjectKh: 'អក្សរសាស្ត្រខ្មែរ', subjectEn: 'Khmer Literature', teacherKh: 'គ្រូ ស្រីមុំ', teacherEn: 'Mrs. Srey Mom', midterm: 78, final: 82 },
-      { subjectKh: 'រូបវិទ្យា', subjectEn: 'Physics', teacherKh: 'គ្រូ ដារា', teacherEn: 'Mr. Dara', midterm: 72, final: 75 },
+      { subjectKh: 'រូបវិទ្យា', subjectEn: 'Physics', teacherKh: 'គ្រូ ដារា', teacherEn: 'Mr. Dara', midterm: 42, final: 48 }, // ❌ F
       { subjectKh: 'គីមីវិទ្យា', subjectEn: 'Chemistry', teacherKh: 'គ្រូ សុភា', teacherEn: 'Mrs. Sophea', midterm: 80, final: 83 },
       { subjectKh: 'ជីវវិទ្យា', subjectEn: 'Biology', teacherKh: 'គ្រូ វិចិត្រ', teacherEn: 'Mr. Vichet', midterm: 88, final: 90 },
       { subjectKh: 'ភាសាអង់គ្លេស', subjectEn: 'English', teacherKh: 'គ្រូ ចន', teacherEn: 'Mr. John', midterm: 75, final: 80 },
-      { subjectKh: 'ប្រវត្តិវិទ្យា', subjectEn: 'History', teacherKh: 'គ្រូ សុខុម', teacherEn: 'Mr. Sokhom', midterm: 82, final: 85 },
-      { subjectKh: 'ភូមិវិទ្យា', subjectEn: 'Geography', teacherKh: 'គ្រូ ចន្ថា', teacherEn: 'Mrs. Chantha', midterm: 76, final: 79 },
+      { subjectKh: 'ប្រវត្តិវិទ្យា', subjectEn: 'History', teacherKh: 'គ្រូ សុខុម', teacherEn: 'Mr. Sokhom', midterm: 62, final: 65 }, // D
+      { subjectKh: 'ភូមិវិទ្យា', subjectEn: 'Geography', teacherKh: 'គ្រូ ចន្ថា', teacherEn: 'Mrs. Chantha', midterm: 55, final: 58 }, // E
     ],
     2: [
       { subjectKh: 'គណិតវិទ្យា', subjectEn: 'Mathematics', teacherKh: 'គ្រូ សុខា', teacherEn: 'Mr. Sokha', midterm: 88, final: 92 },
@@ -62,12 +62,12 @@ const StudentGrades = ({ lang, student, onLogout }) => {
     oct: [
       { subjectKh: 'គណិតវិទ្យា', subjectEn: 'Mathematics', teacherKh: 'គ្រូ សុខា', teacherEn: 'Mr. Sokha', score: 85 },
       { subjectKh: 'អក្សរសាស្ត្រខ្មែរ', subjectEn: 'Khmer Literature', teacherKh: 'គ្រូ ស្រីមុំ', teacherEn: 'Mrs. Srey Mom', score: 78 },
-      { subjectKh: 'រូបវិទ្យា', subjectEn: 'Physics', teacherKh: 'គ្រូ ដារា', teacherEn: 'Mr. Dara', score: 72 },
+      { subjectKh: 'រូបវិទ្យា', subjectEn: 'Physics', teacherKh: 'គ្រូ ដារា', teacherEn: 'Mr. Dara', score: 45 }, // ❌ F
       { subjectKh: 'គីមីវិទ្យា', subjectEn: 'Chemistry', teacherKh: 'គ្រូ សុភា', teacherEn: 'Mrs. Sophea', score: 80 },
       { subjectKh: 'ជីវវិទ្យា', subjectEn: 'Biology', teacherKh: 'គ្រូ វិចិត្រ', teacherEn: 'Mr. Vichet', score: 88 },
       { subjectKh: 'ភាសាអង់គ្លេស', subjectEn: 'English', teacherKh: 'គ្រូ ចន', teacherEn: 'Mr. John', score: 75 },
-      { subjectKh: 'ប្រវត្តិវិទ្យា', subjectEn: 'History', teacherKh: 'គ្រូ សុខុម', teacherEn: 'Mr. Sokhom', score: 82 },
-      { subjectKh: 'ភូមិវិទ្យា', subjectEn: 'Geography', teacherKh: 'គ្រូ ចន្ថា', teacherEn: 'Mrs. Chantha', score: 76 },
+      { subjectKh: 'ប្រវត្តិវិទ្យា', subjectEn: 'History', teacherKh: 'គ្រូ សុខុម', teacherEn: 'Mr. Sokhom', score: 63 }, // D
+      { subjectKh: 'ភូមិវិទ្យា', subjectEn: 'Geography', teacherKh: 'គ្រូ ចន្ថា', teacherEn: 'Mrs. Chantha', score: 56 }, // E
     ],
     nov: [
       { subjectKh: 'គណិតវិទ្យា', subjectEn: 'Mathematics', teacherKh: 'គ្រូ សុខា', teacherEn: 'Mr. Sokha', score: 87 },
@@ -143,14 +143,45 @@ const StudentGrades = ({ lang, student, onLogout }) => {
     return (list.reduce((sum, g) => sum + g.score, 0) / list.length).toFixed(1);
   };
 
-  // 🎨 ពណ៌និទ្ទេស (រក្សាស្តង់ដារ តែមើលទៅ Professional)
+  // 🎨 និទ្ទេស A–F + ស្លាក
   const getGrade = (avg) => {
     const a = parseFloat(avg);
-    if (a >= 90) return { letter: 'A', badge: 'bg-emerald-600 text-white', text: 'text-emerald-700 dark:text-emerald-400', softBg: 'bg-emerald-50 dark:bg-emerald-900/30', border: 'border-emerald-200 dark:border-emerald-800', bar: 'bg-emerald-500' };
-    if (a >= 80) return { letter: 'B', badge: 'bg-blue-600 text-white', text: 'text-blue-700 dark:text-blue-400', softBg: 'bg-blue-50 dark:bg-blue-900/30', border: 'border-blue-200 dark:border-blue-800', bar: 'bg-blue-500' };
-    if (a >= 70) return { letter: 'C', badge: 'bg-amber-500 text-white', text: 'text-amber-700 dark:text-amber-400', softBg: 'bg-amber-50 dark:bg-amber-900/30', border: 'border-amber-200 dark:border-amber-800', bar: 'bg-amber-500' };
-    if (a >= 60) return { letter: 'D', badge: 'bg-orange-600 text-white', text: 'text-orange-700 dark:text-orange-400', softBg: 'bg-orange-50 dark:bg-orange-900/30', border: 'border-orange-200 dark:border-orange-800', bar: 'bg-orange-500' };
-    return { letter: 'F', badge: 'bg-red-600 text-white', text: 'text-red-700 dark:text-red-400', softBg: 'bg-red-50 dark:bg-red-900/30', border: 'border-red-200 dark:border-red-800', bar: 'bg-red-500' };
+    if (a >= 90) return {
+      letter: 'A', labelKh: 'ល្អណាស់', labelEn: 'Excellent',
+      badge: 'bg-emerald-600 text-white', text: 'text-emerald-700 dark:text-emerald-400',
+      softBg: 'bg-emerald-50 dark:bg-emerald-900/30',
+      border: 'border-emerald-200 dark:border-emerald-800', bar: 'bg-emerald-500',
+    };
+    if (a >= 80) return {
+      letter: 'B', labelKh: 'ល្អ', labelEn: 'Good',
+      badge: 'bg-blue-600 text-white', text: 'text-blue-700 dark:text-blue-400',
+      softBg: 'bg-blue-50 dark:bg-blue-900/30',
+      border: 'border-blue-200 dark:border-blue-800', bar: 'bg-blue-500',
+    };
+    if (a >= 70) return {
+      letter: 'C', labelKh: 'ល្អបង្គួរ', labelEn: 'Fairly Good',
+      badge: 'bg-amber-500 text-white', text: 'text-amber-700 dark:text-amber-400',
+      softBg: 'bg-amber-50 dark:bg-amber-900/30',
+      border: 'border-amber-200 dark:border-amber-800', bar: 'bg-amber-500',
+    };
+    if (a >= 60) return {
+      letter: 'D', labelKh: 'មធ្យម', labelEn: 'Average',
+      badge: 'bg-orange-600 text-white', text: 'text-orange-700 dark:text-orange-400',
+      softBg: 'bg-orange-50 dark:bg-orange-900/30',
+      border: 'border-orange-200 dark:border-orange-800', bar: 'bg-orange-500',
+    };
+    if (a >= 50) return {
+      letter: 'E', labelKh: 'មធ្យម', labelEn: 'Average',
+      badge: 'bg-yellow-700 text-white', text: 'text-yellow-800 dark:text-yellow-500',
+      softBg: 'bg-yellow-50 dark:bg-yellow-900/30',
+      border: 'border-yellow-200 dark:border-yellow-800', bar: 'bg-yellow-700',
+    };
+    return {
+      letter: 'F', labelKh: 'ធ្លាក់', labelEn: 'Fail',
+      badge: 'bg-red-600 text-white', text: 'text-red-700 dark:text-red-400',
+      softBg: 'bg-red-50 dark:bg-red-900/30',
+      border: 'border-red-200 dark:border-red-800', bar: 'bg-red-500',
+    };
   };
 
   // ============ COMPUTED VALUES ============
@@ -178,15 +209,13 @@ const StudentGrades = ({ lang, student, onLogout }) => {
     : '';
 
   return (
-    /* 🟢 បន្ថែម font-khmer ឬ font-sans នៅទីនេះ ដើម្បីធានាថាអក្សរបង្ហាញត្រូវតាមភាសា */
     <div className={`min-h-screen bg-slate-50 dark:bg-slate-900 py-8 px-4 sm:px-6 lg:px-8 ${lang === 'KH' ? 'font-khmer' : 'font-sans'}`}>
       <div className="max-w-6xl mx-auto">
-        
+
         {/* ============ HEADER CARD ============ */}
         <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 mb-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div className="flex items-center gap-4">
-              {/* 🟢 ប្តូរពណ៌ Avatar ទៅ Primary */}
               <div className="w-16 h-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-2xl font-bold text-primary">
                 {studentName?.charAt(0) || 'S'}
               </div>
@@ -200,7 +229,6 @@ const StudentGrades = ({ lang, student, onLogout }) => {
                   <span className="flex items-center gap-1.5">
                     <span className="font-semibold text-slate-800 dark:text-slate-200">{txt.classLabel}:</span> {student?.grade}
                   </span>
-                  {/* 🟢 ប្តូរផ្ទៃខាងក្រោយឆ្នាំសិក្សាទៅ Primary */}
                   <span className="flex items-center gap-1.5 bg-primary/10 text-primary px-2 py-0.5 rounded text-xs font-semibold">
                     {txt.year}
                   </span>
@@ -208,7 +236,6 @@ const StudentGrades = ({ lang, student, onLogout }) => {
               </div>
             </div>
             <div className="flex gap-3">
-              {/* 🟢 ប៊ូតុង Print ប្រើ Primary Border និង Text */}
               <button
                 onClick={() => window.print()}
                 className="px-4 py-2 text-sm font-medium bg-white dark:bg-slate-700 border border-primary/30 text-primary rounded-lg hover:bg-primary/5 transition-colors flex items-center gap-2"
@@ -233,7 +260,6 @@ const StudentGrades = ({ lang, student, onLogout }) => {
 
         {/* ============ MAIN VIEW TOGGLE ============ */}
         <div className="flex bg-slate-200/60 dark:bg-slate-800 p-1 rounded-lg w-fit mb-6 border border-slate-200 dark:border-slate-700">
-          {/* 🟢 Active State ប្រើ Primary Color */}
           <button
             type="button"
             onClick={() => setViewMode('semester')}
@@ -295,7 +321,6 @@ const StudentGrades = ({ lang, student, onLogout }) => {
               <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 flex flex-col justify-between">
                 <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{txt.gpa}</p>
                 <div className="mt-2 flex items-baseline gap-2">
-                  {/* 🟢 GPA ប្រើពណ៌ Primary ប្រសិនបើពិន្ទុល្អ */}
                   <p className={`text-4xl font-bold ${parseFloat(semesterAvg) >= 80 ? 'text-primary' : semesterGrade.text}`}>{semesterAvg}</p>
                   <span className="text-sm text-slate-400">/ 100</span>
                 </div>
@@ -309,7 +334,9 @@ const StudentGrades = ({ lang, student, onLogout }) => {
                   <span className={`inline-flex items-center justify-center w-14 h-14 rounded-lg text-2xl font-black ${semesterGrade.badge}`}>
                     {semesterGrade.letter}
                   </span>
-                  <span className="text-sm font-medium text-slate-500">Standard Scale</span>
+                  <p className={`text-base font-bold ${semesterGrade.text}`}>
+                    {lang === 'KH' ? semesterGrade.labelKh : semesterGrade.labelEn}
+                  </p>
                 </div>
               </div>
 
@@ -318,13 +345,12 @@ const StudentGrades = ({ lang, student, onLogout }) => {
                 <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{txt.rank}</p>
                 <div className="mt-2 flex items-baseline gap-2">
                   <p className="text-4xl font-bold text-slate-800 dark:text-slate-100">
-                    #{selectedSemester === 1 ? 3 : 2}
+                    {selectedSemester === 1 ? 3 : 2}
                   </p>
                   <span className="text-sm font-medium text-slate-500">/ 42 {txt.students}</span>
                 </div>
-                {/* 🟢 របារចំណាត់ថ្នាក់ប្រើ Primary */}
                 <div className="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mt-3 overflow-hidden">
-                   <div className="bg-primary h-full rounded-full" style={{ width: '85%' }}></div>
+                  <div className="bg-primary h-full rounded-full" style={{ width: '85%' }}></div>
                 </div>
               </div>
             </div>
@@ -372,10 +398,16 @@ const StudentGrades = ({ lang, student, onLogout }) => {
                               <span className="text-xs font-semibold text-slate-500 w-8 text-right">{avg}%</span>
                             </div>
                           </td>
-                          <td className="px-6 py-4 text-center">
-                            <span className={`inline-flex items-center justify-center w-8 h-8 rounded text-sm font-bold ${gradeInfo.badge}`}>
-                              {gradeInfo.letter}
-                            </span>
+                          {/* ✅ កែសម្រួលរចនាបថនិទ្ទេសឱ្យស្អាត */}
+                          <td className="px-6 py-4 text-center whitespace-nowrap">
+                            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border ${gradeInfo.border} ${gradeInfo.softBg}`}>
+                              <span className={`inline-flex items-center justify-center w-6 h-6 rounded-md text-xs font-black ${gradeInfo.badge}`}>
+                                {gradeInfo.letter}
+                              </span>
+                              <span className={`text-sm font-bold ${gradeInfo.text}`}>
+                                {lang === 'KH' ? gradeInfo.labelKh : gradeInfo.labelEn}
+                              </span>
+                            </div>
                           </td>
                         </tr>
                       );
@@ -394,7 +426,12 @@ const StudentGrades = ({ lang, student, onLogout }) => {
                 <p className="text-sm text-slate-500 mt-1">{lang === 'KH' ? 'ផ្អែកលើឆមាសទី១ និង ឆមាសទី២' : 'Based on Semester 1 & 2'}</p>
               </div>
               <div className="flex items-center gap-4">
-                <p className={`text-3xl font-extrabold ${yearGrade.text}`}>{yearGPA}</p>
+                <div className="text-right">
+                  <p className={`text-sm font-bold ${yearGrade.text}`}>
+                    {lang === 'KH' ? yearGrade.labelKh : yearGrade.labelEn}
+                  </p>
+                  <p className={`text-3xl font-extrabold ${yearGrade.text}`}>{yearGPA}</p>
+                </div>
                 <span className={`inline-flex items-center justify-center w-12 h-12 rounded-lg text-xl font-black ${yearGrade.badge}`}>
                   {yearGrade.letter}
                 </span>
@@ -442,6 +479,9 @@ const StudentGrades = ({ lang, student, onLogout }) => {
                   <span className={`inline-flex items-center justify-center w-14 h-14 rounded-lg text-2xl font-black ${monthGrade.badge}`}>
                     {monthGrade.letter}
                   </span>
+                  <p className={`text-base font-bold ${monthGrade.text}`}>
+                    {lang === 'KH' ? monthGrade.labelKh : monthGrade.labelEn}
+                  </p>
                 </div>
               </div>
 
@@ -496,10 +536,16 @@ const StudentGrades = ({ lang, student, onLogout }) => {
                               <span className="text-xs font-semibold text-slate-500 w-8 text-right">{g.score}%</span>
                             </div>
                           </td>
-                          <td className="px-6 py-4 text-center">
-                            <span className={`inline-flex items-center justify-center w-8 h-8 rounded text-sm font-bold ${gradeInfo.badge}`}>
-                              {gradeInfo.letter}
-                            </span>
+                          {/* ✅ កែសម្រួលរចនាបថនិទ្ទេសឱ្យស្អាត */}
+                          <td className="px-6 py-4 text-center whitespace-nowrap">
+                            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border ${gradeInfo.border} ${gradeInfo.softBg}`}>
+                              <span className={`inline-flex items-center justify-center w-6 h-6 rounded-md text-xs font-black ${gradeInfo.badge}`}>
+                                {gradeInfo.letter}
+                              </span>
+                              <span className={`text-sm font-bold ${gradeInfo.text}`}>
+                                {lang === 'KH' ? gradeInfo.labelKh : gradeInfo.labelEn}
+                              </span>
+                            </div>
                           </td>
                         </tr>
                       );

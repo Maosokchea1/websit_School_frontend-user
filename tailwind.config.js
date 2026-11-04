@@ -29,6 +29,15 @@ export default {
         // Class font-khmer សម្រាប់ Khmer (ប្រើ Font Battambang)
         khmer: ['Battambang', 'Khmer OS Battambang', 'sans-serif'],
       },
+      animation: {
+        marquee: 'marquee 30s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
     },
   },
   plugins: [],

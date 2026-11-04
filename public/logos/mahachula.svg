@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <!-- Dhamma wheel -->
+  <circle cx="30" cy="30" r="24" fill="#b45309"/>
+  <circle cx="30" cy="30" r="18" fill="#fef3c7"/>
+  <circle cx="30" cy="30" r="8" fill="#b45309"/>
+  <circle cx="30" cy="30" r="4" fill="#fef3c7"/>
+  <path d="M30 12v36M12 30h36" stroke="#b45309" stroke-width="2.5"/>
+  <text x="64" y="27" font-family="Arial, sans-serif" font-weight="900" font-size="14" fill="#78350f">MAHACHULA</text>
+  <text x="64" y="42" font-family="Arial, sans-serif" font-weight="600" font-size="11" fill="#b45309">MCU • THAILAND</text>
+</svg>
