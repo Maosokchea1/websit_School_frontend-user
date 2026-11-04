@@ -106,19 +106,22 @@ const StudentGrades = ({ lang, student, onLogout }) => {
 
         {/* Grades table */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-100 dark:border-gray-700">
+          <div className="px-4 sm:px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between">
             <h2 className="text-lg font-bold text-gray-900 dark:text-white">{txt.grades}</h2>
+            <span className="text-xs text-primary font-medium sm:hidden">
+              {lang === 'KH' ? 'អូសតារាង ↔' : 'Scroll ↔'}
+            </span>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full min-w-[540px] text-sm">
               <thead className="bg-gray-50 dark:bg-gray-900/50 text-gray-600 dark:text-gray-400">
                 <tr>
-                  <th className="px-6 py-3 text-left font-semibold">{txt.subject}</th>
-                  <th className="px-6 py-3 text-left font-semibold hidden sm:table-cell">{txt.teacher}</th>
-                  <th className="px-6 py-3 text-center font-semibold">{txt.midterm}</th>
-                  <th className="px-6 py-3 text-center font-semibold">{txt.final}</th>
-                  <th className="px-6 py-3 text-center font-semibold">{txt.average}</th>
-                  <th className="px-6 py-3 text-center font-semibold">{txt.grade}</th>
+                  <th className="px-4 py-3 text-left font-semibold whitespace-nowrap">{txt.subject}</th>
+                  <th className="px-4 py-3 text-left font-semibold whitespace-nowrap">{txt.teacher}</th>
+                  <th className="px-3 py-3 text-center font-semibold whitespace-nowrap">{txt.midterm}</th>
+                  <th className="px-3 py-3 text-center font-semibold whitespace-nowrap">{txt.final}</th>
+                  <th className="px-3 py-3 text-center font-semibold whitespace-nowrap">{txt.average}</th>
+                  <th className="px-3 py-3 text-center font-semibold whitespace-nowrap">{txt.grade}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
@@ -127,17 +130,17 @@ const StudentGrades = ({ lang, student, onLogout }) => {
                   const gradeInfo = getGrade(avg);
                   return (
                     <tr key={idx} className="hover:bg-gray-50 dark:hover:bg-gray-900/30 transition">
-                      <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                      <td className="px-4 py-3.5 font-semibold text-gray-900 dark:text-white whitespace-nowrap">
                         {lang === 'KH' ? g.subjectKh : g.subjectEn}
                       </td>
-                      <td className="px-6 py-4 text-gray-600 dark:text-gray-400 hidden sm:table-cell">
+                      <td className="px-4 py-3.5 text-gray-600 dark:text-gray-400 whitespace-nowrap">
                         {lang === 'KH' ? g.teacherKh : g.teacherEn}
                       </td>
-                      <td className="px-6 py-4 text-center text-gray-700 dark:text-gray-300">{g.midterm}</td>
-                      <td className="px-6 py-4 text-center text-gray-700 dark:text-gray-300">{g.final}</td>
-                      <td className="px-6 py-4 text-center font-bold text-gray-900 dark:text-white">{avg}</td>
-                      <td className="px-6 py-4 text-center">
-                        <span className={`inline-block px-2.5 py-1 rounded-md text-xs font-bold ${gradeInfo.color}`}>
+                      <td className="px-3 py-3.5 text-center text-gray-700 dark:text-gray-300 whitespace-nowrap">{g.midterm}</td>
+                      <td className="px-3 py-3.5 text-center text-gray-700 dark:text-gray-300 whitespace-nowrap">{g.final}</td>
+                      <td className="px-3 py-3.5 text-center font-bold text-gray-900 dark:text-white whitespace-nowrap">{avg}</td>
+                      <td className="px-3 py-3.5 text-center whitespace-nowrap">
+                        <span className={`inline-block px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-xs font-bold ${gradeInfo.color}`}>
                           {gradeInfo.letter}
                         </span>
                       </td>
