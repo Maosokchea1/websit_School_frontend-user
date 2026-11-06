@@ -63,37 +63,37 @@ const Achievements = ({ lang }) => {
   const t = lang === 'KH' ? kh : en;
 
   return (
-    <section className="py-20 bg-gray-50/50 dark:bg-gray-900 transition-colors duration-300 font-khmer">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gray-50/50 dark:bg-gray-900 transition-colors duration-300 font-khmer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Title & Subtitle */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <span className="text-primary font-semibold uppercase tracking-wider text-xs sm:text-sm bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20 inline-block shadow-sm">
             {t.badge}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mt-4 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-white mt-3 sm:mt-4 tracking-tight leading-snug">
             {t.title}
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 mt-4 text-base sm:text-lg leading-relaxed">
+          <p className="text-gray-600 dark:text-gray-400 mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg leading-relaxed">
             {t.subtitle}
           </p>
         </div>
 
         {/* Achievements Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 mb-8 sm:mb-12">
           {t.achievementsList.map((item, index) => (
             <div 
               key={index} 
-              className="p-8 rounded-3xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800/60 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between group"
+              className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800/60 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between group"
             >
               <div>
-                <div className="inline-block px-3.5 py-1 bg-primary/10 text-primary dark:text-primary rounded-xl text-xs font-bold mb-4 shadow-sm">
+                <div className="inline-block px-3 py-1 bg-primary/10 text-primary dark:text-primary rounded-lg sm:rounded-xl text-xs font-bold mb-3 sm:mb-4 shadow-sm">
                   {item.year}
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2.5 group-hover:text-primary transition-colors">
+                <h3 className="text-base sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-2.5 group-hover:text-primary transition-colors leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -102,7 +102,7 @@ const Achievements = ({ lang }) => {
         </div>
 
         {/* Footer Note */}
-        <div className="text-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 italic max-w-xl mx-auto">
+        <div className="text-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 italic max-w-xl mx-auto px-4">
           {t.footerNote}
         </div>
 

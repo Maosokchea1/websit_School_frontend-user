@@ -235,10 +235,10 @@ const StudentGrades = ({ lang, student, onLogout }) => {
                 </div>
               </div>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap sm:flex-nowrap gap-2.5 sm:gap-3 w-full sm:w-auto">
               <button
                 onClick={() => window.print()}
-                className="px-4 py-2 text-sm font-medium bg-white dark:bg-slate-700 border border-primary/30 text-primary rounded-lg hover:bg-primary/5 transition-colors flex items-center gap-2"
+                className="flex-1 sm:flex-initial px-4 py-2 text-sm font-medium bg-white dark:bg-slate-700 border border-primary/30 text-primary rounded-lg hover:bg-primary/5 transition-colors flex items-center justify-center gap-2"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -247,7 +247,7 @@ const StudentGrades = ({ lang, student, onLogout }) => {
               </button>
               <button
                 onClick={onLogout}
-                className="px-4 py-2 text-sm font-medium bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors flex items-center gap-2"
+                className="flex-1 sm:flex-initial px-4 py-2 text-sm font-medium bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors flex items-center justify-center gap-2"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -357,10 +357,13 @@ const StudentGrades = ({ lang, student, onLogout }) => {
 
             {/* Table */}
             <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden mb-6">
-              <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700 bg-primary/5">
-                <h2 className="text-base font-bold text-primary">
+              <div className="px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-200 dark:border-slate-700 bg-primary/5 flex items-center justify-between">
+                <h2 className="text-sm sm:text-base font-bold text-primary">
                   {txt.grades} — {selectedSemester === 1 ? txt.semester1 : txt.semester2}
                 </h2>
+                <span className="text-xs font-normal text-primary/70 sm:hidden flex items-center gap-1">
+                  {txt.scrollHint}
+                </span>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left">
@@ -418,14 +421,14 @@ const StudentGrades = ({ lang, student, onLogout }) => {
             </div>
 
             {/* Year Summary */}
-            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-primary/30 p-6 flex items-center justify-between">
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-primary/30 p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <p className="text-xs uppercase tracking-wider font-bold text-primary">
                   {lang === 'KH' ? 'មធ្យមភាគពេញមួយឆ្នាំ' : 'Yearly Overall GPA'}
                 </p>
                 <p className="text-sm text-slate-500 mt-1">{lang === 'KH' ? 'ផ្អែកលើឆមាសទី១ និង ឆមាសទី២' : 'Based on Semester 1 & 2'}</p>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 self-end sm:self-auto">
                 <div className="text-right">
                   <p className={`text-sm font-bold ${yearGrade.text}`}>
                     {lang === 'KH' ? yearGrade.labelKh : yearGrade.labelEn}
@@ -500,10 +503,13 @@ const StudentGrades = ({ lang, student, onLogout }) => {
 
             {/* Table */}
             <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
-              <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700 bg-primary/5">
-                <h2 className="text-base font-bold text-primary">
+              <div className="px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-200 dark:border-slate-700 bg-primary/5 flex items-center justify-between">
+                <h2 className="text-sm sm:text-base font-bold text-primary">
                   {txt.grades} — {lang === 'KH' ? months.find(m => m.key === selectedMonth)?.kh : months.find(m => m.key === selectedMonth)?.en}
                 </h2>
+                <span className="text-xs font-normal text-primary/70 sm:hidden flex items-center gap-1">
+                  {txt.scrollHint}
+                </span>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left">

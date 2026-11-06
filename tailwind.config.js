@@ -31,11 +31,18 @@ export default {
       },
       animation: {
         marquee: 'marquee 30s linear infinite',
+        // បន្ថែម Animation អក្សររត់ទៅវិញទៅមក (Ping-Pong)
+        'text-ping-pong': 'pingPong 4s ease-in-out infinite',
       },
       keyframes: {
         marquee: {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        // បន្ថែម Keyframes សម្រាប់ការរត់ទៅវិញទៅមក
+        pingPong: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(-15px)' }, // អាចប្តូរលេខ -15px ទៅតាមចំណូលចិត្ត
         },
       },
     },

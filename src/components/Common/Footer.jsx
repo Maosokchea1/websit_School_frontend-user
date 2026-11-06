@@ -20,35 +20,34 @@ const Footer = ({ lang, setActiveTab }) => {
   const t = (lang === 'EN') ? en : kh;
 
   return (
-    // ប្តូរ bg-slate-950 មកជា bg-blue-950 វិញ
-    <footer className={`bg-blue-950 text-blue-100 pt-20 pb-10 border-t border-blue-900/60 ${lang === 'KH' ? 'font-khmer' : 'font-sans'}`}>
+    <footer className={`bg-blue-950 text-blue-100 pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-10 border-t border-blue-900/60 ${lang === 'KH' ? 'font-khmer' : 'font-sans'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ផ្នែកមាតិកាចម្បងរបស់ Footer (Grid Columns) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-blue-900/60">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 pb-10 sm:pb-16 border-b border-blue-900/60">
           
           {/* ជួរទី១៖ ព័ត៌មានសាលា */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="bg-primary text-white p-2.5 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-                <School className="w-6 h-6" />
+              <div className="bg-primary text-white p-2 sm:p-2.5 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 shrink-0">
+                <School className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white tracking-wide">{t?.footerSchoolName}</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white tracking-wide">{t?.footerSchoolName}</h3>
                 <p className="text-xs text-blue-300/80 mt-0.5">{t?.footerSchoolSub}</p>
               </div>
             </div>
-            <p className="text-blue-200/80 text-sm leading-relaxed text-justify">
+            <p className="text-blue-200/80 text-xs sm:text-sm leading-relaxed text-justify">
               {t?.footerDescription}
             </p>
-            <div className="flex space-x-3 pt-2">
-              <a href="#facebook" aria-label="Facebook" className="w-10 h-10 bg-blue-900/50 border border-blue-800/50 hover:border-primary hover:bg-primary text-blue-200 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300 group">
+            <div className="flex space-x-3 pt-1 sm:pt-2">
+              <a href="#facebook" aria-label="Facebook" className="w-9 h-9 sm:w-10 sm:h-10 bg-blue-900/50 border border-blue-800/50 hover:border-primary hover:bg-primary text-blue-200 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300 group">
                 <FacebookIcon className="w-4 h-4 transition-colors duration-300" />
               </a>
-              <a href="#telegram" aria-label="Telegram" className="w-10 h-10 bg-blue-900/50 border border-blue-800/50 hover:border-primary hover:bg-primary text-blue-200 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300 group">
+              <a href="#telegram" aria-label="Telegram" className="w-9 h-9 sm:w-10 sm:h-10 bg-blue-900/50 border border-blue-800/50 hover:border-primary hover:bg-primary text-blue-200 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300 group">
                 <Send className="w-4 h-4 transition-colors duration-300" />
               </a>
-              <a href="#youtube" aria-label="YouTube" className="w-10 h-10 bg-blue-900/50 border border-blue-800/50 hover:border-primary hover:bg-primary text-blue-200 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300 group">
+              <a href="#youtube" aria-label="YouTube" className="w-9 h-9 sm:w-10 sm:h-10 bg-blue-900/50 border border-blue-800/50 hover:border-primary hover:bg-primary text-blue-200 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300 group">
                 <YoutubeIcon className="w-4 h-4 transition-colors duration-300" />
               </a>
             </div>
@@ -56,8 +55,8 @@ const Footer = ({ lang, setActiveTab }) => {
 
           {/* ជួរទី២៖ តំណភ្ជាប់រហ័ស */}
           <div>
-            <h4 className="text-sm font-bold text-white mb-6 uppercase tracking-widest">{t?.footerQuickLinksTitle}</h4>
-            <ul className="space-y-3.5 text-sm">
+            <h4 className="text-xs sm:text-sm font-bold text-white mb-4 sm:mb-6 uppercase tracking-widest">{t?.footerQuickLinksTitle}</h4>
+            <ul className="space-y-2.5 sm:space-y-3.5 text-xs sm:text-sm">
               <li>
                 <button onClick={() => { setActiveTab('home'); window.scrollTo(0, 0); }} className="group flex items-center text-blue-200/80 hover:text-primary transition-colors duration-300">
                   <span className="w-0 h-0.5 bg-primary mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
@@ -93,8 +92,8 @@ const Footer = ({ lang, setActiveTab }) => {
 
           {/* ជួរទី៣៖ កម្រិតសិក្សា */}
           <div>
-            <h4 className="text-sm font-bold text-white mb-6 uppercase tracking-widest">{t?.footerAcademicsTitle}</h4>
-            <ul className="space-y-3.5 text-sm">
+            <h4 className="text-xs sm:text-sm font-bold text-white mb-4 sm:mb-6 uppercase tracking-widest">{t?.footerAcademicsTitle}</h4>
+            <ul className="space-y-2.5 sm:space-y-3.5 text-xs sm:text-sm">
               <li>
                 <span onClick={() => { setActiveTab('academics'); window.scrollTo(0, 0); }} className="group flex items-center text-blue-200/80 hover:text-primary transition-colors duration-300 cursor-pointer">
                   <span className="w-0 h-0.5 bg-primary mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
@@ -123,34 +122,34 @@ const Footer = ({ lang, setActiveTab }) => {
           </div>
 
           {/* ជួរទី៤៖ ព័ត៌មានទំនាក់ទំនង */}
-          <div className="space-y-4 text-sm">
-            <h4 className="text-sm font-bold text-white mb-6 uppercase tracking-widest">{t?.footerContactTitle}</h4>
+          <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm">
+            <h4 className="text-xs sm:text-sm font-bold text-white mb-4 sm:mb-6 uppercase tracking-widest">{t?.footerContactTitle}</h4>
             <div className="flex items-start space-x-3 text-blue-200/80 group">
-              <div className="p-2 bg-blue-900/50 rounded-lg group-hover:bg-primary/20 transition-colors">
-                <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+              <div className="p-2 bg-blue-900/50 rounded-lg group-hover:bg-primary/20 transition-colors shrink-0">
+                <MapPin className="w-4 h-4 text-primary" />
               </div>
-              <span className="mt-1.5 leading-relaxed">{t?.footerAddress}</span>
+              <span className="mt-1 leading-relaxed">{t?.footerAddress}</span>
             </div>
             <div className="flex items-center space-x-3 text-blue-200/80 group">
-              <div className="p-2 bg-blue-900/50 rounded-lg group-hover:bg-primary/20 transition-colors">
-                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+              <div className="p-2 bg-blue-900/50 rounded-lg group-hover:bg-primary/20 transition-colors shrink-0">
+                <Phone className="w-4 h-4 text-primary" />
               </div>
               <span>{t?.footerPhone}</span>
             </div>
             <div className="flex items-center space-x-3 text-blue-200/80 group">
-              <div className="p-2 bg-blue-900/50 rounded-lg group-hover:bg-primary/20 transition-colors">
-                <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+              <div className="p-2 bg-blue-900/50 rounded-lg group-hover:bg-primary/20 transition-colors shrink-0">
+                <Mail className="w-4 h-4 text-primary" />
               </div>
-              <span>{t?.footerEmail}</span>
+              <span className="truncate">{t?.footerEmail}</span>
             </div>
           </div>
 
         </div>
 
         {/* ផ្នែករក្សាសិទ្ធិបាតក្រោមបំផុត */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-blue-300/60 space-y-4 sm:space-y-0">
+        <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-blue-300/60 space-y-3 sm:space-y-0 text-center sm:text-left">
           <p>{t?.footerCopyright}</p>
-          <div className="flex space-x-6">
+          <div className="flex space-x-5 sm:space-x-6">
             <a href="#privacy" className="hover:text-primary transition-colors duration-300">{t?.footerPrivacy}</a>
             <a href="#terms" className="hover:text-primary transition-colors duration-300">{t?.footerTerms}</a>
           </div>

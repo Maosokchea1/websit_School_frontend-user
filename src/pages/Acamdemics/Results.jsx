@@ -136,12 +136,12 @@ const Results = ({ lang }) => {
         </div>
 
         {/* Results Table */}
-        <div className="overflow-x-auto rounded-3xl border border-gray-200 dark:border-gray-700/60 shadow-xl bg-white dark:bg-gray-800/80 backdrop-blur-sm">
+        <div className="overflow-x-auto rounded-2xl sm:rounded-3xl border border-gray-200 dark:border-gray-700/60 shadow-xl bg-white dark:bg-gray-800/80 backdrop-blur-sm">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-50/80 dark:bg-gray-900/60 text-gray-700 dark:text-gray-300 text-xs sm:text-sm uppercase tracking-wider border-b border-gray-200 dark:border-gray-700/60">
                 {t.tableHeaders.map((header, index) => (
-                  <th key={index} className="p-4 font-semibold">
+                  <th key={index} className="p-3.5 sm:p-4 font-semibold whitespace-nowrap">
                     {header}
                   </th>
                 ))}
@@ -150,17 +150,17 @@ const Results = ({ lang }) => {
             <tbody className="divide-y divide-gray-100 dark:divide-gray-700/40 text-sm">
               {filteredResults.length > 0 ? (
                 filteredResults.map((student, index) => (
-                  <tr key={index} className="hover:bg-gray-50/60 dark:hover:bg-gray-700/30 transition-colors">
-                    <td className="p-4 font-mono text-cyan-600 dark:text-cyan-400 font-semibold">{student.id}</td>
-                    <td className="p-4 font-medium text-gray-900 dark:text-white">{student.name}</td>
-                    <td className="p-4 text-gray-600 dark:text-gray-300">
+                  <tr key={index} className="hover:bg-gray-50/60 dark:hover:bg-gray-700/30 transition-colors whitespace-nowrap">
+                    <td className="p-3.5 sm:p-4 font-mono text-cyan-600 dark:text-cyan-400 font-semibold">{student.id}</td>
+                    <td className="p-3.5 sm:p-4 font-medium text-gray-900 dark:text-white">{student.name}</td>
+                    <td className="p-3.5 sm:p-4 text-gray-600 dark:text-gray-300">
                       <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700/60 rounded-xl text-xs font-medium">
                         {student.level}
                       </span>
                     </td>
-                    <td className="p-4 font-bold text-indigo-600 dark:text-indigo-400">{student.grade}</td>
-                    <td className="p-4 text-gray-700 dark:text-gray-300 font-semibold">{student.avg} ពិន្ទុ</td>
-                    <td className="p-4">
+                    <td className="p-3.5 sm:p-4 font-bold text-indigo-600 dark:text-indigo-400">{student.grade}</td>
+                    <td className="p-3.5 sm:p-4 text-gray-700 dark:text-gray-300 font-semibold">{student.avg} ពិន្ទុ</td>
+                    <td className="p-3.5 sm:p-4">
                       <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                         student.status === t.statusHonors 
                           ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' 
