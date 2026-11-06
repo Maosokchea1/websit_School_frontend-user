@@ -12,7 +12,6 @@ const Header = ({
   onLoginClick,
   onLogout,
 }) => {
-  // 1. STATE MANAGEMENT (Theme & Dropdowns)
   const [isDarkMode, setIsDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
@@ -23,13 +22,10 @@ const Header = ({
   });
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // User dropdown state (ប្រើសម្រាប់ទាំង Desktop និង Mobile)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
   const mobileUserMenuRef = useRef(null);
 
-  // Dropdown states
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
   const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
   const [isAdmissionsDropdownOpen, setIsAdmissionsDropdownOpen] = useState(false);
@@ -43,7 +39,6 @@ const Header = ({
   const [isContactDropdownOpen, setIsContactDropdownOpen] = useState(false);
   const [isMobileContactOpen, setIsMobileContactOpen] = useState(false);
 
-  // Refs for outside clicks
   const aboutDropdownRef = useRef(null);
   const admissionsDropdownRef = useRef(null);
   const academicsDropdownRef = useRef(null);
@@ -54,7 +49,6 @@ const Header = ({
   const t = lang === 'KH' ? kh : en;
   const isLoggedIn = !!student;
 
-  // Sync Dark Mode
   useEffect(() => {
     const root = document.documentElement;
     if (isDarkMode) {
@@ -66,7 +60,6 @@ const Header = ({
     }
   }, [isDarkMode]);
 
-  // Close dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (aboutDropdownRef.current && !aboutDropdownRef.current.contains(event.target)) setIsAboutDropdownOpen(false);
@@ -76,7 +69,6 @@ const Header = ({
       if (activitiesDropdownRef.current && !activitiesDropdownRef.current.contains(event.target)) setIsActivitiesDropdownOpen(false);
       if (contactDropdownRef.current && !contactDropdownRef.current.contains(event.target)) setIsContactDropdownOpen(false);
       
-      // ពិនិត្យទាំង Desktop និង Mobile Ref
       if (
         userMenuRef.current && !userMenuRef.current.contains(event.target) &&
         mobileUserMenuRef.current && !mobileUserMenuRef.current.contains(event.target)
@@ -88,7 +80,6 @@ const Header = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Handlers
   const toggleLanguage = () => {
     const nextLang = lang === 'KH' ? 'EN' : 'KH';
     if (typeof toggleLang === 'function') toggleLang();
@@ -147,7 +138,6 @@ const Header = ({
     setIsUserMenuOpen(false);
   };
 
-  // ---------- SUB-ITEMS DEFINITIONS ----------
   const aboutSubItems = [
     { id: 'about', label: t.aboutSubSchool || 'About School' },
     { id: 'about-us', label: t.aboutSubUs || 'About Us' },
@@ -205,7 +195,6 @@ const Header = ({
   const isContactActive = contactSubItems.some(sub => activeTab === sub.id);
   const isLoginActive = activeTab === 'login' || activeTab === 'my-grades' || activeTab === 'student-login' || activeTab === 'grades';
 
-  // Icon helper
   const homeIcon = (isActive) => (
     <svg className={`w-4 h-4 shrink-0 transition-transform duration-300 ${isActive ? 'text-primary scale-110' : 'text-gray-500 dark:text-gray-400'}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
@@ -223,10 +212,8 @@ const Header = ({
   const studentName = student ? (lang === 'KH' ? (student.nameKh || student.nameEn || '') : (student.nameEn || student.nameKh || '')) : '';
   const studentInitial = studentName?.charAt(0)?.toUpperCase() || 'S';
 
-  // Dropdown renderer for both Desktop & Mobile Avatar
   const renderUserDropdown = () => (
     <div className="absolute right-0 mt-2 w-56 max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 py-2 z-50">
-      {/* User info header */}
       <div className="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
         <p className="text-sm font-bold text-gray-900 dark:text-white truncate">
           {studentName || 'Student'}
@@ -236,7 +223,6 @@ const Header = ({
         </p>
       </div>
 
-      {/* My Grades */}
       <button type="button" onClick={handleMyGradesClick} className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-primary/10 hover:text-primary transition">
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-6m4 6V7m4 10v-3M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -244,7 +230,6 @@ const Header = ({
         {t.myGrades || (lang === 'KH' ? 'ពិន្ទុរបស់ខ្ញុំ' : 'My Grades')}
       </button>
 
-      {/* Profile */}
       <button type="button" onClick={handleProfileClick} className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-primary/10 hover:text-primary transition">
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -252,7 +237,6 @@ const Header = ({
         {lang === 'KH' ? 'ព័ត៌មានផ្ទាល់ខ្លួន' : 'My Profile'}
       </button>
 
-      {/* Change Password */}
       <button type="button" onClick={handleChangePasswordClick} className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-primary/10 hover:text-primary transition">
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -260,7 +244,6 @@ const Header = ({
         {lang === 'KH' ? 'ផ្លាស់ប្តូរពាក្យសម្ងាត់' : 'Change Password'}
       </button>
 
-      {/* Logout */}
       <div className="border-t border-gray-100 dark:border-gray-700 mt-1 pt-1">
         <button type="button" onClick={handleLogoutClick} className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -272,7 +255,6 @@ const Header = ({
     </div>
   );
 
-  // Generic dropdown renderer for Desktop Nav
   const renderDesktopDropdown = (label, icon, isActive, isOpen, setIsOpen, closeOthers, ref, subItems, overviewId) => (
     <div className="relative" ref={ref}>
       <button
@@ -309,7 +291,6 @@ const Header = ({
     </div>
   );
 
-  // Mobile accordion renderer
   const renderMobileAccordion = (label, icon, isActive, isOpen, setIsOpen, subItems) => (
     <div className="space-y-1">
       <button
@@ -351,7 +332,6 @@ const Header = ({
     </div>
   );
 
-  // Icons for each top level
   const aboutIcon = <svg className={`w-5 h-5 shrink-0 ${isAboutActive ? 'text-primary' : 'text-gray-500 dark:text-gray-400'}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>;
   const admissionsIcon = <svg className={`w-5 h-5 shrink-0 ${isAdmissionsActive ? 'text-primary' : 'text-gray-500 dark:text-gray-400'}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>;
   const academicsIcon = <svg className={`w-5 h-5 shrink-0 ${isAcademicsActive ? 'text-primary' : 'text-gray-500 dark:text-gray-400'}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>;
@@ -362,10 +342,10 @@ const Header = ({
   return (
     <header className="bg-white/95 dark:bg-gray-900/95 text-gray-900 dark:text-white backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 sm:h-20 gap-x-2 sm:gap-x-4">
-
-          {/* Logo */}
-          <a href="#home" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="flex items-center space-x-2.5 sm:space-x-3 group shrink min-w-0 transition-transform duration-200">
+        <div className="flex justify-between items-center h-16 sm:h-20 gap-x-3 sm:gap-x-4">
+          
+          {/* ✅ កែសម្រួល Logo៖ លុប min-w-0 និង truncate ចេញ ដើម្បីឱ្យអក្សរមិនដាច់ */}
+          <a href="#home" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="flex items-center space-x-2.5 sm:space-x-3 group shrink-0 transition-transform duration-200">
             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary text-white rounded-xl shadow flex items-center justify-center transition-transform duration-300 group-hover:rotate-6 shrink-0">
               <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -373,19 +353,19 @@ const Header = ({
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v7m-4-4v2m8-2v2" />
               </svg>
             </div>
-            <div className="min-w-0">
-              <span className="block text-sm sm:text-base md:text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary leading-tight transition-colors truncate max-w-[160px] xs:max-w-xs sm:max-w-none">
+            <div>
+              <span className="block text-sm sm:text-base md:text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary leading-tight transition-colors whitespace-nowrap">
                 {t.schoolName}
               </span>
-              <span className="block text-[11px] sm:text-xs text-gray-500 dark:text-gray-400 font-semibold tracking-wide truncate max-w-[160px] xs:max-w-xs sm:max-w-none">
+              <span className="block text-[11px] sm:text-xs text-gray-500 dark:text-gray-400 font-semibold tracking-wide whitespace-nowrap">
                 {t.schoolSub}
               </span>
             </div>
           </a>
 
-          {/* DESKTOP NAVIGATION */}
-          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2 font-medium text-sm whitespace-nowrap">
-            <a href="#home" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className={`flex items-center space-x-1 px-2.5 py-2 text-sm transition-colors duration-200 ${activeTab === 'home' ? "text-primary font-semibold" : "text-gray-700 dark:text-gray-300 hover:text-primary"}`}>
+          {/* DESKTOP NAVIGATION (ប្រើ xl ដើម្បីកុំឱ្យញាត់គ្នាលើ Tablet) */}
+          <nav className="hidden xl:flex items-center space-x-1 font-medium text-sm whitespace-nowrap">
+            <a href="#home" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className={`flex items-center space-x-1 px-2 py-2 text-sm transition-colors duration-200 ${activeTab === 'home' ? "text-primary font-semibold" : "text-gray-700 dark:text-gray-300 hover:text-primary"}`}>
               {homeIcon(activeTab === 'home')}
               <span>{t.home}</span>
             </a>
@@ -399,7 +379,7 @@ const Header = ({
           </nav>
 
           {/* Right Action Icons (Desktop) */}
-          <div className="hidden lg:flex items-center space-x-3 shrink-0">
+          <div className="hidden xl:flex items-center space-x-3 shrink-0">
             <div onClick={toggleLanguage} className="p-1 text-gray-700 dark:text-gray-200 hover:opacity-80 transition-opacity duration-200 cursor-pointer flex items-center justify-center shrink-0 bg-transparent border-none shadow-none" title="Switch Language">
               <img src={lang === 'KH' ? "https://flagcdn.com/w40/kh.png" : "https://flagcdn.com/w40/us.png"} alt="Flag" className="w-6 h-auto object-contain rounded-xs pointer-events-none" />
             </div>
@@ -412,7 +392,6 @@ const Header = ({
               )}
             </div>
 
-            {/* Login OR User Menu (Desktop) */}
             {!isLoggedIn ? (
               <button type="button" onClick={handleLoginClick} className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold rounded-lg shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer ${isLoginActive ? 'bg-primary/90 text-white ring-2 ring-primary/40' : 'bg-primary text-white hover:bg-primary/90'}`} title={t.loginSubtitle || (lang === 'KH' ? 'ចូលមើលពិន្ទុសិស្ស' : 'View student grades')}>
                 {loginIcon(isLoginActive)}
@@ -437,7 +416,7 @@ const Header = ({
           </div>
 
           {/* Mobile Action Buttons */}
-          <div className="lg:hidden flex items-center space-x-2">
+          <div className="xl:hidden flex items-center space-x-2">
             <div onClick={toggleLanguage} className="p-1 text-gray-700 dark:text-gray-200 flex items-center justify-center shrink-0 cursor-pointer">
               <img src={lang === 'KH' ? "https://flagcdn.com/w40/kh.png" : "https://flagcdn.com/w40/us.png"} alt="Flag" className="w-5 h-auto object-contain rounded-xs pointer-events-none" />
             </div>
@@ -449,7 +428,6 @@ const Header = ({
               )}
             </div>
 
-            {/* Avatar Click -> Dropdown */}
             {isLoggedIn && (
               <div className="relative" ref={mobileUserMenuRef}>
                 <button 
@@ -477,12 +455,10 @@ const Header = ({
         </div>
       </div>
 
-      {/* MOBILE DROPDOWN MENU (ធំ) */}
+      {/* MOBILE DROPDOWN MENU */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 pt-4 pb-6 space-y-3 shadow-lg max-h-[calc(100vh-5rem)] overflow-y-auto">
+        <div className="xl:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 pt-4 pb-6 space-y-3 shadow-lg max-h-[calc(100vh-5rem)] overflow-y-auto">
           
-          {/* ❌ បានដក User Card ចេញពីទីនេះ ❌ */}
-
           <a href="#home" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 border ${
             activeTab === 'home' 
               ? "text-primary bg-primary/10 border-primary font-semibold" 
@@ -499,7 +475,6 @@ const Header = ({
           {renderMobileAccordion(t.activitiesNav, activitiesIcon, isActivitiesActive, isMobileActivitiesOpen, setIsMobileActivitiesOpen, activitiesSubItems)}
           {renderMobileAccordion(t.contact, contactIcon, isContactActive, isMobileContactOpen, setIsMobileContactOpen, contactSubItems)}
 
-          {/* បង្ហាញប៊ូតុង Login តែនៅពេលដែលមិនបាន Login ទេ */}
           {!isLoggedIn && (
             <button type="button" onClick={handleLoginClick} className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-white bg-primary hover:bg-primary/90 shadow-sm transition-all duration-200 mt-4">
               {loginIcon(isLoginActive, 'w-5 h-5')}
