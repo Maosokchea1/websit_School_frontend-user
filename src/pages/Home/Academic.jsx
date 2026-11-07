@@ -60,16 +60,17 @@ const Academic = ({ lang }) => {
   ];
 
   return (
-    <section id="academics" className="py-12 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-50/50 via-white to-gray-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 text-gray-800 dark:text-gray-100 font-khmer transition-colors duration-300 relative overflow-hidden">
+    <section id="academics" className="py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-gray-50/50 via-white to-gray-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 text-gray-800 dark:text-gray-100 font-khmer transition-colors duration-300 relative overflow-hidden">
       
       {/* Decorative Blur Background Elements */}
       <div className="absolute top-1/2 left-0 w-60 sm:w-72 h-60 sm:h-72 bg-blue-500/5 rounded-full blur-[100px] sm:blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-60 sm:w-72 h-60 sm:h-72 bg-amber-500/5 rounded-full blur-[100px] sm:blur-[120px] pointer-events-none"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ✅ កែទៅជា max-w-[1400px] ដើម្បីឱ្យស៊ីគ្នាជាមួយ Header */}
+      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ចំណងជើងផ្នែក (Section Header) */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20">
           <span className="text-primary font-semibold uppercase tracking-wider text-xs sm:text-sm bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20 inline-block shadow-sm">
             {t.badge}
           </span>

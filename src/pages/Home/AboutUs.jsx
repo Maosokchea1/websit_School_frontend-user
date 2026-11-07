@@ -3,7 +3,7 @@ import { kh } from '../../translate/Khmer';
 import { en } from '../../translate/English';
 
 const AboutUs = ({ lang }) => {
-  // ទាញយកទិន្នន័យភាសាផ្អែកលើ prop lang (ប្រសិនបើមិនមានបញ្ជូនមក យក 'KH ទុកជាមូលដ្ឋាន')
+  // ទាញយកទិន្នន័យភាសាផ្អែកលើ prop lang
   const t = (lang === 'EN' ? en : kh).aboutUs || {
     badge: "អំពីរឿងយើងខ្ញុំ",
     title: "ការប្តេជ្ញាចិត្តក្នុងការផ្តល់ការអប់រំប្រកបដោយគុណភាពខ្ពស់",
@@ -17,16 +17,17 @@ const AboutUs = ({ lang }) => {
   };
 
   return (
-    <section id="about" className="py-12 sm:py-20 lg:py-24 bg-gradient-to-b from-white via-gray-50/50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-800 dark:text-gray-100 font-khmer transition-colors duration-300 relative overflow-hidden">
+    <section id="about" className="py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-white via-gray-50/50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-800 dark:text-gray-100 font-khmer transition-colors duration-300 relative overflow-hidden">
       
       {/* Decorative Blur Background Elements */}
       <div className="absolute top-1/3 -left-20 w-60 sm:w-80 h-60 sm:h-80 bg-blue-500/5 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none"></div>
       <div className="absolute bottom-10 -right-20 w-60 sm:w-80 h-60 sm:h-80 bg-amber-500/5 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ✅ កែទៅជា max-w-[1400px] ដើម្បីឱ្យស៊ីគ្នាជាមួយ Header */}
+      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ចំណងជើងផ្នែក (Section Header) */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 lg:mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20">
           <span className="text-primary font-semibold uppercase tracking-wider text-xs sm:text-sm bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20 inline-block shadow-sm">
             {t.badge}
           </span>
@@ -39,15 +40,15 @@ const AboutUs = ({ lang }) => {
         </div>
 
         {/* ខ្លឹមសារបែងចែកជា ២ ផ្នែក (Grid Layout) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
-          {/* ផ្នែកខាងឆ្វេង៖ រូបភាពសាលារៀនពិតៗ */}
+          {/* ផ្នែកខាងឆ្វេង៖ រូបភាពសាលារៀន */}
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-2xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl border-2 sm:border-4 border-white dark:border-gray-800 group">
               <img 
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3qBLUK7gGnCRTWNYbOBaUbYZP-JXb3jVucY71Eh5_JhYjnBWhKoj2-XcA&s=10" 
                 alt="School building real view" 
-                className="w-full h-[240px] sm:h-[360px] lg:h-[440px] object-cover group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/60 via-transparent to-transparent opacity-60"></div>
@@ -67,7 +68,7 @@ const AboutUs = ({ lang }) => {
               </div>
               <div>
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-2">{t.visionTitle}</h3>
-                <p className="text-xs sm:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                   {t.visionDesc}
                 </p>
               </div>
@@ -82,7 +83,7 @@ const AboutUs = ({ lang }) => {
               </div>
               <div>
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-2">{t.missionTitle}</h3>
-                <p className="text-xs sm:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                   {t.missionDesc}
                 </p>
               </div>
@@ -97,7 +98,7 @@ const AboutUs = ({ lang }) => {
               </div>
               <div>
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-2">{t.coreValuesTitle}</h3>
-                <p className="text-xs sm:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                   {t.coreValuesDesc}
                 </p>
               </div>

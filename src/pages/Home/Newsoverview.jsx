@@ -43,11 +43,17 @@ const News = ({ lang, setActiveTab }) => {
   };
 
   return (
-    <section id="news" className={`py-12 sm:py-16 lg:py-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-300 ${lang === 'KH' ? 'font-khmer' : 'font-sans'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="news" className={`py-16 sm:py-24 lg:py-32 bg-white dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-300 relative overflow-hidden ${lang === 'KH' ? 'font-khmer' : 'font-sans'}`}>
+      
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[80px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-[80px] pointer-events-none"></div>
+
+      {/* ✅ កែទៅជា max-w-[1400px] ដើម្បីឱ្យស៊ីគ្នាជាមួយ Header */}
+      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
-          <span className="text-blue-600 dark:text-yellow-400 font-semibold uppercase tracking-wider text-xs sm:text-sm bg-blue-50 dark:bg-gray-800 px-3 py-1 rounded-full border border-blue-200 dark:border-gray-700 shadow-sm">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20">
+          <span className="text-blue-600 dark:text-yellow-400 font-semibold uppercase tracking-wider text-xs sm:text-sm bg-blue-50 dark:bg-gray-800 px-4 py-1.5 rounded-full border border-blue-200 dark:border-gray-700 shadow-sm inline-block">
             {t?.newsBadge}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-blue-950 dark:text-white mt-3 sm:mt-4 tracking-tight leading-snug">
@@ -62,17 +68,18 @@ const News = ({ lang, setActiveTab }) => {
           {newsList.map((item) => (
             <div 
               key={item.id} 
-              className="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+              className="bg-gray-50 dark:bg-gray-800 rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-2xl hover:border-blue-500/30 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5"
             >
               <div>
-                <div className="relative h-44 sm:h-48 overflow-hidden cursor-pointer" onClick={handleReadMore}>
+                <div className="relative h-48 sm:h-52 overflow-hidden cursor-pointer" onClick={handleReadMore}>
                   <img 
                     src={item.image} 
                     alt={item.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                     loading="lazy"
                   />
-                  <span className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-blue-600/95 backdrop-blur-md text-white text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 rounded-full shadow">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                  <span className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-blue-600/95 backdrop-blur-md text-white text-[11px] sm:text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
                     {item.category}
                   </span>
                 </div>
@@ -81,7 +88,7 @@ const News = ({ lang, setActiveTab }) => {
                   <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-2">📅 {item.date}</p>
                   <h3 
                     onClick={handleReadMore}
-                    className="text-base sm:text-lg font-bold text-blue-950 dark:text-white mb-2 sm:mb-3 group-hover:text-blue-600 dark:group-hover:text-yellow-400 transition cursor-pointer leading-snug"
+                    className="text-base sm:text-lg font-bold text-blue-950 dark:text-white mb-2 sm:mb-3 group-hover:text-blue-600 dark:group-hover:text-yellow-400 transition cursor-pointer leading-snug line-clamp-2"
                   >
                     {item.title}
                   </h3>
