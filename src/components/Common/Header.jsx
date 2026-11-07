@@ -344,14 +344,26 @@ const Header = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20 gap-x-3 sm:gap-x-4">
           
-          {/* ✅ កែសម្រួល Logo៖ លុប min-w-0 និង truncate ចេញ ដើម្បីឱ្យអក្សរមិនដាច់ */}
+          {/* ✅ Logo ផ្លូវការរបស់សាលា */}
           <a href="#home" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="flex items-center space-x-2.5 sm:space-x-3 group shrink-0 transition-transform duration-200">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary text-white rounded-xl shadow flex items-center justify-center transition-transform duration-300 group-hover:rotate-6 shrink-0">
-              <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665-6.16 3.422z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v7m-4-4v2m8-2v2" />
-              </svg>
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl shadow overflow-hidden flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shrink-0 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+              <img
+                src="/Logo.png"
+                alt="School Logo"
+                className="w-full h-full object-contain p-0.5"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  const fallback = e.currentTarget.nextElementSibling;
+                  if (fallback) fallback.style.display = 'flex';
+                }}
+              />
+              <div className="w-full h-full bg-primary text-white hidden items-center justify-center">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665-6.16 3.422z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v7m-4-4v2m8-2v2" />
+                </svg>
+              </div>
             </div>
             <div>
               <span className="block text-sm sm:text-base md:text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary leading-tight transition-colors whitespace-nowrap">
