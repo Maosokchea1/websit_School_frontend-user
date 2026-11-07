@@ -49,14 +49,26 @@ const StudentLogin = ({ lang, onLoginSuccess, onCancel }) => {
 
       <div className="w-full max-w-md bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50 dark:border-gray-700 p-6 sm:p-10 relative z-10">
         
-        {/* Icon ខាងលើ */}
+        {/* Logo ខាងលើ */}
         <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-gradient-to-tr from-primary to-blue-500 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-primary/30 transform -rotate-3 hover:rotate-0 transition-transform duration-300">
-            <svg className="w-9 h-9" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665-6.16 3.422z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v7m-4-4v2m8-2v2" />
-            </svg>
+          <div className="w-20 h-20 bg-white dark:bg-gray-700 p-1.5 rounded-2xl flex items-center justify-center shadow-xl shadow-primary/20 border border-gray-100 dark:border-gray-600 transition-transform duration-300 hover:scale-105">
+            <img
+              src="/Logo.png"
+              alt="School Logo"
+              className="w-full h-full object-contain"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                const fallback = e.currentTarget.nextElementSibling;
+                if (fallback) fallback.style.display = 'flex';
+              }}
+            />
+            <div className="w-full h-full bg-primary text-white hidden items-center justify-center rounded-xl">
+              <svg className="w-9 h-9" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665-6.16 3.422z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v7m-4-4v2m8-2v2" />
+              </svg>
+            </div>
           </div>
         </div>
 
