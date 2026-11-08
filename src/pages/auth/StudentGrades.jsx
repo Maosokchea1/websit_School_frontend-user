@@ -401,9 +401,9 @@ const StudentGrades = ({ lang, student, onLogout }) => {
                               <span className="text-xs font-semibold text-slate-500 w-8 text-right">{avg}%</span>
                             </div>
                           </td>
-                          {/* ✅ កែសម្រួលរចនាបថនិទ្ទេសឱ្យស្អាត */}
+                          {/* ✅ កែសម្រួល៖ បន្ថែម min-w និង justify-center ដើម្បីឱ្យប្រអប់ស្មើគ្នា */}
                           <td className="px-6 py-4 text-center whitespace-nowrap">
-                            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border ${gradeInfo.border} ${gradeInfo.softBg}`}>
+                            <div className={`inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg border min-w-[100px] ${gradeInfo.border} ${gradeInfo.softBg}`}>
                               <span className={`inline-flex items-center justify-center w-6 h-6 rounded-md text-xs font-black ${gradeInfo.badge}`}>
                                 {gradeInfo.letter}
                               </span>
@@ -542,9 +542,9 @@ const StudentGrades = ({ lang, student, onLogout }) => {
                               <span className="text-xs font-semibold text-slate-500 w-8 text-right">{g.score}%</span>
                             </div>
                           </td>
-                          {/* ✅ កែសម្រួលរចនាបថនិទ្ទេសឱ្យស្អាត */}
+                          {/* ✅ កែសម្រួល៖ បន្ថែម min-w និង justify-center ដើម្បីឱ្យប្រអប់ស្មើគ្នា */}
                           <td className="px-6 py-4 text-center whitespace-nowrap">
-                            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border ${gradeInfo.border} ${gradeInfo.softBg}`}>
+                            <div className={`inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg border min-w-[100px] ${gradeInfo.border} ${gradeInfo.softBg}`}>
                               <span className={`inline-flex items-center justify-center w-6 h-6 rounded-md text-xs font-black ${gradeInfo.badge}`}>
                                 {gradeInfo.letter}
                               </span>

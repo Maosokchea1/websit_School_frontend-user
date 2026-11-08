@@ -61,8 +61,19 @@ import UserProfile from './pages/profile/UserProfile';
 import ChangePassword from './pages/profile/ChangePassword';
 
 function App() {
-  const [lang, setLang] = useState('KH');
-  const [activeTab, setActiveTab] = useState('home');
+  const [lang, setLang] = useState(() => {
+    try {
+      return localStorage.getItem('language') || 'KH';
+    } catch {
+      return 'KH';
+    }
+  });
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      return window.location.hash.replace(/^#/, '') || 'home';
+    }
+    return 'home';
+  });
 
   // ✅ NEW: Student session (persist in localStorage)
   const [student, setStudent] = useState(() => {
@@ -78,8 +89,27 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeTab]);
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (typeof window !== 'undefined') {
+        const h = window.location.hash.replace(/^#/, '');
+        if (h) {
+          setActiveTab(h);
+        }
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const toggleLang = () => {
-    setLang((prev) => (prev === 'KH' ? 'EN' : 'KH'));
+    setLang((prev) => {
+      const next = prev === 'KH' ? 'EN' : 'KH';
+      try {
+        localStorage.setItem('language', next);
+      } catch {}
+      return next;
+    });
   };
 
   // ✅ NEW: Login handlers
@@ -92,6 +122,10 @@ function App() {
   const handleLogout = () => {
     setStudent(null);
     localStorage.removeItem('student');
+    if (typeof window !== 'undefined') {
+      window.location.hash = '';
+      window.history.replaceState({}, '', window.location.pathname);
+    }
     setActiveTab('home');
   };
 
@@ -100,7 +134,7 @@ function App() {
     setActiveTab(student ? 'my-grades' : 'login');
   };
 
-  const currentTab = typeof activeTab === 'string' ? activeTab.toLowerCase().trim() : '';
+  const currentTab = typeof activeTab === 'string' ? activeTab.toLowerCase().trim().replace(/^#/, '') : '';
 
   return (
     <div className={`min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 ${lang === 'KH' ? 'font-khmer' : 'font-sans'}`}>

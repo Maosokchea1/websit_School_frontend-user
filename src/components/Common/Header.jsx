@@ -145,13 +145,29 @@ const Header = ({
     setIsMobileMenuOpen(false);
   };
 
-  const handleMyGradesClick = () => handleNavClick('my-grades');
-  const handleProfileClick = () => handleNavClick('profile');
-  const handleChangePasswordClick = () => handleNavClick('change-password');
-  const handleLogoutClick = () => {
-    if (typeof onLogout === 'function') onLogout();
-    setIsMobileMenuOpen(false);
+  const handleMyGradesClick = (e) => {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
     setIsUserMenuOpen(false);
+    handleNavClick('my-grades');
+  };
+
+  const handleProfileClick = (e) => {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    setIsUserMenuOpen(false);
+    handleNavClick('profile');
+  };
+
+  const handleChangePasswordClick = (e) => {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    setIsUserMenuOpen(false);
+    handleNavClick('change-password');
+  };
+
+  const handleLogoutClick = (e) => {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    setIsUserMenuOpen(false);
+    setIsMobileMenuOpen(false);
+    if (typeof onLogout === 'function') onLogout();
   };
 
   // Navigation Arrays
@@ -424,17 +440,27 @@ const Header = ({
 
           {/* Right Action Icons (Desktop) */}
           <div className="hidden xl:flex items-center space-x-2 shrink-0">
-            <div onClick={toggleLanguage} className="p-2 text-blue-100 hover:bg-white/10 hover:text-white rounded-full transition-all duration-200 cursor-pointer flex items-center justify-center shrink-0 active:scale-90" title="Switch Language">
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              className="p-2 text-blue-100 hover:bg-white/10 hover:text-white rounded-full transition-all duration-200 cursor-pointer flex items-center justify-center shrink-0 active:scale-90 border-none bg-transparent"
+              title="Switch Language (ប្តូរភាសា)"
+            >
               <img src={lang === 'KH' ? "https://flagcdn.com/w40/kh.png" : "https://flagcdn.com/w40/us.png"} alt="Flag" className="w-6 h-auto object-contain rounded-sm pointer-events-none shadow-sm" />
-            </div>
+            </button>
 
-            <div onClick={toggleDarkMode} className="p-2 text-blue-100 hover:bg-white/10 hover:text-white rounded-full transition-all duration-200 cursor-pointer flex items-center justify-center shrink-0 active:scale-90" title="Toggle Theme">
+            <button
+              type="button"
+              onClick={toggleDarkMode}
+              className="p-2 text-blue-100 hover:bg-white/10 hover:text-white rounded-full transition-all duration-200 cursor-pointer flex items-center justify-center shrink-0 active:scale-90 border-none bg-transparent"
+              title="Toggle Theme (ពន្លឺ/ងងឹត)"
+            >
               {isDarkMode ? (
                 <svg className="w-5 h-5 text-amber-300 transition-transform duration-500 pointer-events-none" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
               ) : (
                 <svg className="w-5 h-5 text-blue-100 transition-transform duration-500 pointer-events-none" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
               )}
-            </div>
+            </button>
 
             {!isLoggedIn ? (
               <button type="button" onClick={handleLoginClick} className={`flex items-center gap-2 px-6 py-2.5 text-sm font-bold rounded-xl shadow-lg transition-all duration-200 cursor-pointer ml-2 active:scale-95 ${isLoginActive ? 'bg-blue-100 text-blue-950 ring-2 ring-blue-100/50 scale-105' : 'bg-white text-blue-950 hover:bg-blue-50 hover:scale-105'}`} title={t.loginSubtitle || (lang === 'KH' ? 'ចូលមើលពិន្ទុសិស្ស' : 'View student grades')}>
@@ -461,16 +487,26 @@ const Header = ({
 
           {/* Mobile Action Buttons */}
           <div className="xl:hidden flex items-center space-x-2">
-            <div onClick={toggleLanguage} className="p-2 text-blue-100 hover:bg-white/10 rounded-xl flex items-center justify-center shrink-0 cursor-pointer active:scale-90 transition-transform">
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              className="p-2 text-blue-100 hover:bg-white/10 rounded-xl flex items-center justify-center shrink-0 cursor-pointer active:scale-90 transition-transform border-none bg-transparent"
+              title="Switch Language"
+            >
               <img src={lang === 'KH' ? "https://flagcdn.com/w40/kh.png" : "https://flagcdn.com/w40/us.png"} alt="Flag" className="w-5 h-auto object-contain rounded-sm pointer-events-none" />
-            </div>
-            <div onClick={toggleDarkMode} className="p-2 text-blue-100 hover:bg-white/10 rounded-xl flex items-center justify-center shrink-0 cursor-pointer active:scale-90 transition-transform">
+            </button>
+            <button
+              type="button"
+              onClick={toggleDarkMode}
+              className="p-2 text-blue-100 hover:bg-white/10 rounded-xl flex items-center justify-center shrink-0 cursor-pointer active:scale-90 transition-transform border-none bg-transparent"
+              title="Toggle Theme"
+            >
               {isDarkMode ? (
                 <svg className="w-5 h-5 text-amber-300 pointer-events-none" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
               ) : (
                 <svg className="w-5 h-5 text-blue-100 pointer-events-none" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
               )}
-            </div>
+            </button>
 
             {isLoggedIn && (
               <div className="relative" ref={mobileUserMenuRef}>
